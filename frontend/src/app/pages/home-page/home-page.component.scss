@@ -7,12 +7,37 @@
 .header {
     width: 100vw;
     background-color: orange;
+    padding: 15vh 10vw;
 }
 
 .header-content {
-    margin: 150px;
+    width: 100%;
+    margin: 100px;
 }
 
-.content {
-    background-color: orange;
+.header-image {
+    border-radius: 100px;
 }
+
+.welcome-message {
+    text-align: center;
+}
+
+.button-container {
+    margin-top: 50px;
+}
+
+.button {
+    width: auto;
+    background-color: white;
+    border-radius: 50px;
+    padding: 7px 30px;
+    font-size: x-large;
+    transition: all 0.3s;
+    
+    &:hover {
+        box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.5);
+        cursor: pointer;
+    }
+}
+
