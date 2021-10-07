@@ -34,7 +34,9 @@
 }
 
 .header-image {
-    border-radius: 100px;
+    border-radius: 500px;
+    width: 300px;
+    height: auto;
 }
 
 .welcome-message {
@@ -60,10 +62,15 @@
 }
 
 
-.image-placeholder {
+.image-container {
     width: 100%;
     height: 200px;
     border: 1px solid black;
+}
+
+.image {
+    width: 400px;
+    height: auto;
 }
 
 .text-block {
