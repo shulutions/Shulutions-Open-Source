@@ -1,0 +1,100 @@
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sections {
+    .section:nth-child(even) {
+        background-color: rgb(247, 247, 247);
+    }
+}
+
+.section {
+    padding: 100px 12vw;
+}
+
+.no-marin {
+    margin: 0;
+}
+
+.divider {
+    height: 20px;
+}
+
+.header {
+    width: 100%;
+    background-color: orange;
+    padding: 15vh 10vw;
+}
+
+.header-content {
+    width: 100%;
+    margin: 100px;
+}
+
+.header-image {
+    border-radius: 500px;
+    width: 300px;
+    height: auto;
+}
+
+.welcome-message {
+    text-align: center;
+}
+
+.button-container {
+    margin-top: 50px;
+}
+
+.button {
+    width: auto;
+    background-color: white;
+    border-radius: 50px;
+    padding: 7px 30px;
+    font-size: x-large;
+    transition: all 0.3s;
+    
+    &:hover {
+        box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.5);
+        cursor: pointer;
+    }
+}
+
+
+.image-container {
+    width: 100%;
+    height: auto;
+}
+
+.image {
+    width: 100%;
+    height: 100%; 
+    object-fit: contain;
+}
+
+.text-block {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    line-height: 1.8;
+
+    h2 {
+        margin: 0 0 0 20;
+    }
+}
+
+.statistics {
+    .col-md-4 {
+        padding-bottom: 30px;
+    }
+}
+
+.statistics-grid {
+    flex-direction: column;
+}
+
+.statistic-title {
+    text-align: center;
+}
