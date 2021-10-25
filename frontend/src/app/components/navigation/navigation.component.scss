@@ -1,5 +1,9 @@
 @import '_vars';
 
+.navbar {
+    background-color: $bg-3;
+}
+
 nav .navbar-brand{
     font-weight:bold;
     font-size:  $ts-med;

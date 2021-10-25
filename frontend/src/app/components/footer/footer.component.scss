@@ -1,0 +1,11 @@
+@import '_vars';
+
+.footer-container {
+    background-color: $bg-3;
+    color: $tc-2;
+    padding: 40px 12vw;
+}
+
+.navigation-container {
+    flex-direction: row;
+}
