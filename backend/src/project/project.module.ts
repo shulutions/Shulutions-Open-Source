@@ -6,6 +6,7 @@ import { ProjectEntity } from './models/project.entity';
 
 @Module({
   imports: [
+    TypeOrmModule.forRoot(),
     TypeOrmModule.forFeature([ProjectEntity])
   ],
   providers: [ProjectService],

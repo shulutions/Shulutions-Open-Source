@@ -16,6 +16,10 @@ export class ProjectService {
         return from(this.projectRepository.save(project));
     }
 
+    findOne(id: number): Observable<Project> {
+        return from(this.projectRepository.findOne({id})); 
+    }
+
     findAll(): Observable<Project[]> {
         return from(this.projectRepository.find());
     }
@@ -27,7 +31,4 @@ export class ProjectService {
     updateOne(id: number, project: Project): Observable<any> {
         return from(this.projectRepository.update(id, project));
     }
-
-    
-
 }
