@@ -7,13 +7,13 @@ import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
-    ProjectModule,
     TypeOrmModule.forRoot({
       type: 'sqlite',
       database: 'db',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true
     }),
+    ProjectModule,
     UserModule
   ],
   controllers: [AppController],
