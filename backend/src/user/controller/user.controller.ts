@@ -3,7 +3,7 @@ import { catchError, Observable, of, map} from 'rxjs';
 import { User } from '../models/user.interface';
 import { UserService } from '../service/user.service';
 
-@Controller('user')
+@Controller('users')
 export class UserController {
 
     constructor(private userService: UserService) { }
