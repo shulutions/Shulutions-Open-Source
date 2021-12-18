@@ -15,11 +15,11 @@ import { UserModule } from 'src/user/user.module';
             inject: [ConfigService],
             useFactory: async (configService: ConfigService) => ({
                 secret: configService.get('JWT_SECRET'),
-                signOptions: {expiresIn: '100s'}
+                signOptions: { expiresIn: '10000s' }
             })
         })
     ],
     providers: [AuthService, RolesGuard, JwtAuthGuard, JwtStrategy],
     exports: [AuthService]
 })
-export class AuthModule {}
+export class AuthModule { }
