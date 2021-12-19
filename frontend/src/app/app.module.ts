@@ -7,6 +7,9 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ProjectsPageComponent } from './pages/projects-page/projects-page.component';
 import { ProjectPreviewComponent } from './components/project-preview/project-preview.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
+import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -14,11 +17,14 @@ import { NavigationComponent } from './components/navigation/navigation.componen
     HomePageComponent,
     ProjectsPageComponent,
     ProjectPreviewComponent,
-    NavigationComponent
+    NavigationComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
