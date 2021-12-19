@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { map } from 'rxjs/operators';
 import { AuthentificationService } from 'src/app/services/authentification.service';
 
 @Component({
@@ -8,13 +11,33 @@ import { AuthentificationService } from 'src/app/services/authentification.servi
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authService: AuthentificationService) { }
+  loginForm: FormGroup = new FormGroup({
+    email: new FormControl(null, [
+      Validators.required,
+      Validators.email
+    ]),
+    password: new FormControl(null, [
+      Validators.required,
+      Validators.minLength(1) //make this bigger
+    ])
+  })
+
+  constructor(private authService: AuthentificationService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
+  onSubmit() {
+    if(this.loginForm.invalid) {
+      return;
+    }
+    this.authService.login(this.loginForm.value).pipe(
+      map(token => this.router.navigate(['admin']))
+    ).subscribe();
+  }
+
   login() {
-    this.authService.login('rossi@gmail.com', 'a').subscribe(data => console.log("success"));
+    //this.authService.login('rossi@gmail.com', 'a').subscribe(data => console.log("success"));
   }
 
 }

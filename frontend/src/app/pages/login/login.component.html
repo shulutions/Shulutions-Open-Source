@@ -1,2 +1,12 @@
-<p>login works!</p>
-<button (click)="login()">Login</button>
+<h1 class="center">Login Page</h1>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="container">
+
+        <input placeholder="Email" formControlName="email">
+        
+        <input placeholder="Password" type="password" formControlName="password">
+
+        <button  [disabled]="!loginForm.valid" type="submit">Login</button>
+
+    </div>
+</form>
