@@ -11,8 +11,13 @@
         <input placeholder="Password" type="password" formControlName="password">
 
         <input placeholder="Confirm your password" type="password" formControlName="passwordConfirm">
+        <div *ngIf="registerForm.hasError('passwordsNotMatching')">Passwords do not match</div>
 
         <button  [disabled]="registerForm.invalid" type="submit">Register</button>
 
     </div>
 </form>
+
+<h3 *ngIf="registerForm.invalid">From contains the following errors</h3>
+<small *ngIf="registerForm.get('password')?.hasError('passwordInvalid')">Password is not containing a number</small> <br>
+<small *ngIf="registerForm.hasError('passwordsNotMatching')">Passwords not matching</small>
