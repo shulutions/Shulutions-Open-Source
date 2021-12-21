@@ -5,7 +5,7 @@
         <tr>
             <th *ngFor="let column of displayedColumns">{{column}}</th>
         </tr>
-        <tr *ngFor="let user of dataSource.items">
+        <tr (click)="navigateToProfile(user.id)" *ngFor="let user of dataSource.items">
             <td>{{user.id}}</td>
             <td>{{user.name}}</td>
             <td>{{user.username}}</td>
@@ -13,7 +13,7 @@
             <td>{{user.role}}</td>
         </tr>
     </table>
-    
+
     <div *ngIf="this.dataSource.meta.totalPages > 5">
         <label for="itemsPerPage">Items per Page</label>
         <select name="itemsPerPage" [(ngModel)]="itemsPerPage" (ngModelChange)="updateItemsPerPage()" class="form-control">

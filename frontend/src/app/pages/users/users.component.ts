@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { map, tap } from 'rxjs/operators';
 import { UserData, UserService } from 'src/app/services/user-service/user.service';
 
@@ -14,7 +15,7 @@ export class UsersComponent implements OnInit {
   itemsPerPage: number = 10;
   currentPage: number = 1;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router, private activatedRoute: ActivatedRoute ) { }
 
   ngOnInit(): void {
     this.getUsers()
@@ -41,6 +42,10 @@ export class UsersComponent implements OnInit {
 
   updateItemsPerPage(){
     this.getUsers();
+  }
+
+  navigateToProfile(id?: string) {
+    this.router.navigate(['./' + id], {relativeTo: this.activatedRoute});
   }
 
 }

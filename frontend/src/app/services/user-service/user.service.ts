@@ -28,6 +28,12 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
+  findOne(id: number): Observable<User> {
+    return this.http.get('/backend/users/' + id).pipe(
+      map((user: User) => user)
+    )
+  }
+
   findAll(page: number, limit: number): Observable<UserData> {
     let params = new HttpParams();
 
