@@ -28,11 +28,11 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  findAll(page: number, size: number): Observable<UserData> {
+  findAll(page: number, limit: number): Observable<UserData> {
     let params = new HttpParams();
 
-    params.append('page', String(page));
-    params.append('limit', String(size));
+    params = params.append('page', String(page));
+    params = params.append('limit', String(limit));
 
     return this.http.get('/backend/users', {params}).pipe(
       map((userData: UserData | any) => userData), //why does return an object not of type UserData?

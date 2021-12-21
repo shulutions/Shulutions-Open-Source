@@ -12,7 +12,21 @@
             <td>{{user.email}}</td>
             <td>{{user.role}}</td>
         </tr>
-        
-
     </table>
+    
+    <div *ngIf="this.dataSource.meta.totalPages > 5">
+        <label for="itemsPerPage">Items per Page</label>
+        <select name="itemsPerPage" [(ngModel)]="itemsPerPage" (ngModelChange)="updateItemsPerPage()" class="form-control">
+            <option>5</option>
+            <option>10</option>
+            <option>25</option>
+            <option>100</option>
+        </select>
+    </div>
+    
+    <div *ngIf="this.dataSource.meta.totalPages > 1">
+        <button [disabled]="this.currentPage == 1" (click)="previousPage()">Previous</button>
+        <button [disabled]="this.currentPage == this.dataSource.meta.totalPages" (click)="nextPage()">Next</button>
+        <div>Page {{this.dataSource.meta.currentPage}} / {{this.dataSource.meta.totalPages}}</div>
+    </div>
 </div>

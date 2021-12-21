@@ -11,18 +11,36 @@ export class UsersComponent implements OnInit {
 
   dataSource?: UserData;
   displayedColumns: string[] = ['Id', 'Name', 'Username', 'Email', 'Role'];
+  itemsPerPage: number = 10;
+  currentPage: number = 1;
 
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    this.initDataSource()
+    this.getUsers()
   }
 
-  initDataSource() {
-    this.userService.findAll(1, 10).pipe(
+  getUsers() {
+    this.userService.findAll(this.currentPage, this.itemsPerPage).pipe(
       tap(users => console.log(users)),
       map((userData: UserData) => this.dataSource = userData)
     ).subscribe();
+  }
+
+  nextPage() {
+    if(this.currentPage == this.dataSource?.meta.totalPages) return;
+    this.currentPage++;
+    this.getUsers();
+  }
+
+  previousPage() {
+    if(this.currentPage == 1) return;
+    this.currentPage--;
+    this.getUsers();
+  }
+
+  updateItemsPerPage(){
+    this.getUsers();
   }
 
 }
