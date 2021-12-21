@@ -4,6 +4,7 @@ import { catchError, Observable, of, map } from 'rxjs';
 import { hasRoles } from 'src/auth/decorator/roles.decorator';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-guard';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
+import { UserIsUserGuard } from 'src/auth/guards/UserIsUser.guard';
 import { User, UserRole } from '../models/user.interface';
 import { UserService } from '../service/user.service';
 
@@ -45,6 +46,7 @@ export class UserController {
         return this.userService.deleteOne(Number(id));
     }
 
+    @UseGuards(JwtAuthGuard, UserIsUserGuard)
     @Put(':id')
     updateOne(@Param('id') id: string, @Body() user: User): Observable<User> {
         return this.userService.updateOne(Number(id), user);
