@@ -1,0 +1,18 @@
+<h1 class="center">All users</h1>
+
+<div *ngIf="dataSource">
+    <table>
+        <tr>
+            <th *ngFor="let column of displayedColumns">{{column}}</th>
+        </tr>
+        <tr *ngFor="let user of dataSource.items">
+            <td>{{user.id}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.username}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.role}}</td>
+        </tr>
+        
+
+    </table>
+</div>
