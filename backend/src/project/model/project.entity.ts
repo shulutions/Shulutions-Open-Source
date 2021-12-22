@@ -20,7 +20,7 @@ export class ProjectEntity {
     @Column({default: ''})
     body: string;
 
-    @Column({type: 'timestamp', default: () => 'CURRENT_TIMESTAMP'}) 
+    @Column({type: 'datetime', default: () => 'CURRENT_TIMESTAMP'}) 
     created: Date;
 
     @Column()
@@ -31,5 +31,4 @@ export class ProjectEntity {
 
     @ManyToOne(type => UserEntity, user => user.projectsManaging)
     projectManager: UserEntity
-    
 }
