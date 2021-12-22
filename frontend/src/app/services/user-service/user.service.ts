@@ -34,6 +34,10 @@ export class UserService {
     )
   }
 
+  updateOne(user: User): Observable<User> {
+    return this.http.put('backend/users/' + user.id, user)
+  }
+
   findAll(page: number, limit: number): Observable<UserData> {
     let params = new HttpParams();
 

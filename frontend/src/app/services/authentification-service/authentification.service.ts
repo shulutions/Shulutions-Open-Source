@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map, switchMap, tap } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Observable, of } from 'rxjs';
 
 export interface LoginForm {
   email: string;
@@ -49,4 +50,12 @@ export class AuthentificationService {
     return false;
   }
 
+  getUserId(): number {
+    let jwt: string | null = localStorage.getItem(JWT_NAME);
+    if (jwt) {
+      let decoded: number = this.jwtHelper.decodeToken(jwt).user.id;
+      return decoded;
+    }
+    return -1;
+  }
 }
