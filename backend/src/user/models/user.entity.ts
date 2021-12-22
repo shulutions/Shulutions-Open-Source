@@ -1,4 +1,5 @@
-import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { ProjectEntity } from "src/project/model/project.entity";
+import { BeforeInsert, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { UserRole } from "./user.interface";
 
 @Entity()
@@ -22,6 +23,9 @@ export class UserEntity {
     //update this to only allow the roles stored within the enum
     @Column({ enum: UserRole, default: UserRole.USER})
     role: UserRole;
+
+    @OneToMany(type => ProjectEntity, project => project.projectManager)
+    projectsManaging: ProjectEntity[];
 
     @BeforeInsert()
     emailToLowerCase() {

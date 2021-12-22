@@ -1,3 +1,4 @@
+import { Project } from "src/project/model/project.interface";
 
 export interface User {
     id?: number;
@@ -6,6 +7,7 @@ export interface User {
     email?: string;
     password?: string;
     role?: UserRole;
+    projectsManaging?: Project[];
 }
 
 export enum UserRole {
