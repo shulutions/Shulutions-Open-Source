@@ -23,10 +23,10 @@ export class ProjectEntity {
     @Column({type: 'datetime', default: () => 'CURRENT_TIMESTAMP'}) 
     created: Date;
 
-    @Column()
+    @Column({nullable: true})
     image: string;
 
-    @Column()
+    @Column({nullable: true})
     isActive: boolean;
 
     @ManyToOne(type => UserEntity, user => user.projectsManaging)
