@@ -1,5 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { map } from 'rxjs';
 import { from, of, switchMap } from 'rxjs';
 import { Observable } from 'rxjs';
 import { User } from 'src/user/model/user.interface';
@@ -24,6 +25,25 @@ export class ProjectService {
                 project.slug = slug;
                 return from(this.projectRepository.save(project));
             })
+        )
+    }
+
+    findAll(): Observable<Project[]> {
+        return from(this.projectRepository.find({relations: ['projectManager']}));
+    }
+
+    findOne(id: number): Observable<Project> {
+        return from(this.projectRepository.findOne(id, {relations: ['projectManager']}))
+    }
+
+    findByUser(userId: number): Observable<Project[]> {
+        return from(this.projectRepository.find({
+            where: {
+                projectManager: userId
+            },
+            relations: ['projectManager']
+        })).pipe(
+            map((projects: Project[]) => projects)
         )
     }
 

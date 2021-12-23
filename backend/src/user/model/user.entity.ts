@@ -17,7 +17,7 @@ export class UserEntity {
     @Column()
     email: string;
 
-    @Column()
+    @Column({select:  false})
     password: string;
 
     //update this to only allow the roles stored within the enum

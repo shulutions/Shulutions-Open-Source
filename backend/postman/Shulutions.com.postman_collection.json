@@ -21,13 +21,14 @@
 					"raw": "{\r\n\t\"name\": \"Ross Feeley\",\r\n\t\"username\": \"rossi\",\r\n\t\"email\": \"rossi@gmail.com\",\r\n\t\"password\": \"a\",\r\n\t\"role\": \"admin\"\r\n}"
 				},
 				"url": {
-					"raw": "http://localhost:3000/users/",
+					"raw": "http://localhost:3000/backend/users/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"backend",
 						"users",
 						""
 					]
@@ -51,13 +52,14 @@
 					"raw": "{\r\n    \"email\": \"rossi@gmail.com\",\r\n    \"password\": \"a\"\r\n}"
 				},
 				"url": {
-					"raw": "http://localhost:3000/users/login",
+					"raw": "http://localhost:3000/backend/users/login",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"backend",
 						"users",
 						"login"
 					]
@@ -90,13 +92,14 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/users/1/role",
+					"raw": "http://localhost:3000/backend/users/1/role",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"backend",
 						"users",
 						"1",
 						"role"
@@ -111,15 +114,15 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/users/",
+					"raw": "http://localhost:3000/backend/users",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"users",
-						""
+						"backend",
+						"users"
 					]
 				}
 			},
@@ -140,16 +143,144 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/users/1/",
+					"raw": "http://localhost:3000/backend/users/1/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"backend",
 						"users",
 						"1",
 						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create new project (JWT needed)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoiUm9zcyBGZWVsZXkiLCJ1c2VybmFtZSI6InJvc3NpMCIsImVtYWlsIjoicm9zc0BnbWFpbC5jb20iLCJyb2xlIjoiYWRmbWZpbiJ9LCJpYXQiOjE2NDAyNzExMTQsImV4cCI6MTY0MDI4MTExNH0.U6eio_f4J9UnnOQ4Da9d2BQUo71e2jitCTQCdoqbs6Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Shulutions.com\",\r\n    \"description\": \"The open source community for sheffield hallam university\",\r\n    \"body\": \"Test body\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/backend/projects",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"backend",
+						"projects"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all projects",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/backend/projects",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"backend",
+						"projects"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get projects by user with query param",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/backend/projects?userId=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"backend",
+						"projects"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get project with ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/backend/projects/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"backend",
+						"projects",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find one user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/backend/users/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"backend",
+						"users",
+						"1"
 					]
 				}
 			},
