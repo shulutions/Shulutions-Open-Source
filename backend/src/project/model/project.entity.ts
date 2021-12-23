@@ -1,4 +1,4 @@
-import { UserEntity } from 'src/user/models/user.entity';
+import { UserEntity } from 'src/user/model/user.entity';
 import { ManyToOne } from 'typeorm';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
@@ -31,4 +31,5 @@ export class ProjectEntity {
 
     @ManyToOne(type => UserEntity, user => user.projectsManaging)
     projectManager: UserEntity
+
 }

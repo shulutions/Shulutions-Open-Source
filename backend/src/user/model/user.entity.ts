@@ -27,6 +27,7 @@ export class UserEntity {
     @OneToMany(type => ProjectEntity, project => project.projectManager)
     projectsManaging: ProjectEntity[];
 
+
     @BeforeInsert()
     emailToLowerCase() {
         this.email = this.email.toLowerCase();

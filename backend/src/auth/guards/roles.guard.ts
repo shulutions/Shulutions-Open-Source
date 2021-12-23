@@ -3,7 +3,7 @@ import { CanActivate, Injectable } from "@nestjs/common";
 import { Reflector } from "@nestjs/core";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
-import { User } from "src/user/models/user.interface";
+import { User } from "src/user/model/user.interface";
 import { UserService } from "src/user/service/user.service";
 import { hasRoles } from "../decorator/roles.decorator";
 

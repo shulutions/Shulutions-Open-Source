@@ -35,7 +35,7 @@ export class UserService {
   }
 
   updateOne(user: User): Observable<User> {
-    return this.http.put('backend/users/' + user.id, user)
+    return this.http.put('/backend/users/' + user.id, user)
   }
 
   findAll(page: number, limit: number): Observable<UserData> {
@@ -45,7 +45,7 @@ export class UserService {
     params = params.append('limit', String(limit));
 
     return this.http.get('/backend/users', {params}).pipe(
-      map((userData: UserData | any) => userData), //why does return an object not of type UserData?
+      map((userData: UserData | any) => userData), //why does this return an object not of type UserData?
       catchError(err => throwError(err))
     )
   }
