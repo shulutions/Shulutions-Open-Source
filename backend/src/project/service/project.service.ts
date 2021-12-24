@@ -47,6 +47,16 @@ export class ProjectService {
         )
     }
 
+    updateOne(id: number, project: Project): Observable<Project> {
+        return from(this.projectRepository.update(id, project)).pipe(
+            switchMap(() => this.findOne(id))
+        )
+    }
+
+    deleteOne(id: number): Observable<any> {
+        return from(this.projectRepository.delete(id));
+    }
+
     generateSlug(title: string): Observable<string> {
         return of(slugify(title));
     }

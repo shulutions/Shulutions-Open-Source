@@ -41,6 +41,9 @@ export class UserController {
         return this.userService.paginate({page: Number(page), limit: Number(limit), route: 'http://localhost:3000/backend/users'});
     }
 
+    
+    @hasRoles(UserRole.ADMIN)
+    @UseGuards(JwtAuthGuard, RolesGuard)
     @Delete(':id')
     deleteOne(@Param('id') id: string): Observable<User> {
         return this.userService.deleteOne(Number(id));
