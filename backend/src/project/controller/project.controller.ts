@@ -1,33 +1,52 @@
-import { Body, Delete, Get, Param, Put, Query, Request, UseGuards } from '@nestjs/common';
+import { Body, Delete, Get, Param, Put, Query, Request, Res, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
 import { Controller, Post } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { query } from 'express';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-guard';
 import { UserIsProjectManagerGuard } from '../guards/user-is-project-manager.guard';
 import { Project } from '../model/project.interface';
 import { ProjectService } from '../service/project.service';
+import { diskStorage } from 'multer';
+import { v4 as uuidv4 } from 'uuid';
+import path = require('path');
+import { Image } from '../model/image-interface';
+import { join } from 'path';
+
+
+export const storage = {
+    storage: diskStorage({
+        destination: './uploads/project-images',
+        filename: (req, file, cb) => {
+            const filename: string = path.parse(file.originalname).name.replace(/\s/g, '') + uuidv4();
+            const extension: string = path.parse(file.originalname).ext;
+
+            cb(null, `${filename}${extension}`)
+        }
+    })
+}
 
 @Controller('projects')
 export class ProjectController {
 
-    constructor(private projectService: ProjectService) {}
+    constructor(private projectService: ProjectService) { }
 
 
     @UseGuards(JwtAuthGuard)
     @Post()
-    create(@Body()project: Project, @Request() req): Observable<Project> {
+    create(@Body() project: Project, @Request() req): Observable<Project> {
         const user = req.user;
         return this.projectService.create(user, project);
     }
 
     @Get()
     findProjects(@Query('userId') userId: number): Observable<Project[]> {
-        if(userId == null) {
+        if (userId == null) {
             return this.projectService.findAll();
         } else {
             return this.projectService.findByUser(userId);
         }
-    }   
+    }
 
     @Get(':id')
     findOne(@Param('id') id: number): Observable<Project> {
@@ -45,5 +64,17 @@ export class ProjectController {
     deleteOne(@Param('id') id: number): Observable<any> {
         return this.projectService.deleteOne(id)
     }
+
+    @UseGuards(JwtAuthGuard)
+    @Post('image/upload')
+    @UseInterceptors(FileInterceptor('file', storage))
+    uploadFile(@UploadedFile() file, @Request() reg): Observable<Image> {
+        return of(file);
+    }
+
+    @Get('image/:imagename')
+    findImage(@Param('imagename') imagename, @Res() res): Observable<Object> {
+        return of(res.sendFile(join(process.cwd(), 'uploads/project-images/' + imagename)));
+    } 
 
 }
