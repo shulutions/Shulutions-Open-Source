@@ -28,6 +28,10 @@ export class AuthentificationService {
       })
     )
   }
+
+  logout() {
+    localStorage.removeItem(JWT_NAME);
+  }
   
   register(user: User) {
     return this.http.post<any>('backend/users/', user).pipe(
