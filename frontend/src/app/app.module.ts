@@ -16,6 +16,7 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
 import { UpdateUserProfileComponent } from './pages/update-user-profile/update-user-profile.component';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { ProjectsComponent } from './pages/projects/projects.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
     RegisterComponent,
     UsersComponent,
     UserProfileComponent,
-    UpdateUserProfileComponent
+    UpdateUserProfileComponent,
+    ProjectsComponent
   ],
   imports: [
     BrowserModule,
