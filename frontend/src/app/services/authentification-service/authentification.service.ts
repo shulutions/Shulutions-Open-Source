@@ -3,20 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable, of } from 'rxjs';
+import { User } from 'src/app/model/user.interface';
 
 export interface LoginForm {
   email: string;
   password: string;
-};
-
-export interface User {
-  id?: string;
-  name?: string;
-  username?: string;
-  email?: string;
-  password?: string;
-  passwordConfirm?: string;
-  role?: string;
 };
 
 export const JWT_NAME = 'token';

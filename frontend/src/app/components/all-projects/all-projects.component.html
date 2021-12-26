@@ -1,1 +1,16 @@
-<p>all-projects works!</p>
+<div class="center projects-container">
+    <div *ngFor="let project of (projects | async)" class="project">
+        <div>
+            <img *ngIf="project.image !== null; else placeholderImage" src="http://localhost:3000/backend/projects/image/{{project.image}}">
+            <ng-template #placeholderImage>
+                <img src="../../../assets/placeholders/placeholder-project.png">
+            </ng-template>
+        </div>
+        <div class="details-container">
+            <h2>{{project.title}}</h2>
+            <p>{{project.description}}</p>
+            <small>Project Manager: {{project.projectManager.name}}</small>
+        </div>
+
+    </div>
+</div>

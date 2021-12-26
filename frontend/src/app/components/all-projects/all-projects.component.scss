@@ -1,0 +1,23 @@
+.projects-container {
+    flex-direction: column;
+    
+}
+
+.project{
+    padding: 20px;
+    margin-top: 15px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+}
+
+img {
+    border: solid #888;
+    border-radius: 4px;
+    padding: 5px;
+    width: 150px;
+}
+
+.details-container {
+    margin: 0 20px;
+}
