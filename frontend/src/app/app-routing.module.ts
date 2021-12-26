@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
+import { CreateProjectComponent } from './pages/create-project/create-project.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ProjectsPageComponent } from './pages/projects-page/projects-page.component';
@@ -28,7 +29,8 @@ const routes: Routes = [
     ]
   },
   { path: 'update-profile', component: UpdateUserProfileComponent, canActivate: [AuthGuard] },
-  { path: 'projects', component: ProjectsComponent }
+  { path: 'projects', component: ProjectsComponent },
+  { path: 'create-project', component: CreateProjectComponent }
 ];
 
 @NgModule({
