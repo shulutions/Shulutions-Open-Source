@@ -10,6 +10,10 @@ export class ProjectService {
 
   constructor(private http: HttpClient) { }
 
+  findOne(id: number): Observable<Project> {
+    return this.http.get<Project>('/backend/projects/' + id)
+  }
+
   getAll(): Observable<Project[]> {
     return this.http.get<Project[]>('/backend/projects');
   }

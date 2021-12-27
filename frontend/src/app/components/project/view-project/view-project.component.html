@@ -1,1 +1,22 @@
-<p>view-project works!</p>
+<div *ngIf="(project$ | async) as project" class="center">
+    <div class="container">
+        <div class="header">
+            <div class="image-container">
+                <img src="http://localhost:3000/backend/projects/image/{{project.image}}" class="project-image">
+            </div>
+    
+            <div class="project-details">
+                <h1>{{project.title}}</h1>
+                <h2>{{project.description}}</h2>
+                <div *ngIf="project.projectManager">
+                    <h3>Project Manager: {{project.projectManager.name}}</h3>
+                    <a routerLink="../../users/{{project.projectManager.id}}">View profile</a>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="body-container">
+            <p>{{project.body}}</p>
+        </div>
+    </div>
+</div>

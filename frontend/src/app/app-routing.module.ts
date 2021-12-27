@@ -10,6 +10,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { UpdateUserProfileComponent } from './components/user/update-user-profile/update-user-profile.component';
 import { UserProfileComponent } from './components/user/user-profile/user-profile.component';
 import { UsersComponent } from './components/user/users/users.component';
+import { ViewProjectComponent } from './components/project/view-project/view-project.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -29,7 +30,8 @@ const routes: Routes = [
   },
   { path: 'update-profile', component: UpdateUserProfileComponent, canActivate: [AuthGuard] },
   { path: 'projects', component: ProjectsComponent },
-  { path: 'create-project', component: CreateProjectComponent, canActivate: [AuthGuard] }
+  { path: 'create-project', component: CreateProjectComponent, canActivate: [AuthGuard] },
+  { path: 'projects/:id', component: ViewProjectComponent },
 ];
 
 @NgModule({
