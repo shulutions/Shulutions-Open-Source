@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
-import { CreateProjectComponent } from './pages/create-project/create-project.component';
-import { HomePageComponent } from './pages/home-page/home-page.component';
-import { LoginComponent } from './pages/login/login.component';
-import { ProjectsPageComponent } from './pages/projects-page/projects-page.component';
-import { ProjectsComponent } from './pages/projects/projects.component';
-import { RegisterComponent } from './pages/register/register.component';
-import { UpdateUserProfileComponent } from './pages/update-user-profile/update-user-profile.component';
-import { UserProfileComponent } from './pages/user-profile/user-profile.component';
-import { UsersComponent } from './pages/users/users.component';
+import { CreateProjectComponent } from './components/project/create-project/create-project.component';
+import { HomePageComponent } from './components/home-page/home-page.component';
+import { LoginComponent } from './components/login/login.component';
+import { ProjectsPageComponent } from './components/project/projects-page/projects-page.component';
+import { ProjectsComponent } from './components/project/projects/projects.component';
+import { RegisterComponent } from './components/register/register.component';
+import { UpdateUserProfileComponent } from './components/user/update-user-profile/update-user-profile.component';
+import { UserProfileComponent } from './components/user/user-profile/user-profile.component';
+import { UsersComponent } from './components/user/users/users.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },

@@ -3,22 +3,22 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomePageComponent } from './pages/home-page/home-page.component';
-import { ProjectsPageComponent } from './pages/projects-page/projects-page.component';
-import { ProjectPreviewComponent } from './components/project-preview/project-preview.component';
+import { HomePageComponent } from './components/home-page/home-page.component';
+import { ProjectsPageComponent } from './components/project/projects-page/projects-page.component';
+import { ProjectPreviewComponent } from './components/project/project-preview/project-preview.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
-import { LoginComponent } from './pages/login/login.component';
-import { RegisterComponent } from './pages/register/register.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { UsersComponent } from './pages/users/users.component';
-import { UserProfileComponent } from './pages/user-profile/user-profile.component';
-import { UpdateUserProfileComponent } from './pages/update-user-profile/update-user-profile.component';
+import { UsersComponent } from './components/user/users/users.component';
+import { UserProfileComponent } from './components/user/user-profile/user-profile.component';
+import { UpdateUserProfileComponent } from './components/user/update-user-profile/update-user-profile.component';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
-import { ProjectsComponent } from './pages/projects/projects.component';
-import { AllProjectsComponent } from './components/all-projects/all-projects.component';
-import { CreateProjectComponent } from './pages/create-project/create-project.component';
+import { ProjectsComponent } from './components/project/projects/projects.component';
+import { AllProjectsComponent } from './components/project/all-projects/all-projects.component';
+import { CreateProjectComponent } from './components/project/create-project/create-project.component';
 
 @NgModule({
   declarations: [
