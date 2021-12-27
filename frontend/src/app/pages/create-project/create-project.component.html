@@ -1,1 +1,32 @@
-<p>create-project works!</p>
+<form [formGroup]="createProjectForm" (ngSubmit)="createProject()">
+
+    <div class="center">
+        <div class="container">
+            <div>
+                <img *ngIf="createProjectForm.get('image')?.value" src="http://localhost:3000/backend/projects/image/{{createProjectForm.get('image')?.value}}">
+                <button type="button" (click)="onClick()">Upload Image</button>
+                <input (change)="fileChange()" type="file" #fileUpload id="fileUpload" name="fileUpload" accept="image/*" style="display: none;">
+            </div>
+            <br>
+    
+            <div class="input-container">
+                <input type="text" placeholder="Id" formControlName="id"> 
+            </div>
+    
+            <div class="input-container">
+                <input type="text" placeholder="Title" formControlName="title"> 
+            </div>
+    
+            <div class="input-container">
+                <input type="text" placeholder="Description" formControlName="description"> 
+            </div>
+    
+            <div class="input-container">
+                <input type="text" placeholder="Body" formControlName="body"> 
+            </div>
+            
+    
+            <button [disabled]="createProjectForm.invalid" type="submit">Create Project</button>
+        </div>
+    </div>
+</form>

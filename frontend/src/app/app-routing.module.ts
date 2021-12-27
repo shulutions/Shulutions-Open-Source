@@ -18,8 +18,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'projects-page', component: ProjectsPageComponent },
   {
-    path: 'users',
-    children: [
+    path: 'users', children: [
       {
         path: '', component: UsersComponent
       },
@@ -30,7 +29,7 @@ const routes: Routes = [
   },
   { path: 'update-profile', component: UpdateUserProfileComponent, canActivate: [AuthGuard] },
   { path: 'projects', component: ProjectsComponent },
-  { path: 'create-project', component: CreateProjectComponent }
+  { path: 'create-project', component: CreateProjectComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

@@ -11,8 +11,17 @@ export class ProjectService {
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<Project[]> {
-    
     return this.http.get<Project[]>('/backend/projects');
-    
+  }
+
+  createProject(project: Project): Observable<Project> {
+    return this.http.post<Project>('/backend/projects', project);
+  }
+
+  uploadProjectImage(formData: FormData): Observable<any> {
+    return this.http.post<FormData>('/backend/projects/image/upload', formData, {
+      reportProgress: true,
+      observe: 'events'
+    })
   }
 }
