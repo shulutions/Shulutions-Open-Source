@@ -1,6 +1,6 @@
-<div class="center projects-container">
-    <h1>All Projects</h1>
-    <div *ngFor="let project of (projects | async)" class="project" routerLink="../projects/{{project.id}}">
+<h1 class="center">All Projects</h1>
+<div class="center projects-container">    
+    <div *ngFor="let project of (projects | async)" class="project shadow" routerLink="../projects/{{project.id}}">
         <div>
             <img *ngIf="project.image !== null; else placeholderImage" 
                 src="http://localhost:3000/backend/projects/image/{{project.image}}">
@@ -13,6 +13,5 @@
             <p>{{project.description}}</p>
             <small *ngIf="project.projectManager">Project Manager: {{project.projectManager.name}}</small>
         </div>  
-
     </div>
 </div>

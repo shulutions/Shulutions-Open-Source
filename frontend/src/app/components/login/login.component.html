@@ -6,7 +6,9 @@
         
         <input placeholder="Password" type="password" formControlName="password">
 
-        <button  [disabled]="!loginForm.valid" type="submit">Login</button>
-
+        <div class="button-container center">
+            <button class="button primary" [disabled]="!loginForm.valid" type="submit">Login</button>
+        </div>
+        
     </div>
 </form>

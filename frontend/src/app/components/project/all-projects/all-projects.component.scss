@@ -1,12 +1,13 @@
 .projects-container {
-    flex-direction: column;
-    
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 30px;
 }
 
 .project{
     padding: 20px;
-    margin-top: 15px;
-    border: 1px solid black;
+    margin: 40px;
+    //border: 1px solid black;
     display: flex;
     flex-direction: row;
     :hover {
