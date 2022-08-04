@@ -1,22 +1,24 @@
 <div *ngIf="(project$ | async) as project" class="center">
     <div class="container">
-        <div class="header">
-            <div class="image-container">
-                <img src="http://localhost:3000/backend/projects/image/{{project.image}}" class="project-image">
-            </div>
-    
-            <div class="project-details">
-                <h1>{{project.title}}</h1>
-                <h2>{{project.description}}</h2>
-                <div *ngIf="project.projectManager">
-                    <h3>Project Manager: {{project.projectManager.name}}</h3>
-                    <a routerLink="../../users/{{project.projectManager.id}}">View profile</a>
-                </div>
-            </div>
+        <div class="header center">
+            <h1>{{project.title}}</h1>
         </div>
-        <br>
-        <div class="body-container">
-            <p>{{project.body}}</p>
+        <div class="description center">
+            <p>{{project.description}}</p>
+        </div>
+        <div class="image-container center">
+            <img src="http://localhost:3000/backend/projects/image/{{project.image}}" class="project-image">
+        </div>
+        
+        <div class="project-details">
+            
+            <div *ngIf="project.projectManager">
+                <h4>Project Manager: </h4>
+                <a routerLink="../../users/{{project.projectManager.id}}">{{project.projectManager.name}}</a>
+            </div>
+            <div class="body-container">
+                <p>{{project.body}}</p>
+            </div>
         </div>
     </div>
 </div>
