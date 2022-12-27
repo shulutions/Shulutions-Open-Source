@@ -1,0 +1,437 @@
+{
+	"info": {
+		"_postman_id": "fbc1d1a5-9d06-4fae-bdbe-d4c812188ee3",
+		"name": "Shulutions.com",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Project",
+			"item": [
+				{
+					"name": "[Project] Download Image",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/backend/projects/image/ifinitee28f3879-084f-48aa-a1c7-088e6480c230.jpg",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"backend",
+								"projects",
+								"image",
+								"ifinitee28f3879-084f-48aa-a1c7-088e6480c230.jpg"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get projects by user with query param",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/backend/projects?userId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"backend",
+								"projects"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create new project (JWT needed)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoiUm9zcyBGZWVsZXkiLCJ1c2VybmFtZSI6InJvc3NpMCIsImVtYWlsIjoicm9zc0BnbWFpbC5jb20iLCJyb2xlIjoiYWRmbWZpbiJ9LCJpYXQiOjE2NDAyNzExMTQsImV4cCI6MTY0MDI4MTExNH0.U6eio_f4J9UnnOQ4Da9d2BQUo71e2jitCTQCdoqbs6Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Shulutions.com\",\r\n    \"description\": \"The open source community for sheffield hallam university\",\r\n    \"body\": \"Test body\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/backend/projects",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"backend",
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update project (JWT needed)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoiUm9zcyBGZWVsZXkiLCJ1c2VybmFtZSI6InJvc3NpMCIsImVtYWlsIjoicm9zc0BnbWFpbC5jb20iLCJyb2xlIjoiYWRmbWZpbiJ9LCJpYXQiOjE2NDAzNjA1NDIsImV4cCI6MTY0MDM3MDU0Mn0.OHBb3xfE9gNGFL4H0qss3I3rfzNZBpaXd9HR5PHHzKg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n    \"title\": \"project 2\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/backend/projects/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"backend",
+								"projects",
+								"2"
+							]
+						},
+						"description": "Only the project manager can update a project"
+					},
+					"response": []
+				},
+				{
+					"name": "Get project with ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/backend/projects/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"backend",
+								"projects",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a project (JWT needed)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoiUm9zcyBGZWVsZXkiLCJ1c2VybmFtZSI6InJvc3NpMCIsImVtYWlsIjoicm9zc0BnbWFpbC5jb20iLCJyb2xlIjoiYWRmbWZpbiJ9LCJpYXQiOjE2NDAzNjA1NDIsImV4cCI6MTY0MDM3MDU0Mn0.OHBb3xfE9gNGFL4H0qss3I3rfzNZBpaXd9HR5PHHzKg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/backend/projects/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"backend",
+								"projects",
+								"3"
+							]
+						},
+						"description": "Only the project manager can delete the project"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all projects",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/backend/projects",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"backend",
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Project] upload image",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoiUm9zcyBGZWVsZXkiLCJ1c2VybmFtZSI6InJvc3NpMCIsImVtYWlsIjoicm9zc0BnbWFpbC5jb20iLCJyb2xlIjoiYWRmbWZpbiJ9LCJpYXQiOjE2NDA0Mzc5MjIsImV4cCI6MTY0MDQ0NzkyMn0.kRqhpBQeVQ24HKkqswIKAZ-ssiHI8GlfZ2bV6plklhU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/ross-/Pictures/ifinite.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/backend/projects/image/upload",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"backend",
+								"projects",
+								"image",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Create user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"name\": \"Ross Feeley\",\r\n\t\"username\": \"rossi\",\r\n\t\"email\": \"rossi@gmail.com\",\r\n\t\"password\": \"a\",\r\n\t\"role\": \"admin\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/backend/users/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"backend",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"rossi@gmail.com\",\r\n    \"password\": \"a\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/backend/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"backend",
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/backend/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"backend",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"name\": \"Ross Feeley\",\r\n\t\"username\": \"rossfeeley\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/backend/users/1/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"backend",
+								"users",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Role",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjozLCJuYW1lIjoiUm9zcyBGZWVsZXkiLCJ1c2VybmFtZSI6InJvc3NpIiwiZW1haWwiOiJyb3NzaUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4ifSwiaWF0IjoxNjM5ODQ3MTU1LCJleHAiOjE2Mzk4NTcxNTV9.7YxfKbD8mbE8fcal25NKy4d_HKPnNfbBIq7UOHb8Uv4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"role\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/backend/users/1/role",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"backend",
+								"users",
+								"1",
+								"role"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find one user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/backend/users/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"backend",
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

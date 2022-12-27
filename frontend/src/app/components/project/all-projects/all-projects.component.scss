@@ -1,0 +1,27 @@
+.projects-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 30px;
+}
+
+.project{
+    padding: 20px;
+    margin: 40px;
+    //border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    :hover {
+     cursor: pointer;   
+    }
+}
+
+img {
+    border: solid #888;
+    border-radius: 4px;
+    padding: 5px;
+    width: 150px;
+}
+
+.details-container {
+    margin: 0 20px;
+}

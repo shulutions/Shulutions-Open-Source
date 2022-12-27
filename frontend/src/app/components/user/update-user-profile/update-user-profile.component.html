@@ -1,0 +1,19 @@
+<form [formGroup]="updateUserForm" (ngSubmit)="update()">
+    <div class="center">
+        <div>
+            <label for="">ID</label>
+            <br>
+            <input type="text" placeholder="ID" formControlName="id">
+            <br>
+            <label for="">Name</label>
+            <br>
+            <input type="text" placeholder="Name" formControlName="name">
+            <br>
+            <label for="">Username</label>
+            <br>
+            <input type="text" placeholder="Username" formControlName="username">
+            <br>
+            <button [disabled]="updateUserForm.invalid" type="submit">Submit</button>
+        </div>
+    </div>
+</form>
