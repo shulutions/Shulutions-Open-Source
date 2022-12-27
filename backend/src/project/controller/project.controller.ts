@@ -31,7 +31,7 @@ export class ProjectController {
 
     constructor(private projectService: ProjectService) { }
 
-    //@UseGuards(JwtAuthGuard)
+    @UseGuards(JwtAuthGuard)
     @Post()
     create(@Body() project: Project, @Request() req): Observable<Project> {
         const user = req.user;
@@ -64,7 +64,7 @@ export class ProjectController {
         return this.projectService.deleteOne(id)
     }
 
-    //@UseGuards(JwtAuthGuard)
+    @UseGuards(JwtAuthGuard)
     @Post('image/upload')
     @UseInterceptors(FileInterceptor('file', storage))
     uploadFile(@UploadedFile() file, @Request() req): Observable<Image> {
