@@ -6,11 +6,11 @@ export interface User {
     username?: string;
     email?: string;
     password?: string;
-    role?: UserRole;
+    roles?: Role[];
     projectsManaging?: Project[];
 }
 
-export enum UserRole {
+export enum Role {
     ADMIN = 'admin',
     PROJECTMANAGER = 'projectmanager',
     USER = 'user'

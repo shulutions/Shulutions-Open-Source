@@ -19,7 +19,7 @@ import { UserModule } from 'src/user/user.module';
             })
         })
     ],
-    providers: [AuthService, RolesGuard, JwtAuthGuard, JwtStrategy],
+    providers: [AuthService, JwtAuthGuard, JwtStrategy],
     exports: [AuthService]
 })
 export class AuthModule { }

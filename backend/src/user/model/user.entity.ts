@@ -1,6 +1,7 @@
 import { ProjectEntity } from "src/project/model/project.entity";
-import { BeforeInsert, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { UserRole } from "./user.interface";
+import { BeforeInsert, Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { RoleEntity } from "./role.entity";
+import { Role } from "./user.interface";
 
 @Entity()
 export class UserEntity {
@@ -22,12 +23,12 @@ export class UserEntity {
     password: string;
 
     //update this to only allow the roles stored within the enum
-    @Column({ enum: UserRole, default: UserRole.USER})
-    role: UserRole;
+    @ManyToMany(() => RoleEntity, (role) => role.users)
+    @JoinTable()
+    roles: Role[];
 
     @OneToMany(type => ProjectEntity, project => project.projectManager)
     projectsManaging: ProjectEntity[];
-
 
     @BeforeInsert()
     emailToLowerCase() {
