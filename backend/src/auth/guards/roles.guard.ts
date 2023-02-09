@@ -4,6 +4,7 @@ import { Reflector } from "@nestjs/core";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { Role } from "src/user/model/role.dto";
+import { RoleEntity } from "src/user/model/role.entity";
 import { User } from "src/user/model/user.interface";
 import { UserService } from "src/user/service/user.service";
 import { Roles } from "../decorator/roles.decorator";
@@ -19,7 +20,7 @@ export class RolesGuard implements CanActivate {
 
     canActivate(context: ExecutionContext): boolean | Promise<boolean> | Observable<boolean> {
         // What is the required role?
-        const requiredRoles = this.reflector.getAllAndOverride<Role[]>('roles', [
+        const requiredRoles = this.reflector.getAllAndOverride<RoleEntity[]>('roles', [
             context.getHandler(),
             context.getClass()
         ]);

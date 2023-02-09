@@ -18,17 +18,17 @@ export class UserService {
     ) { }
 
     create(user: User): Observable<User> {
-        return this.authService.hashPassword(user.password).pipe(
-            switchMap((passwordHash: string) => {
+        return from(this.roleRepository.findOne({ name: Role.USER })).pipe(
+            switchMap((userRole: RoleEntity) => {
                 const newUser = new UserEntity();
                 newUser.name = user.name;
                 newUser.username = user.username;
                 newUser.email = user.email;
-                newUser.password = passwordHash;
-                newUser.roles = [Role.USER];
+                newUser.password = user.password;
+                newUser.roles = [userRole];
 
                 return from(this.userRepository.save(newUser)).pipe(
-                    map((user: User) => {
+                    map((user: UserEntity) => {
                         const { password, ...result } = user;
                         return result;
                     }),

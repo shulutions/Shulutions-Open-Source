@@ -1,4 +1,5 @@
 import { Project } from "src/project/model/project.interface";
+import { RoleEntity } from "./role.entity";
 
 export interface User {
     id?: number;
@@ -6,7 +7,7 @@ export interface User {
     username?: string;
     email?: string;
     password?: string;
-    roles?: Role[];
+    roles?: RoleEntity[];
     projectsManaging?: Project[];
 }
 
