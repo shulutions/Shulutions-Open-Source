@@ -6,12 +6,14 @@ import { Repository } from 'typeorm';
 import { UserEntity } from '../model/user.entity';
 import { User, Role } from '../model/user.interface';
 import { paginate, Pagination, IPaginationOptions } from 'nestjs-typeorm-paginate';
+import { RoleEntity } from '../model/role.entity';
 
 @Injectable()
 export class UserService {
 
     constructor(
         @InjectRepository(UserEntity) private readonly userRepository: Repository<UserEntity>,
+        @InjectRepository(RoleEntity) private readonly roleRepository: Repository<RoleEntity>,
         private authService: AuthService
     ) { }
 
