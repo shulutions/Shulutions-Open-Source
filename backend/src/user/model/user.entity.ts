@@ -18,12 +18,10 @@ export class UserEntity {
     @Column()
     email: string;
 
-    //@Column({select:  false})
-    @Column()
+    @Column({select:  false})
     password: string;
 
-    //update this to only allow the roles stored within the enum
-    @ManyToMany(() => RoleEntity, (role) => role.users, {cascade: true})
+    @ManyToMany(() => RoleEntity, (role) => role.users, {cascade: true, eager: true})
     @JoinTable()
     roles: RoleEntity[];
 

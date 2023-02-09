@@ -11,7 +11,7 @@ import { UserData, UserService } from 'src/app/services/user-service/user.servic
 export class UsersComponent implements OnInit {
 
   dataSource?: UserData;
-  displayedColumns: string[] = ['Id', 'Name', 'Username', 'Email', 'Role'];
+  displayedColumns: string[] = ['Id', 'Name', 'Username', 'Email', 'Roles'];
   itemsPerPage: number = 10;
   currentPage: number = 1;
 

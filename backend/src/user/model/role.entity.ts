@@ -14,5 +14,3 @@ export class RoleEntity {
     @ManyToMany(() => UserEntity, user => user.roles)
     users: User[];
 }
-    // @Column({ enum: Role, default: Role.USER})
-    // role: Role
