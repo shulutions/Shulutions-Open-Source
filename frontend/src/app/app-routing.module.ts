@@ -28,7 +28,9 @@ const routes: Routes = [
       {
         path: ':id', component: UserProfileComponent
       }
-    ]
+    ],
+    canActivate: [AuthGuard],
+    data: { roles: ['admin'] }
   },
   { path: 'update-profile', component: UpdateUserProfileComponent, canActivate: [AuthGuard] },
   { path: 'projects', component: ProjectsComponent },
