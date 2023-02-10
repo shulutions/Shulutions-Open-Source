@@ -13,7 +13,11 @@ import { ViewProjectComponent } from './pages/view-project/view-project.componen
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
-  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
+  { 
+    path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule), 
+    canActivate: [AuthGuard],
+    data: { roles: ['admin'] } 
+  },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   {
@@ -28,7 +32,11 @@ const routes: Routes = [
   },
   { path: 'update-profile', component: UpdateUserProfileComponent, canActivate: [AuthGuard] },
   { path: 'projects', component: ProjectsComponent },
-  { path: 'create-project', component: CreateProjectComponent, canActivate: [AuthGuard] },
+  { 
+    path: 'create-project', component: CreateProjectComponent, 
+    canActivate: [AuthGuard],
+    data: { roles: ['admin'] } 
+  },
   { path: 'projects/:id', component: ViewProjectComponent },
 ];
 
