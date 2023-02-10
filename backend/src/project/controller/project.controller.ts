@@ -12,6 +12,8 @@ import { v4 as uuidv4 } from 'uuid';
 import path = require('path');
 import { Image } from '../model/image-interface';
 import { join } from 'path';
+import { Roles } from 'src/auth/decorator/roles.decorator';
+import { RolesGuard } from 'src/auth/guards/roles.guard';
 
 
 export const storage = {
@@ -31,8 +33,9 @@ export class ProjectController {
 
     constructor(private projectService: ProjectService) { }
 
-    @UseGuards(JwtAuthGuard)
     @Post()
+    @UseGuards(JwtAuthGuard, RolesGuard)
+    @Roles('admin')
     create(@Body() project: Project, @Request() req): Observable<Project> {
         const user = req.user;
         return this.projectService.create(user, project);

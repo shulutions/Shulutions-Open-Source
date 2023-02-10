@@ -1,4 +1,5 @@
 import { Project } from "src/project/model/project.interface";
+import { RoleEntity } from "./role.entity";
 
 export interface User {
     id?: number;
@@ -6,11 +7,11 @@ export interface User {
     username?: string;
     email?: string;
     password?: string;
-    role?: UserRole;
+    roles?: RoleEntity[];
     projectsManaging?: Project[];
 }
 
-export enum UserRole {
+export enum Role {
     ADMIN = 'admin',
     PROJECTMANAGER = 'projectmanager',
     USER = 'user'

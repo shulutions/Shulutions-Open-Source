@@ -1,0 +1,40 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch Angular Server (frontend)",
+            "request": "launch",
+            "runtimeArgs": [
+                "start"
+            ],
+            "runtimeExecutable": "npm",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type": "node",
+            "cwd": "${workspaceFolder}/frontend",
+            "outputCapture": "std"
+        },
+        {
+            "name": "Launch NestJS Server (backend)",
+            "request": "launch",
+            "runtimeArgs": [
+                "run",
+                "start:dev"
+            ],
+            "runtimeExecutable": "npm",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type": "node",
+            "cwd": "${workspaceFolder}/backend",
+            "outputCapture": "std"
+        }
+    ],
+    "compounds": [
+        {
+          "name": "Launch Dev Servers",
+          "configurations": ["Launch NestJS Server (backend)", "Launch Angular Server (frontend)"]
+        }
+    ]
+}

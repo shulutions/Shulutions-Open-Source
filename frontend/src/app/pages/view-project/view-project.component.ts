@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ProjectService } from 'src/app/services/project-service/project.service';
-import { Project } from 'src/app/model/project.interface';
+import { Project } from 'src/app/models/project.interface';
 import { map, switchMap } from 'rxjs/operators';
 
 @Component({

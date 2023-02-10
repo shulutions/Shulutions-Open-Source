@@ -1,11 +1,11 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, Query, UseGuards } from '@nestjs/common';
 import { Pagination } from 'nestjs-typeorm-paginate';
 import { catchError, Observable, of, map } from 'rxjs';
-import { hasRoles } from 'src/auth/decorator/roles.decorator';
+import { Roles } from 'src/auth/decorator/roles.decorator';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-guard';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
 import { UserIsUserGuard } from 'src/auth/guards/UserIsUser.guard';
-import { User, UserRole } from '../model/user.interface';
+import { User, Role } from '../model/user.interface';
 import { UserService } from '../service/user.service';
 
 @Controller('users')
@@ -42,7 +42,7 @@ export class UserController {
     }
 
     
-    @hasRoles(UserRole.ADMIN)
+    @Roles(Role.ADMIN)
     @UseGuards(JwtAuthGuard, RolesGuard)
     @Delete(':id')
     deleteOne(@Param('id') id: string): Observable<User> {
@@ -55,7 +55,7 @@ export class UserController {
         return this.userService.updateOne(Number(id), user);
     }
 
-    @hasRoles(UserRole.ADMIN)
+    @Roles(Role.ADMIN)
     @UseGuards(JwtAuthGuard, RolesGuard)
     @Put(':id/role')
     updateRoleOfUser(@Param('id') id: string, @Body() user: User): Observable<User> {

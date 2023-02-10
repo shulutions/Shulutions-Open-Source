@@ -4,29 +4,31 @@ import { catchError, switchMap, throwError, from, Observable, map } from 'rxjs';
 import { AuthService } from 'src/auth/services/auth.service';
 import { Repository } from 'typeorm';
 import { UserEntity } from '../model/user.entity';
-import { User, UserRole } from '../model/user.interface';
+import { User, Role } from '../model/user.interface';
 import { paginate, Pagination, IPaginationOptions } from 'nestjs-typeorm-paginate';
+import { RoleEntity } from '../model/role.entity';
 
 @Injectable()
 export class UserService {
 
     constructor(
         @InjectRepository(UserEntity) private readonly userRepository: Repository<UserEntity>,
+        @InjectRepository(RoleEntity) private readonly roleRepository: Repository<RoleEntity>,
         private authService: AuthService
     ) { }
 
     create(user: User): Observable<User> {
-        return this.authService.hashPassword(user.password).pipe(
-            switchMap((passwordHash: string) => {
+        return from(this.roleRepository.findOne({ name: Role.USER })).pipe(
+            switchMap((userRole: RoleEntity) => {
                 const newUser = new UserEntity();
                 newUser.name = user.name;
                 newUser.username = user.username;
                 newUser.email = user.email;
-                newUser.password = passwordHash;
-                newUser.role = UserRole.USER;
+                newUser.password = user.password;
+                newUser.roles = [userRole];
 
                 return from(this.userRepository.save(newUser)).pipe(
-                    map((user: User) => {
+                    map((user: UserEntity) => {
                         const { password, ...result } = user;
                         return result;
                     }),
@@ -46,7 +48,7 @@ export class UserService {
     }
 
     findAll(): Observable<User[]> {
-        return from(this.userRepository.find()).pipe(
+        return from(this.userRepository.find({relations: ['roles']})).pipe(
             map((users: User[]) => {
                 users.forEach((u) => delete u.password)
                 return users
@@ -71,7 +73,7 @@ export class UserService {
     updateOne(id: number, user: User): Observable<any> {
         delete user.email;
         delete user.password;
-        delete user.role;
+        delete user.roles;
 
         return from(this.userRepository.update(id, user));
     }
