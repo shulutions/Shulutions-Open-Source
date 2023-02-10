@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
-import { User } from 'src/app/model/user.interface';
+import { User } from 'src/app/models/user.interface';
 import { AuthentificationService } from 'src/app/services/authentification-service/authentification.service';
 import { UserService } from 'src/app/services/user-service/user.service';
 

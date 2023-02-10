@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable, of } from 'rxjs';
-import { User } from 'src/app/model/user.interface';
+import { User } from 'src/app/models/user.interface';
 
 export interface LoginForm {
   email: string;
@@ -53,4 +53,13 @@ export class AuthentificationService {
     }
     return -1;
   }
+
+  getUserRoles(): string[] {
+    let jwt: string | null = localStorage.getItem(JWT_NAME);
+    if (jwt) {
+      let decoded: string[] = this.jwtHelper.decodeToken(jwt).user.roles.map((role: any) => role.name);
+      return decoded;
+    }
+    return [];
+  } 
 }

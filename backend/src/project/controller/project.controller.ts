@@ -35,7 +35,7 @@ export class ProjectController {
 
     @Post()
     @UseGuards(JwtAuthGuard, RolesGuard)
-    @Roles('user')
+    @Roles('admin')
     create(@Body() project: Project, @Request() req): Observable<Project> {
         const user = req.user;
         return this.projectService.create(user, project);

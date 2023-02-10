@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Project } from 'src/app/model/project.interface';
+import { Project } from 'src/app/models/project.interface';
 import { ProjectService } from 'src/app/services/project-service/project.service';
 
 @Component({
