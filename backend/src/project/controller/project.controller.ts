@@ -34,7 +34,7 @@ export class ProjectController {
     constructor(private projectService: ProjectService) { }
 
     @Post()
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(JwtAuthGuard, RolesGuard)
     @Roles('user')
     create(@Body() project: Project, @Request() req): Observable<Project> {
         const user = req.user;
