@@ -26,9 +26,9 @@ export class ProjectRequestService {
     )
   }
 
-  findAll() {
-    return `This action returns all projectRequest`;
-  }
+  findAll(): Observable<ProjectRequest[]> {
+    return from(this.projectRequestRepository.find({relations: ['submittedBy']}));
+}
 
   findOne(id: number) {
     return `This action returns a #${id} projectRequest`;

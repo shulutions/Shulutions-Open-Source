@@ -21,6 +21,8 @@ export class ProjectRequestController {
   }
 
   @Get()
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('admin')
   findAll() {
     return this.projectRequestService.findAll();
   }
