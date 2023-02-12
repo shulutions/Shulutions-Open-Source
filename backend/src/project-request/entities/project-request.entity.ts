@@ -12,6 +12,9 @@ export class ProjectRequest {
     title: string;
 
     @Column()
+    slug: string;
+
+    @Column()
     description: string;
 
     @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' }) 
