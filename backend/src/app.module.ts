@@ -7,6 +7,7 @@ import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
 import { RolesGuard } from './auth/guards/roles.guard';
+import { ProjectRequestModule } from './project-request/project-request.module';
 
 @Module({
   imports: [
@@ -18,7 +19,8 @@ import { RolesGuard } from './auth/guards/roles.guard';
     }),
     ProjectModule,
     UserModule,
-    AuthModule
+    AuthModule,
+    ProjectRequestModule
   ],
   controllers: [AppController],
   providers: [
