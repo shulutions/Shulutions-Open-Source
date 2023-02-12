@@ -1,15 +1,23 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Request } from '@nestjs/common';
 import { ProjectRequestService } from '../service/project-request.service';
 import { CreateProjectRequestDto } from '../dto/create-project-request.dto';
 import { UpdateProjectRequestDto } from '../dto/update-project-request.dto';
+import { Observable } from 'rxjs';
+import { Roles } from 'src/auth/decorator/roles.decorator';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-guard';
+import { RolesGuard } from 'src/auth/guards/roles.guard';
+import { ProjectRequest } from '../entities/project-request.entity';
 
 @Controller('project-request')
 export class ProjectRequestController {
   constructor(private readonly projectRequestService: ProjectRequestService) {}
 
   @Post()
-  create(@Body() createProjectRequestDto: CreateProjectRequestDto) {
-    return this.projectRequestService.create(createProjectRequestDto);
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('user')
+  create(@Body() createProjectRequestDto: CreateProjectRequestDto, @Request() req): Observable<ProjectRequest> {
+    const user = req.user;
+    return this.projectRequestService.create(user, createProjectRequestDto);
   }
 
   @Get()
