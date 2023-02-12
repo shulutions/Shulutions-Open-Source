@@ -1,0 +1,15 @@
+.project-request-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 30px;
+}
+
+.project-request {
+    padding: 20px;
+    margin: 40px;
+    display: flex;
+    flex-direction: row;
+    :hover {
+     cursor: pointer;   
+    }
+}

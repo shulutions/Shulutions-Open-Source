@@ -30,7 +30,4 @@ export class ProjectService {
     })
   }
 
-  submitProjectRequest(projectRequest: ProjectRequest) {
-    return this.http.post<ProjectRequest>('/backend/project-request', projectRequest);
-  }
 }

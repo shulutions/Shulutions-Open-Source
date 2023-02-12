@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { AuthentificationService } from 'src/app/services/authentification-service/authentification.service';
+import { ProjectRequestService } from 'src/app/services/project-request-service/project-request.service';
 import { ProjectService } from 'src/app/services/project-service/project.service';
 
 @Component({
@@ -18,7 +19,7 @@ export class ProjectRequestFormComponent implements OnInit {
   });
 
   constructor(
-    private projectService: ProjectService,
+    private projectRequestService: ProjectRequestService,
     private router: Router
   ) { }
 
@@ -30,7 +31,7 @@ export class ProjectRequestFormComponent implements OnInit {
       return;
     }
     console.log(this.projectRequestForm.value)
-    this.projectService.submitProjectRequest(this.projectRequestForm.value).pipe(
+    this.projectRequestService.submitProjectRequest(this.projectRequestForm.value).pipe(
       map(projectRequest => {
         console.log(projectRequest)
         this.router.navigate(['projects'])

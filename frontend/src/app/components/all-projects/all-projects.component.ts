@@ -13,11 +13,10 @@ export class AllProjectsComponent implements OnInit {
 
   projects: Observable<Project[]> = this.projectService.getAll();
   
-
   constructor(private projectService: ProjectService) { }
 
   ngOnInit(): void {
-    console.log(this.projects.subscribe(data => console.log(data) ))
+    //console.log(this.projects.subscribe(data => console.log(data) ))
   }
 
 }

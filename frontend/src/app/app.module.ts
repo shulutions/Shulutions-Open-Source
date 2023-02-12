@@ -35,14 +35,14 @@ import { ProjectRequestFormComponent } from './components/project-request-form/p
     CreateProjectComponent,
     ViewProjectComponent,
     ProjectRequestComponent,
-    ProjectRequestFormComponent
+    ProjectRequestFormComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [JwtHelperService, 
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },

@@ -1,0 +1,13 @@
+<div class="center project-request-container">    
+    <div *ngFor="let item of (projectRequests | async)" class="project-request shadow" routerLink="../project-request/{{item.id}}">
+        <div class="details-container">
+            <h2>{{ item.title }}</h2>
+            <p>{{ item.description }}</p>
+            <p>{{ item.created }}</p>
+            <br>
+            <p>Submitted by:</p>
+            <p>{{ item.submittedBy?.name }}</p>
+            <p>{{ item.submittedBy?.email }}</p>
+        </div>  
+    </div>
+</div>
