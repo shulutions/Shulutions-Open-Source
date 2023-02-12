@@ -10,6 +10,7 @@ import { UpdateUserProfileComponent } from './pages/update-user-profile/update-u
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { UsersComponent } from './components/users/users.component';
 import { ViewProjectComponent } from './pages/view-project/view-project.component';
+import { ProjectRequestComponent } from './pages/project-request/project-request.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -40,6 +41,7 @@ const routes: Routes = [
     data: { roles: ['admin'] } 
   },
   { path: 'projects/:id', component: ViewProjectComponent },
+  { path: 'project-request', component: ProjectRequestComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
