@@ -8,7 +8,7 @@ import { ProjectsComponent } from './pages/projects/projects.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { UpdateUserProfileComponent } from './pages/update-user-profile/update-user-profile.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
-import { UsersComponent } from './components/users/users.component';
+import { UsersComponent } from './admin/components/users/users.component';
 import { ViewProjectComponent } from './pages/view-project/view-project.component';
 import { ProjectRequestComponent } from './pages/project-request/project-request.component';
 

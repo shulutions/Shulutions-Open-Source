@@ -8,7 +8,6 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { UsersComponent } from './components/users/users.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { UpdateUserProfileComponent } from './pages/update-user-profile/update-user-profile.component';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
@@ -27,7 +26,6 @@ import { ProjectRequestFormComponent } from './components/project-request-form/p
     NavigationComponent,
     LoginComponent,
     RegisterComponent,
-    UsersComponent,
     UserProfileComponent,
     UpdateUserProfileComponent,
     ProjectsComponent,
