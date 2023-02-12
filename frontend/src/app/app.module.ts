@@ -8,7 +8,6 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { UsersComponent } from './components/users/users.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { UpdateUserProfileComponent } from './pages/update-user-profile/update-user-profile.component';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
@@ -17,6 +16,8 @@ import { ProjectsComponent } from './pages/projects/projects.component';
 import { AllProjectsComponent } from './components/all-projects/all-projects.component';
 import { CreateProjectComponent } from './pages/create-project/create-project.component';
 import { ViewProjectComponent } from './pages/view-project/view-project.component';
+import { ProjectRequestComponent } from './pages/project-request/project-request.component';
+import { ProjectRequestFormComponent } from './components/project-request-form/project-request-form.component';
 
 @NgModule({
   declarations: [
@@ -25,20 +26,21 @@ import { ViewProjectComponent } from './pages/view-project/view-project.componen
     NavigationComponent,
     LoginComponent,
     RegisterComponent,
-    UsersComponent,
     UserProfileComponent,
     UpdateUserProfileComponent,
     ProjectsComponent,
     AllProjectsComponent,
     CreateProjectComponent,
-    ViewProjectComponent
+    ViewProjectComponent,
+    ProjectRequestComponent,
+    ProjectRequestFormComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [JwtHelperService, 
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },

@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ProjectRequest } from 'src/app/models/project-request.interface';
 import { Project } from 'src/app/models/project.interface';
 
 @Injectable({
@@ -28,4 +29,5 @@ export class ProjectService {
       observe: 'events'
     })
   }
+
 }

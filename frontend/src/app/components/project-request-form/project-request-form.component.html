@@ -1,0 +1,18 @@
+<form [formGroup]="projectRequestForm" (ngSubmit)="onSubmit()">
+    <div class="container">
+        <div class="field-container">
+            <label for="title">Title</label>
+            <input placeholder="Title" formControlName="title">
+        </div>
+        <br>
+        <div class="field-container">
+            <label for="description">Description</label>
+            <textarea placeholder="Description" formControlName="description"></textarea>
+        </div>
+        
+
+        <div class="button-container center">
+            <button class="button primary" [disabled]="projectRequestForm.invalid" type="submit">Submit Idea</button>
+        </div>
+    </div>
+</form>

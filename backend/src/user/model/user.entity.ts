@@ -1,3 +1,4 @@
+import { ProjectRequest } from "src/project-request/entities/project-request.entity";
 import { ProjectEntity } from "src/project/model/project.entity";
 import { BeforeInsert, Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { RoleEntity } from "./role.entity";
@@ -27,6 +28,9 @@ export class UserEntity {
 
     @OneToMany(type => ProjectEntity, project => project.projectManager)
     projectsManaging: ProjectEntity[];
+
+    @OneToMany(() => ProjectRequest, projectRequest => projectRequest.submittedBy)
+    projectRequests: ProjectRequest[];
 
     @BeforeInsert()
     emailToLowerCase() {
