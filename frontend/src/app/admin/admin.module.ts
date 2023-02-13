@@ -6,13 +6,15 @@ import { OverviewComponent } from './pages/overview/overview.component';
 import { ProjectRequestListComponent } from './components/project-request-list/project-request-list.component';
 import { UsersComponent } from './components/users/users.component';
 import { FormsModule } from '@angular/forms';
+import { TableComponent } from './components/table/table.component';
 
 
 @NgModule({
   declarations: [
     OverviewComponent,
     ProjectRequestListComponent,
-    UsersComponent
+    UsersComponent,
+    TableComponent
   ],
   imports: [
     CommonModule,
