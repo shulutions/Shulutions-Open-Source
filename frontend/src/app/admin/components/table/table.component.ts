@@ -14,6 +14,7 @@ declare var Object: any;
 
 export class TableComponent implements OnInit {
  
+  @Input() navigationPath?: string;
   @Input() dataSource?: PaginationData;
   @Input() headers!: string[];
   @Input() itemsPerPage?: number = 10;

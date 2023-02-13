@@ -8,6 +8,7 @@ import { UsersComponent } from './components/users/users.component';
 import { FormsModule } from '@angular/forms';
 import { TableComponent } from './components/table/table.component';
 import { ProjectTableComponent } from './components/project-table/project-table.component';
+import { EditProjectComponent } from './pages/edit-project/edit-project.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { ProjectTableComponent } from './components/project-table/project-table.
     ProjectRequestListComponent,
     UsersComponent,
     TableComponent,
-    ProjectTableComponent
+    ProjectTableComponent,
+    EditProjectComponent
   ],
   imports: [
     CommonModule,
