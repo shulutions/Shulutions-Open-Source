@@ -22,14 +22,14 @@ export class TableComponent implements OnInit {
   constructor(private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    console.log(this.dataSource)
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes.dataSource && changes.dataSource.currentValue) {
-      console.log(changes.dataSource.currentValue);
-    }
-  }
+  // Console log the data source when it changes
+  // ngOnChanges(changes: SimpleChanges) {
+  //   if (changes.dataSource && changes.dataSource.currentValue) {
+  //     console.log(changes.dataSource.currentValue);
+  //   }
+  // }
 
   getTableHeaders(data: any) {
     return Object.keys(data[0]);

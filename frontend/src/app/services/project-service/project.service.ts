@@ -29,6 +29,7 @@ export class ProjectService {
     )
   }
 
+  // no longer used
   getAll(): Observable<Project[]> {
     return this.http.get<Project[]>('/backend/projects');
   }
