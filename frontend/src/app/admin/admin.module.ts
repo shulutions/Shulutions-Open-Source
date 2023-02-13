@@ -7,6 +7,7 @@ import { ProjectRequestListComponent } from './components/project-request-list/p
 import { UsersComponent } from './components/users/users.component';
 import { FormsModule } from '@angular/forms';
 import { TableComponent } from './components/table/table.component';
+import { ProjectTableComponent } from './components/project-table/project-table.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { TableComponent } from './components/table/table.component';
     OverviewComponent,
     ProjectRequestListComponent,
     UsersComponent,
-    TableComponent
+    TableComponent,
+    ProjectTableComponent
   ],
   imports: [
     CommonModule,
