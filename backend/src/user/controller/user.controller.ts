@@ -41,7 +41,6 @@ export class UserController {
         return this.userService.paginate({page: Number(page), limit: Number(limit), route: 'http://localhost:3000/backend/users'});
     }
 
-    
     @Roles(Role.ADMIN)
     @UseGuards(JwtAuthGuard, RolesGuard)
     @Delete(':id')

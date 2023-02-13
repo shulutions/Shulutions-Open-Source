@@ -3,21 +3,25 @@
         <table class="table table-hover">
             <thead class="primary">
                 <tr>
-                    <th *ngFor="let column of displayedColumns">{{ column }}</th>
+                    <th *ngFor="let header of headers || getTableHeaders(dataSource.items)">
+                        {{ capitalizeFirstLetter(header) }}
+                    </th>
                 </tr>
             </thead>
-            
             <tbody>
-                <tr *ngFor="let item of dataSource.items" (click)="navigateToItem(item.id)" >
-                    <td *ngFor="let cell of item">{{ cell }}</td>
-                    <!-- <td>{{ item.name }}</td>
-                    <td>{{ item.id }}</td>
-                    <td>{{ item.username }}</td>
-                    <td>{{ item.email }}</td>
-                    <td>{{ item.roles }}</td> -->
+                <tr *ngFor="let item of dataSource.items">
+                  <td *ngFor="let prop of headers || getTableHeaders(dataSource.items)">
+                    {{ item[prop.toLowerCase()] }}
+                  </td>
                 </tr>
-            </tbody>
-            
+              </tbody>
+            <!-- <tbody>
+                <tr *ngFor="let item of dataSource.items">
+                  <td *ngFor="let header of getTableHeaders(dataSource.items)">
+                    {{ item[header] }}
+                  </td>
+                </tr>
+            </tbody>     -->
         </table>
     
         <div *ngIf="this.dataSource.meta.totalPages > 5">

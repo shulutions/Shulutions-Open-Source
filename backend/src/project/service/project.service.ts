@@ -1,5 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { IPaginationOptions, paginate, Pagination } from 'nestjs-typeorm-paginate';
 import { map } from 'rxjs';
 import { from, of, switchMap } from 'rxjs';
 import { Observable } from 'rxjs';
@@ -26,6 +27,16 @@ export class ProjectService {
                 return from(this.projectRepository.save(project));
             })
         )
+    }
+    
+    paginate(options: IPaginationOptions): Observable<Pagination<User>> {
+        return from(paginate<Project>(this.projectRepository, options, {relations: ['projectManager']}))
+        // return from(paginate<Project>(this.projectRepository, options)).pipe(
+        //     map((projectsPageable: Pagination<User>) => {
+        //         // projectsPageable.items.forEach((v) => delete v.password);
+        //         return projectsPageable;
+        //     })
+        // )
     }
 
     findAll(): Observable<Project[]> {

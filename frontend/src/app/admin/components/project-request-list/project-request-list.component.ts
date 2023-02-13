@@ -16,7 +16,7 @@ export class ProjectRequestListComponent implements OnInit {
   constructor(private projectRequestService: ProjectRequestService) { }
 
   ngOnInit(): void {
-    console.log(this.projectRequests.subscribe(data => console.log(data)))
+    //console.log(this.projectRequests.subscribe(data => console.log(data)))
   }
 
 }
