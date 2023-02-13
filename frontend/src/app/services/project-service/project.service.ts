@@ -34,6 +34,10 @@ export class ProjectService {
     return this.http.get<Project[]>('/backend/projects');
   }
 
+  updateOne(project: Project): Observable<Project> {
+    return this.http.put<Project>('/backend/projects/' + project.id, project)
+  }
+
   getProjects(page: number, limit: number): Observable<Project[]> {
     return this.http.get<Project[]>(`/projects?page=${page}&limit=${limit}`);
   }

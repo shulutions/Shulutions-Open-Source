@@ -5,7 +5,7 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { OverviewComponent } from './pages/overview/overview.component';
 import { ProjectRequestListComponent } from './components/project-request-list/project-request-list.component';
 import { UsersComponent } from './components/users/users.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TableComponent } from './components/table/table.component';
 import { ProjectTableComponent } from './components/project-table/project-table.component';
 import { EditProjectComponent } from './pages/edit-project/edit-project.component';
@@ -23,7 +23,8 @@ import { EditProjectComponent } from './pages/edit-project/edit-project.componen
   imports: [
     CommonModule,
     AdminRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class AdminModule { }

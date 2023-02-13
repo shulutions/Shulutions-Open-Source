@@ -10,4 +10,7 @@ export interface Project {
     image?: string;
     isActive?: boolean;
     projectManager: User;
+    discordLink?: string;
+    githubLink?: string;
+    figmaLink?: string;
 }

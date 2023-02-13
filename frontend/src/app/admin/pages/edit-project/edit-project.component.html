@@ -1,1 +1,47 @@
-<p>edit-project works!</p>
+<h1 class="center">Edit Project</h1>
+<form [formGroup]="editProjectForm" (ngSubmit)="onSubmit()">
+    <div class="container">
+
+        <!-- Add images, created, isActive -->
+        <div class="field-container">
+            <label for="title">Title</label>
+            <input class="form-control" type="text" [(ngModel)]="project.title" placeholder="Title" formControlName="title" >
+        </div>
+        
+        <div class="field-container">
+            <label for="description">Description</label>
+            <input class="form-control" type="text" [(ngModel)]="project.description" placeholder="Description" formControlName="description">
+        </div>
+        
+        <div class="field-container">
+            <label for="body">Body</label>
+            <input class="form-control" type="text" [(ngModel)]="project.body" placeholder="Body" formControlName="Body">
+        </div>
+
+        <div class="field-container">
+            <label for="discordLink">Discord Link</label>
+            <input class="form-control" type="text" [(ngModel)]="project.discordLink" placeholder="Discord Link" formControlName="discordLink">
+        </div>
+
+        <div class="field-container">
+            <label for="githubLink">Github Link</label>
+            <input class="form-control" type="text" [(ngModel)]="project.githubLink" placeholder="Github Link" formControlName="githubLink">
+        </div>
+
+        <div class="field-container">
+            <label for="figmaLink">Figma Link</label>
+            <input class="form-control" type="text" [(ngModel)]="project.figmaLink" placeholder="Figma Link" formControlName="figmaLink">
+        </div> 
+
+        <div class="field-container">
+            <label for="projectManager">Project Manager</label>
+            <select class="form-select">
+                <option *ngFor="let user of users" [value]="user.id">{{user.name}}</option>
+            </select>
+        </div>
+
+        <div class="button-container center">
+            <button class="button primary" [disabled]="!editProjectForm.valid" type="submit">Login</button>
+        </div>
+    </div>
+</form>
