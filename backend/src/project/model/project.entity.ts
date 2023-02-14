@@ -31,7 +31,7 @@ export class ProjectEntity {
     isActive: boolean;
 
     @Column({default: ProjectStage.PROPOSAL})
-    stage: ProjectStage;
+    stage: string;
 
     @Column({nullable: true})
     githubLink: string;

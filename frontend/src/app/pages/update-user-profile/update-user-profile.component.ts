@@ -41,7 +41,6 @@ export class UpdateUserProfileComponent implements OnInit {
         })
       ).subscribe();
     }
-    
   }
 
   update() {

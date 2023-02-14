@@ -62,7 +62,8 @@ export class ProjectController {
         return this.projectService.findOne(id);
     }
 
-    @UseGuards(JwtAuthGuard, UserIsProjectManagerGuard)
+    @UseGuards(JwtAuthGuard) // UserIsProjectManagerGuard
+    @Roles('admin')
     @Put(':id')
     updateOne(@Param('id') id: number, @Body() project: Project): Observable<Project> {
         return this.projectService.updateOne(Number(id), project)

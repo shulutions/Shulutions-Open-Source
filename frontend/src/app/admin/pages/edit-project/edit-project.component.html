@@ -15,7 +15,7 @@
         
         <div class="field-container">
             <label for="body">Body</label>
-            <input class="form-control" type="text" [(ngModel)]="project.body" placeholder="Body" formControlName="Body">
+            <input class="form-control" type="text" [(ngModel)]="project.body" placeholder="Body" formControlName="body">
         </div>
 
         <div class="field-container">
@@ -34,14 +34,21 @@
         </div> 
 
         <div class="field-container">
+            <label for="stage">Project Stage</label>
+            <select class="form-select" [(ngModel)]="project.stage" formControlName="stage">
+                <option *ngFor="let stage of stages">{{stage}}</option>
+            </select>
+        </div>
+
+        <div class="field-container">
             <label for="projectManager">Project Manager</label>
-            <select class="form-select">
+            <select class="form-select" formControlName="projectManager">
                 <option *ngFor="let user of users" [value]="user.id">{{user.name}}</option>
             </select>
         </div>
 
         <div class="button-container center">
-            <button class="button primary" [disabled]="!editProjectForm.valid" type="submit">Login</button>
+            <button class="button primary" [disabled]="!editProjectForm.valid" type="submit">Save</button>
         </div>
     </div>
 </form>

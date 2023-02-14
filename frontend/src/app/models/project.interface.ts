@@ -13,4 +13,16 @@ export interface Project {
     discordLink?: string;
     githubLink?: string;
     figmaLink?: string;
+    stage?: string;
+}
+
+export enum ProjectStage {  
+    PROPOSAL = 'Proposal',
+    SETUP = 'Setup',
+    REQUIREMENTS = 'Requirements',
+    DESIGN = 'Design',
+    DEVELOPMENT = 'Development',
+    TESTING = 'Testing',
+    DEPLOYMENT = 'Deployment',
+    COMPLETED = 'Completed'
 }
