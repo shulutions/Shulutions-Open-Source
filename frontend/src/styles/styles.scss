@@ -2,6 +2,14 @@
 
 @import '_vars';
 
+a:link,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
 .center {
   display: flex;
   align-items: center;
@@ -35,7 +43,11 @@
       box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.5);
       cursor: pointer;
   }
-}   
+}
+
+.color-primary {
+  background-color: orange;
+}
 
 input, textarea {
   margin: 0 0 20px 0;

@@ -1,24 +1,60 @@
-<div *ngIf="(project$ | async) as project" class="center">
-    <div class="container">
-        <div class="header center">
-            <h1>{{project.title}}</h1>
-        </div>
-        <div class="description center">
-            <p>{{project.description}}</p>
-        </div>
-        <div class="image-container center">
-            <img src="http://localhost:3000/backend/projects/image/{{project.image}}" class="project-image">
+<div *ngIf="(project$ | async) as project">
+    <div class="sections">
+        <div class="section">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h1>{{ project.title }}</h1>
+                        <p>{{ project.description }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Created:</strong> {{ project.created | date: 'longDate' }}</p>
+                        <p><strong>Languages:</strong> ...List project langauges...</p>
+                        <p><strong>Manager:</strong> {{ project.projectManager.name }}</p>
+                        <p><strong>Team:</strong> ...List project team members...</p>
+                    </div>
+                </div>
+            </div>
         </div>
         
-        <div class="project-details">
-            
-            <div *ngIf="project.projectManager">
-                <h4>Project Manager: </h4>
-                <a routerLink="../../users/{{project.projectManager.id}}">{{project.projectManager.name}}</a>
-            </div>
-            <div class="body-container">
-                <p>{{project.body}}</p>
+        <div class="section">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2>About the project</h2>
+                        <p>{{ project.body }}</p>
+                    </div>
+                    <div class="col-md-6 image-container center">
+                        <img src="http://localhost:3000/backend/projects/image/{{project.image}}" class="project-image">
+                    </div>
+                </div>
             </div>
         </div>
+            
+        <div class="section">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2>Get involved</h2>
+                        <p>
+                            If you are interested in getting involved with this project, please join the discord server below and introduce yourself!
+                        </p>
+                        <div class="discord-link">
+                            <iframe src="https://discord.com/widget?id=892804613785415690&theme=dark" width="100%" height="300" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h2>Project design and repository</h2>
+                        <div class="center">
+                            <a class="button color-primary " href="{{project.figmaLink}}" target="_blank">View Design</a>
+                        </div>
+                        <div class="center">
+                            <h3>GitHub Repo</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
