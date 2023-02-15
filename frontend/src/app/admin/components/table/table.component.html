@@ -1,0 +1,36 @@
+<div class="container no-margin center">
+    <div class="table-container no-margin" *ngIf="dataSource">
+        <table class="table table-hover">
+            <thead class="primary">
+                <tr>
+                    <th *ngFor="let header of headers || getTableHeaders(dataSource.items)">
+                        {{ capitalizeFirstLetter(header) }}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of dataSource.items" routerLink="{{navigationPath}}/{{item.id}}">
+                  <td *ngFor="let prop of headers || getTableHeaders(dataSource.items)">
+                    {{ item[prop.toLowerCase()] }}
+                  </td>
+                </tr>
+            </tbody>
+        </table>
+    
+        <div *ngIf="this.dataSource.meta.totalPages > 5">
+            <label for="itemsPerPage">Items per Page</label>
+            <select name="itemsPerPage" [(ngModel)]="itemsPerPage" (ngModelChange)="updateItemsPerPage()" class="form-control">
+                <option>5</option>
+                <option>10</option>
+                <option>25</option>
+                <option>100</option>
+            </select>
+        </div>
+        
+        <div *ngIf="this.dataSource.meta.totalPages > 1">
+            <button [disabled]="this.currentPage == 1" (click)="previousPage()">Previous</button>
+            <button [disabled]="this.currentPage == this.dataSource.meta.totalPages" (click)="nextPage()">Next</button>
+            <div>Page {{this.dataSource.meta.currentPage}} / {{this.dataSource.meta.totalPages}}</div>
+        </div>
+    </div>
+</div>

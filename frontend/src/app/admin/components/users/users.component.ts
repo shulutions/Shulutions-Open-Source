@@ -23,7 +23,7 @@ export class UsersComponent implements OnInit {
 
   getUsers() {
     this.userService.findAll(this.currentPage, this.itemsPerPage).pipe(
-      tap(users => console.log(users)),
+      //tap(users => console.log(users)),
       map((userData: UserData) => this.dataSource = userData)
     ).subscribe();
   }

@@ -11,3 +11,14 @@ export interface Project {
     isActive?: boolean;
     projectManager?: User;
 }
+
+export enum ProjectStage {  
+    PROPOSAL = 'Proposal',
+    SETUP = 'Setup',
+    REQUIREMENTS = 'Requirements',
+    DESIGN = 'Design',
+    DEVELOPMENT = 'Development',
+    TESTING = 'Testing',
+    DEPLOYMENT = 'Deployment',
+    COMPLETED = 'Completed'
+}

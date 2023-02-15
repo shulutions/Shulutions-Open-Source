@@ -14,6 +14,7 @@ import { Image } from '../model/image-interface';
 import { join } from 'path';
 import { Roles } from 'src/auth/decorator/roles.decorator';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
+import { Pagination } from 'nestjs-typeorm-paginate';
 
 
 export const storage = {
@@ -42,6 +43,12 @@ export class ProjectController {
     }
 
     @Get()
+    index(@Query('page') page: number = 1, @Query('limit') limit: number = 10): Observable<Pagination<Project>> {
+        limit = limit > 100 ? 100 : limit;
+        return this.projectService.paginate({page: Number(page), limit: Number(limit), route: 'http://localhost:3000/backend/projects'});
+    }
+
+    @Get()
     findProjects(@Query('userId') userId: number): Observable<Project[]> {
         if (userId == null) {
             return this.projectService.findAll();
@@ -55,7 +62,8 @@ export class ProjectController {
         return this.projectService.findOne(id);
     }
 
-    @UseGuards(JwtAuthGuard, UserIsProjectManagerGuard)
+    @UseGuards(JwtAuthGuard) // UserIsProjectManagerGuard
+    @Roles('admin')
     @Put(':id')
     updateOne(@Param('id') id: number, @Body() project: Project): Observable<Project> {
         return this.projectService.updateOne(Number(id), project)

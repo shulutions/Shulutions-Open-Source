@@ -1,0 +1,62 @@
+<h1 class="center">Edit Project</h1>
+<form [formGroup]="editProjectForm" (ngSubmit)="onSubmit()">
+    <div class="container">
+
+        <!-- Add images, created, isActive -->
+        <div class="field-container">
+            <label for="title">Title</label>
+            <input class="form-control" type="text" [(ngModel)]="project.title" placeholder="Title" formControlName="title" >
+        </div>
+        
+        <div class="field-container">
+            <label for="description">Description</label>
+            <input class="form-control" type="text" [(ngModel)]="project.description" placeholder="Description" formControlName="description">
+        </div>
+        
+        <div class="field-container">
+            <label for="body">Body</label>
+            <input class="form-control" type="text" [(ngModel)]="project.body" placeholder="Body" formControlName="body">
+        </div>
+
+        <div class="field-container">
+            <label for="discordLink">Discord Link</label>
+            <input class="form-control" type="text" [(ngModel)]="project.discordLink" placeholder="Discord Link" formControlName="discordLink">
+        </div>
+
+        <div class="field-container">
+            <label for="githubLink">Github Link</label>
+            <input class="form-control" type="text" [(ngModel)]="project.githubLink" placeholder="Github Link" formControlName="githubLink">
+        </div>
+
+        <div class="field-container">
+            <label for="figmaLink">Figma Link</label>
+            <input class="form-control" type="text" [(ngModel)]="project.figmaLink" placeholder="Figma Link" formControlName="figmaLink">
+        </div> 
+
+        <div class="field-container">
+            <label for="stage">Project Stage</label>
+            <select class="form-select" [(ngModel)]="project.stage" formControlName="stage">
+                <option *ngFor="let stage of stages">{{stage}}</option>
+            </select>
+        </div>
+
+        <div class="field-container">
+            <label for="projectManager">Project Manager</label>
+            <select class="form-select" [(ngModel)]="project.projectManager" formControlName="projectManager">
+                <option *ngFor="let user of users" [value]="user.id">{{user.name}}</option>
+            </select>
+        </div>
+
+                <!-- field-container -->
+        <div class="form-check form-switch">
+            <label class="form-check-label" for="isActive">
+                Show on projects page
+            </label>
+            <input class="form-check-input" type="checkbox" [(ngModel)]="project.isActive" formControlName="isActive" id="isActive">
+        </div>
+
+        <div class="button-container center">
+            <button class="button primary" [disabled]="!editProjectForm.valid" type="submit">Save</button>
+        </div>
+    </div>
+</form>

@@ -1,21 +1,28 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { PaginationData } from 'src/app/models/pagination.interface';
 import { Project } from 'src/app/models/project.interface';
 import { ProjectService } from 'src/app/services/project-service/project.service';
+import { TableData } from '../../models/table.interface';
 
 @Component({
-  selector: 'app-all-projects',
-  templateUrl: './all-projects.component.html',
-  styleUrls: ['./all-projects.component.scss']
+  selector: 'app-project-table',
+  templateUrl: './project-table.component.html',
+  styleUrls: ['./project-table.component.scss']
 })
-export class AllProjectsComponent implements OnInit {
 
-  dataSource?: PaginationData;
+export class ProjectTableComponent implements OnInit {
+
+  dataSource?: PaginationData; // add projects to table data
   projects?: Project[];
-  itemsPerPage: number = 200;
-  currentPage: number = 1;
+  itemsPerPage = 10;
+  currentPage = 1;
+  headers: string[] = [
+    'Id', 
+    'Title',  
+    'Description',
+    'Stage',
+  ];
   
   constructor(private projectService: ProjectService) { }
 
@@ -25,9 +32,8 @@ export class AllProjectsComponent implements OnInit {
 
   getProjects() {
     this.projectService.findAll(this.currentPage, this.itemsPerPage).pipe(
-      //tap(projects => console.log(projects)),
+      tap(projects => console.log(projects)),
       map((paginationData: PaginationData) => this.dataSource = paginationData)
     ).subscribe();
   }
-
 }
