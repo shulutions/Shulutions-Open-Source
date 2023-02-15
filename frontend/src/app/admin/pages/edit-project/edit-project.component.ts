@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { forkJoin, Subscription } from 'rxjs';
+import { CombineLatestSubscriber } from 'rxjs/internal/observable/combineLatest';
 import { map, tap } from 'rxjs/operators';
 import { PaginationData } from 'src/app/models/pagination.interface';
 import { Project, ProjectStage } from 'src/app/models/project.interface';
@@ -31,7 +32,7 @@ export class EditProjectComponent implements OnInit {
     githubLink: new FormControl(),
     figmaLink: new FormControl(),
     stage: new FormControl(),
-    // add projectManager
+    projectManager: new FormControl(),
   })
 
   constructor(
@@ -45,7 +46,6 @@ export class EditProjectComponent implements OnInit {
     this.subcription = this.activatedRoute.params.subscribe(params => {
       this.projectId = parseInt(params['id']);
       this.projectService.findOne(this.projectId).pipe(
-        tap((project: Project) => console.log(project)),
         map((project: Project) => this.project = project)
       ).subscribe();
     })
@@ -54,13 +54,14 @@ export class EditProjectComponent implements OnInit {
 
   getUsers() {
     this.userService.findAll(1, 100).pipe(
-      //tap(users => console.log(users)),
-      map((userData: PaginationData) => this.users = userData.items)
+      map((userData: PaginationData) => {
+        this.users = userData.items;
+        this.editProjectForm.get('projectManager')?.setValue(this.project?.projectManager?.id);
+      })
     ).subscribe();
   }
 
   onSubmit() {
-    console.log(this.project)
     if(this.editProjectForm.invalid) return;
     this.projectService.updateOne(this.project).subscribe();
     this.router.navigate(['/admin']);

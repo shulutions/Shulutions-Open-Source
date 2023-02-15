@@ -42,7 +42,7 @@
 
         <div class="field-container">
             <label for="projectManager">Project Manager</label>
-            <select class="form-select" formControlName="projectManager">
+            <select class="form-select" [(ngModel)]="project.projectManager" formControlName="projectManager">
                 <option *ngFor="let user of users" [value]="user.id">{{user.name}}</option>
             </select>
         </div>
