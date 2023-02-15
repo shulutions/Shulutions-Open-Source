@@ -46,7 +46,9 @@ export class EditProjectComponent implements OnInit {
     this.subcription = this.activatedRoute.params.subscribe(params => {
       this.projectId = parseInt(params['id']);
       this.projectService.findOne(this.projectId).pipe(
-        map((project: Project) => this.project = project)
+        map((project: Project) => {
+          this.project = project
+        })
       ).subscribe();
     })
     this.getUsers();
@@ -57,6 +59,7 @@ export class EditProjectComponent implements OnInit {
       map((userData: PaginationData) => {
         this.users = userData.items;
         this.editProjectForm.get('projectManager')?.setValue(this.project?.projectManager?.id);
+        this.editProjectForm.get('stage')?.setValue(this.project?.stage);
       })
     ).subscribe();
   }
