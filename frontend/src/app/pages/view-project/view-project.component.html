@@ -27,6 +27,7 @@
                     <div class="col-md-6 image-container center">
                         <img src="http://localhost:3000/backend/projects/image/{{project.image}}" class="project-image">
                     </div>
+                    
                 </div>
             </div>
         </div>
@@ -34,22 +35,30 @@
         <div class="section">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div *ngIf="project.discordLink" class="col-md-6">
                         <h2>Get involved</h2>
                         <p>
                             If you are interested in getting involved with this project, please join the discord server below and introduce yourself!
                         </p>
-                        <div class="discord-link">
+                        <div class="discord-container">
                             <iframe src="https://discord.com/widget?id=892804613785415690&theme=dark" width="100%" height="300" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+                            <!-- change this link to use the project.discordLink -->
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <h2>Project design and repository</h2>
                         <div class="center">
-                            <a class="button color-primary " href="{{project.figmaLink}}" target="_blank">View Design</a>
+                            <h2>View project on Github</h2>
                         </div>
                         <div class="center">
-                            <h3>GitHub Repo</h3>
+                            <a class="button color-primary " href="{{project.githubLink}}" target="_blank">View Repository</a>
+                        </div>
+                        <br>
+                        <div class="center">
+                            <h2>View design on Figma</h2>
+                        </div>
+
+                        <div *ngIf="project.figmaLink" class="center">
+                            <a class="button color-primary " href="{{project.figmaLink}}" target="_blank">View Design</a>
                         </div>
                     </div>
                 </div>

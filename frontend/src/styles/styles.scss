@@ -32,6 +32,8 @@ a:active {
 .button {
   color: black;
   width: auto;
+  white-space: nowrap;
+  overflow: hidden;
   background-color: white;
   border-radius: 50px;
   padding: 7px 30px;
