@@ -47,6 +47,14 @@
             </select>
         </div>
 
+                <!-- field-container -->
+        <div class="form-check form-switch">
+            <label class="form-check-label" for="isActive">
+                Show on projects page
+            </label>
+            <input class="form-check-input" type="checkbox" [(ngModel)]="project.isActive" formControlName="isActive" id="isActive">
+        </div>
+
         <div class="button-container center">
             <button class="button primary" [disabled]="!editProjectForm.valid" type="submit">Save</button>
         </div>

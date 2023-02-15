@@ -33,6 +33,7 @@ export class EditProjectComponent implements OnInit {
     figmaLink: new FormControl(),
     stage: new FormControl(),
     projectManager: new FormControl(),
+    isActive: new FormControl(),
   })
 
   constructor(

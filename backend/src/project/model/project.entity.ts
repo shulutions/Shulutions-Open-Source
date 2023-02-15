@@ -27,7 +27,7 @@ export class ProjectEntity {
     @Column({nullable: true})
     image: string;
 
-    @Column({nullable: true})
+    @Column({default: false, nullable: true}) // update all projects to be active=true then remove nullable
     isActive: boolean;
 
     @Column({default: ProjectStage.PROPOSAL})
