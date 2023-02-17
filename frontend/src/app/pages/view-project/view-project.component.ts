@@ -13,19 +13,17 @@ import { map, switchMap } from 'rxjs/operators';
 
 export class ViewProjectComponent implements OnInit {
 
-  project$: Observable<Project> = this.activatedRoute.params.pipe(
-    switchMap((params: Params) => {
-      const projectId: number = parseInt(params['id']);
-
-      return this.projectService.findOne(projectId).pipe(
-        map((project: Project) => project)
-      )
-    })
-  ) 
+  project?: Project;
 
   constructor(private activatedRoute: ActivatedRoute, private projectService: ProjectService) { }
 
   ngOnInit(): void {
+    this.activatedRoute.params.subscribe(params => {
+      const projectId: number = parseInt(params['id']);
+      this.projectService.findOne(projectId).pipe(
+        map((project: Project) => this.project = project)
+      ).subscribe();
+    })
   }
 
 }
