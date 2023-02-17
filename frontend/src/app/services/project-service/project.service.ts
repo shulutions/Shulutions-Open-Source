@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpBackend, HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
@@ -11,7 +11,18 @@ import { Project } from 'src/app/models/project.interface';
 })
 export class ProjectService {
 
-  constructor(private http: HttpClient) { }
+  private noHeaderHttp: HttpClient;
+
+  constructor(private http: HttpClient, handler: HttpBackend) {
+    this.noHeaderHttp = new HttpClient(handler)
+  }
+
+  getGithubRepository(repoName: string | undefined): Observable<any> {
+    if (!repoName) {
+      return throwError("No repository name provided");
+    }
+    return this.noHeaderHttp.get<any>(`https://api.github.com/repos/shulutions/${repoName}`);
+  }
 
   findOne(id: number): Observable<Project> {
     return this.http.get<Project>('/backend/projects/' + id)

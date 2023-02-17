@@ -16,6 +16,7 @@ export class ViewProjectComponent implements OnInit {
 
   project?: Project;
   discordLink?: SafeResourceUrl;
+  gitHubRepository?: any;
 
   constructor(
     private activatedRoute: ActivatedRoute, 
@@ -32,8 +33,17 @@ export class ViewProjectComponent implements OnInit {
           if (project.discordLink) {
             this.discordLink = this.sanitizer.bypassSecurityTrustResourceUrl(project.discordLink);      
           }
+          this.getGithubRepository(project.title);
         })
       ).subscribe();
+    })
+  }
+
+  getGithubRepository(projectTitle?: string) {
+    this.projectService.getGithubRepository(projectTitle).subscribe((data: any) => {
+      this.gitHubRepository = data;
+      console.log("Repo: ")
+      console.log(this.gitHubRepository)
     })
   }
 
