@@ -11,7 +11,8 @@
                         <p><strong>Created:</strong> {{ project.created | date: 'longDate' }}</p>
                         <p><strong>Languages:</strong> ...List project langauges...</p>
                         <p><strong>Manager:</strong> {{ project.projectManager.name }}</p>
-                        <p><strong>Team:</strong> ...List project team members...</p>
+                        <p><strong>Contributors:</strong></p>
+                        <app-github-stats [projectTitle]="project.title"></app-github-stats>
                     </div>
                 </div>
             </div>

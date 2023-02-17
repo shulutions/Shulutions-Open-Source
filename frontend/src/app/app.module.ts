@@ -18,6 +18,7 @@ import { CreateProjectComponent } from './pages/create-project/create-project.co
 import { ViewProjectComponent } from './pages/view-project/view-project.component';
 import { ProjectRequestComponent } from './pages/project-request/project-request.component';
 import { ProjectRequestFormComponent } from './components/project-request-form/project-request-form.component';
+import { GithubStatsComponent } from './components/github-stats/github-stats.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { ProjectRequestFormComponent } from './components/project-request-form/p
     ViewProjectComponent,
     ProjectRequestComponent,
     ProjectRequestFormComponent,
+    GithubStatsComponent,
   ],
   imports: [
     BrowserModule,
