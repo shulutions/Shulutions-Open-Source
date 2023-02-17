@@ -32,7 +32,7 @@
             </div>
         </div>
             
-        <div class="section">
+        <div *ngIf="project.discordLink || project.githubLink || project.figmaLink" class="section">
             <div class="container-fluid">
                 <div class="row">
                     <div *ngIf="project.discordLink" class="col-md-6">
@@ -45,19 +45,23 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="center">
-                            <h2>View project on Github</h2>
+                        <div *ngIf="project.githubLink">
+                            <div class="center">
+                                <h2>View project on Github</h2>
+                            </div>
+                            <div class="center">
+                                <a class="button color-primary " href="{{project.githubLink}}" target="_blank">View Repository</a>
+                            </div>
+                            <br>
                         </div>
-                        <div class="center">
-                            <a class="button color-primary " href="{{project.githubLink}}" target="_blank">View Repository</a>
-                        </div>
-                        <br>
-                        <div class="center">
-                            <h2>View design on Figma</h2>
-                        </div>
-
-                        <div *ngIf="project.figmaLink" class="center">
-                            <a class="button color-primary " href="{{project.figmaLink}}" target="_blank">View Design</a>
+                        <div *ngIf="project.figmaLink">
+                            <div class="center">
+                                <h2>View design on Figma</h2>
+                            </div>
+    
+                            <div *ngIf="project.figmaLink" class="center">
+                                <a class="button color-primary " href="{{project.figmaLink}}" target="_blank">View Design</a>
+                            </div>
                         </div>
                     </div>
                 </div>
