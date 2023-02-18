@@ -10,21 +10,9 @@ import { ProjectService } from 'src/app/services/project-service/project.service
 export class GithubStatsComponent implements OnInit {
 
   @Input() projectTitle?: string;
-  gitHubStats: GitHubStats = {}
-  contributors: Contributor[] = [];
 
-  constructor(private projectService: ProjectService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.getGithubRepositoryContributors()
   }
-
-  getGithubRepositoryContributors() {
-    this.projectService.getGithubRepositoryContributors(this.projectTitle).subscribe((contributors: Contributor[]) => {
-      if (contributors.length > 0) {
-        this.contributors = contributors;
-      }
-    })
-  }
-
 }

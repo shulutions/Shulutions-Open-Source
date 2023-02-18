@@ -17,7 +17,6 @@ export class ViewProjectComponent implements OnInit {
   project?: Project;
   discordLink?: SafeResourceUrl;
   gitHubRepository?: any;
-  hasContributor: boolean = false;
 
   constructor(
     private activatedRoute: ActivatedRoute, 
@@ -43,12 +42,6 @@ export class ViewProjectComponent implements OnInit {
   getGithubRepository(projectTitle?: string) {
     this.projectService.getGithubRepository(projectTitle).subscribe((data: any) => {
       this.gitHubRepository = data;
-      console.log("Repo: ")
-      console.log(this.gitHubRepository)
     })
-  }
-
-  hasContributorEvent(hasContributor: boolean) {
-    if (hasContributor) this.hasContributor = true;
   }
 }
