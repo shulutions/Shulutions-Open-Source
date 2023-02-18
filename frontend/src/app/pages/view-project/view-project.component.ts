@@ -17,6 +17,7 @@ export class ViewProjectComponent implements OnInit {
   project?: Project;
   discordLink?: SafeResourceUrl;
   gitHubRepository?: any;
+  hasContributor: boolean = false;
 
   constructor(
     private activatedRoute: ActivatedRoute, 
@@ -47,4 +48,7 @@ export class ViewProjectComponent implements OnInit {
     })
   }
 
+  hasContributorEvent(hasContributor: boolean) {
+    if (hasContributor) this.hasContributor = true;
+  }
 }

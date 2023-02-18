@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Contributor, GitHubStats } from 'src/app/models/github-stats.interface';
 import { ProjectService } from 'src/app/services/project-service/project.service';
 
@@ -10,6 +10,7 @@ import { ProjectService } from 'src/app/services/project-service/project.service
 export class GithubStatsComponent implements OnInit {
 
   @Input() projectTitle?: string;
+  @Output() contributorEvent = new EventEmitter<boolean>();
   gitHubStats: GitHubStats = {}
   contributors: Contributor[] = [];
 
@@ -21,9 +22,10 @@ export class GithubStatsComponent implements OnInit {
 
   getGithubRepositoryContributors() {
     this.projectService.getGithubRepositoryContributors(this.projectTitle).subscribe((contributors: Contributor[]) => {
-      this.contributors = contributors;
-      console.log("Contributors: ")
-      console.log(contributors)
+      if (contributors.length > 0) {
+        this.contributorEvent.emit(true)
+        this.contributors = contributors;
+      }
     })
   }
 
