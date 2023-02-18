@@ -1,0 +1,18 @@
+<div *ngIf="contributors">
+    <div>
+        <p><strong>Contributors:</strong></p>
+    </div>
+    <div class="contributor" *ngFor="let contributor of contributors">
+        <a target="_black" href="{{contributor.html_url}}">
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="{{contributor.avatar_url}}" class="contributor-image">
+                </div>
+                
+                <div class="col-md-8 contributor-text">
+                    <p class="no-margin"><strong>{{contributor.login}}</strong> {{contributor.contributions}} contributions</p>
+                </div>
+            </div>
+        </a>
+    </div> 
+</div>

@@ -11,10 +11,7 @@
                         <p><strong>Created:</strong> {{ project.created | date: 'longDate' }}</p>
                         <p><strong>Languages:</strong> ...List project langauges...</p>
                         <p><strong>Manager:</strong> {{ project.projectManager.name }}</p>
-                        <div *ngIf="hasContributor">
-                            <p><strong>Contributors:</strong></p>
-                        </div>
-                        <app-github-stats (contributorEvent)="hasContributorEvent($event)" [projectTitle]="project.title"></app-github-stats>    
+                        <app-github-stats [projectTitle]="project.title"></app-github-stats>    
                     </div>
                 </div>
             </div>

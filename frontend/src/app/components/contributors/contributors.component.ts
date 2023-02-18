@@ -1,16 +1,15 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Contributor, GitHubStats } from 'src/app/models/github-stats.interface';
+import { Component, Input, OnInit, Output } from '@angular/core';
+import { GitHubStats, Contributor } from 'src/app/models/github-stats.interface';
 import { ProjectService } from 'src/app/services/project-service/project.service';
 
 @Component({
-  selector: 'app-github-stats',
-  templateUrl: './github-stats.component.html',
-  styleUrls: ['./github-stats.component.scss']
+  selector: 'app-contributors',
+  templateUrl: './contributors.component.html',
+  styleUrls: ['./contributors.component.scss']
 })
-export class GithubStatsComponent implements OnInit {
+export class ContributorsComponent implements OnInit {
 
   @Input() projectTitle?: string;
-  gitHubStats: GitHubStats = {}
   contributors: Contributor[] = [];
 
   constructor(private projectService: ProjectService) { }
@@ -26,5 +25,4 @@ export class GithubStatsComponent implements OnInit {
       }
     })
   }
-
 }

@@ -1,0 +1,17 @@
+.contributor {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.contributor-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: block;
+}
+
+.contributor-text {
+    display: flex;
+    align-items: center;
+}
