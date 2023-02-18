@@ -1,6 +1,6 @@
 <div class="center projects-container">    
-    <div *ngFor="let project of dataSource?.items" class="project shadow" routerLink="../projects/{{project.id}}">
-        <div>
+    <div *ngFor="let project of projects" class="project shadow" routerLink="../projects/{{project.id}}">
+        <div >
             <img *ngIf="project.image !== null; else placeholderImage" 
                 src="http://localhost:3000/backend/projects/image/{{project.image}}">
             <ng-template #placeholderImage>

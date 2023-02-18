@@ -24,10 +24,10 @@ export class AllProjectsComponent implements OnInit {
   }
 
   getProjects() {
-    this.projectService.findAll(this.currentPage, this.itemsPerPage).pipe(
-      //tap(projects => console.log(projects)),
-      map((paginationData: PaginationData) => this.dataSource = paginationData)
-    ).subscribe();
+    this.projectService.findAll(this.currentPage, this.itemsPerPage).subscribe((paginationData: PaginationData) => {
+      const filteredProjects = paginationData.items.filter(project => project.isActive);
+      this.projects = filteredProjects;
+    });
   }
 
 }

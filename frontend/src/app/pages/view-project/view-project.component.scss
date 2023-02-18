@@ -2,6 +2,20 @@
     margin: 30px;
 }
 
+.row {
+    display: flex;
+}
+
+.button {
+    margin: 1rem;
+}
+
+.sections {
+    .section:nth-child(even) {
+        background-color: rgb(247, 247, 247);
+    }
+}
+
 .header {
     display: flex;
 }
@@ -16,4 +30,14 @@
 
 .section {
     padding: 100px 12vw;
+}
+
+.wide-button {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.discord-container {
+    padding-bottom: 30px;
 }
