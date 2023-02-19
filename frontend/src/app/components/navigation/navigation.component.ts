@@ -40,8 +40,7 @@ export class NavigationComponent implements OnInit {
 
     if (this.userRoles.includes('admin')) {
       this.protectedLinks = [
-        { text: 'Admin', icon: 'admin_panel_settings', link: '/admin', exact: true },
-        { text: 'Create Project', icon: 'add', link: 'create-project', exact: true },
+        { text: 'Admin', icon: 'admin_panel_settings', link: '/admin', exact: true }
       ]
     }
   }

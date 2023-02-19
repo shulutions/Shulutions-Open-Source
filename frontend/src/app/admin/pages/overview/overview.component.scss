@@ -7,3 +7,9 @@
 .section {
     padding: 100px 12vw;
 }
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
