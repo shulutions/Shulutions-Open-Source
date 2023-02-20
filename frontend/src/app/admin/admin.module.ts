@@ -18,7 +18,9 @@ import { EditProjectComponent } from './pages/edit-project/edit-project.componen
     UsersComponent,
     TableComponent,
     ProjectTableComponent,
-    EditProjectComponent
+    EditProjectComponent,
+    
+    
   ],
   imports: [
     CommonModule,

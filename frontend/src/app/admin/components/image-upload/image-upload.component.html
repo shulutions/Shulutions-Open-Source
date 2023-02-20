@@ -1,0 +1,33 @@
+<!-- <div>
+    <input type="file" (change)="selectFile($event)" multiple>
+    <button (click)="upload()">Upload</button>
+    <div *ngIf="uploadSuccess">Upload successful!</div>
+    <div *ngIf="uploadError">Upload failed.</div>
+  </div> -->
+<div>
+    <form [formGroup]="imageUploadForm">
+        <div class="form-group">
+            <label for="file">+</label>
+            
+            <button mat-flat-button color="primary" class="clear-button" type="button" (click)="clearFiles()">Clear Files</button>
+            <input
+                #uploadField
+                formControlName="file"
+                id="file" 
+                type="file" 
+                class="form-control"
+                accept="image/*"
+                capture="camera"
+                multiple
+                (change)="onFileChange($event)"
+                >
+                
+            <div *ngIf="f['file'].touched && f['file'].invalid" class="alert alert-danger">
+                <div *ngIf="f['file'].errors">Error attaching file.</div>
+            </div>
+        </div>
+       
+        <img *ngFor='let url of images' [src]="url" class="uploaded-image"> <br/>
+        
+    </form>
+</div>
