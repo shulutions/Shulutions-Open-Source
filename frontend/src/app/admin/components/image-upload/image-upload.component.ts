@@ -33,7 +33,6 @@ export class ImageUploadComponent implements OnInit {
   }
 
   removeImage(index: number) {
-    console.log(index);
     this.images.splice(index, 1);
     this.showRemoveButton.splice(index, 1);
     this.selectedImages.emit(this.images);

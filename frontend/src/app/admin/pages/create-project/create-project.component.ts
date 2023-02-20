@@ -3,6 +3,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { ImageService } from 'src/app/services/image-service/image.service';
 import { ProjectService } from 'src/app/services/project-service/project.service';
 
 export interface File {
@@ -19,6 +20,7 @@ export interface File {
 export class CreateProjectComponent implements OnInit {
 
   @ViewChild("fileUpload", {static: false}) fileUpload!: ElementRef;
+  selectedImages: string[] = [];
 
   file: File = {
     data: null,
@@ -32,39 +34,47 @@ export class CreateProjectComponent implements OnInit {
     slug: new FormControl({value: null, disabled: true}),
     description: new FormControl(null, [Validators.required]),
     body: new FormControl(null, [Validators.required]),
-    image: new FormControl(null, [Validators.required]),
+    images: new FormControl(null, [Validators.required]),
   })
 
-  constructor(private projectService: ProjectService) { }
+  constructor(private projectService: ProjectService, private imageService: ImageService) { }
 
   ngOnInit(): void {
+  }
+
+  onSubmit() {
+    this.projectService.createProject(this.createProjectForm.getRawValue())
+      .subscribe(projectResponse => {
+        const projectId = projectResponse.id;
+        // Create image records for selected images and associate them with the new project
+        this.selectedImages.forEach(image => {
+          const newImage = {
+            url: image,
+            projectId: projectId!
+          };
+          this.imageService.create(newImage)
+            .subscribe(imageResponse => {
+              // Handle image creation response
+              console.log(imageResponse)
+            });
+        });
+        // Handle project creation response
+      });
+    // Submit form
   }
 
   createProject() {
     this.projectService.createProject(this.createProjectForm.getRawValue()).subscribe();
   }
 
-  onClick(){
-    const fileInput = this.fileUpload.nativeElement
-    fileInput.click();
+  onSelectedImages(images: string[]) {
+    console.log(images)
+    this.selectedImages = images;
   }
 
-  fileChange() {
-    const fileInput = this.fileUpload.nativeElement
-      this.file = {
-        data: fileInput.files[0],
-        inProgress: false,
-        progress: 0
-      };
-      console.log(this.file.data)
-      this.fileUpload.nativeElement.value = '';
-      this.uploadFile();
-  }
-
-  uploadFile() {
+  async uploadFile() {
     const formData = new FormData();
     formData.append('file', this.file.data);
-    this.file.inProgress = true;
 
     this.projectService.uploadProjectImage(formData).pipe(
       map((event) => {
