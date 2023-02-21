@@ -1,7 +1,8 @@
 import { UserEntity } from 'src/user/model/user.entity';
-import { ManyToOne } from 'typeorm';
+import { ManyToOne, OneToMany } from 'typeorm';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { ProjectStage } from './project.interface';
+import { ProjectImage } from './projectImage.entity';
 
 @Entity()
 export class ProjectEntity {
@@ -44,5 +45,8 @@ export class ProjectEntity {
 
     @ManyToOne(type => UserEntity, user => user.projectsManaging)
     projectManager: UserEntity
+
+    @OneToMany(() => ProjectImage, image => image.project)
+    images: ProjectImage[];
 
 }
