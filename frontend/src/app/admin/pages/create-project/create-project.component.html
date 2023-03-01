@@ -1,7 +1,12 @@
-<form [formGroup]="createProjectForm" (ngSubmit)="createProject()">
+<form [formGroup]="createProjectForm" (ngSubmit)="onSubmit()">
 
     <div class="center">
         <div class="container">
+            <!-- <div>
+                <img *ngIf="createProjectForm.get('image')?.value" src="http://localhost:3000/backend/projects/image/{{createProjectForm.get('image')?.value}}">
+                <button type="button" (click)="onClick()">Upload Image</button>
+                <input (change)="fileChange()" type="file" #fileUpload id="fileUpload" name="fileUpload" accept="image/*" style="display: none;">
+            </div> -->
             <app-image-upload (selectedImages)="onSelectedImages($event)"></app-image-upload>
             <br>
     

@@ -15,9 +15,10 @@ import { join } from 'path';
 import { Roles } from 'src/auth/decorator/roles.decorator';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
 import { Pagination } from 'nestjs-typeorm-paginate';
+import { ProjectImage } from '../model/projectImage.entity';
 
-
-export const storage = {
+// Options for file upload
+export const options = {
     storage: diskStorage({
         destination: './uploads/project-images',
         filename: (req, file, cb) => {
@@ -26,8 +27,17 @@ export const storage = {
 
             cb(null, `${filename}${extension}`)
         }
-    })
+    }),
+    limits: { fieldSize: 25 * 1024 * 1024 },
+    fileFilter: (req, file, cb) => {
+        if (file.mimetype.match(/\/(jpg|jpeg|png|gif)$/)) {
+            cb(null, true);
+        } else {
+            cb(new Error('Only image files are allowed!'), false);
+        }
+    }
 }
+
 
 @Controller('projects')
 export class ProjectController {
@@ -77,9 +87,15 @@ export class ProjectController {
 
     @UseGuards(JwtAuthGuard)
     @Post('image/upload')
-    @UseInterceptors(FileInterceptor('file', storage))
-    uploadFile(@UploadedFile() file, @Request() req): Observable<Image> {
-        return of(file);
+    @UseInterceptors(FileInterceptor('file', options))
+    uploadFile(@UploadedFile() file): Observable<string> {
+        return of(file.filename);
+    }
+    
+    @UseGuards(JwtAuthGuard)
+    @Post(':id/image/attach')
+    attachImage(@Param('id') id: number, @Body() fileName: string ) {
+        return this.projectService.attachImage(id, fileName);
     }
 
     @Get('image/:imagename')

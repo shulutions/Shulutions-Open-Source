@@ -46,7 +46,7 @@ export class ProjectEntity {
     @ManyToOne(type => UserEntity, user => user.projectsManaging)
     projectManager: UserEntity
 
-    @OneToMany(() => ProjectImage, image => image.project)
+    @OneToMany(() => ProjectImage, image => image.project, { cascade: ['insert', 'update'] })
     images: ProjectImage[];
 
 }

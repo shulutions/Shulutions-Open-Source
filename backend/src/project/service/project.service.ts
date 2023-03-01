@@ -9,6 +9,10 @@ import { UserService } from 'src/user/service/user.service';
 import { Repository } from 'typeorm';
 import { ProjectEntity } from '../model/project.entity';
 import { Project } from '../model/project.interface';
+import { ProjectImage } from '../model/projectImage.entity';
+import { MulterFile } from 'multer';
+import { Image } from '../model/image-interface';
+
 const slugify = require('slugify');
 
 @Injectable()
@@ -16,6 +20,7 @@ export class ProjectService {
 
     constructor(
         @InjectRepository(ProjectEntity) private readonly projectRepository: Repository<ProjectEntity>,
+        @InjectRepository(ProjectImage) private readonly projectImageRepository: Repository<ProjectImage>,
         private userService: UserService
     ) {}
 
@@ -30,7 +35,7 @@ export class ProjectService {
     }
     
     paginate(options: IPaginationOptions): Observable<Pagination<User>> {
-        return from(paginate<Project>(this.projectRepository, options, {relations: ['projectManager']}))
+        return from(paginate<Project>(this.projectRepository, options, {relations: ['projectManager', 'images']}))
         // return from(paginate<Project>(this.projectRepository, options)).pipe(
         //     map((projectsPageable: Pagination<User>) => {
         //         // projectsPageable.items.forEach((v) => delete v.password);
@@ -40,7 +45,7 @@ export class ProjectService {
     }
 
     findAll(): Observable<Project[]> {
-        return from(this.projectRepository.find({relations: ['projectManager']}));
+        return from(this.projectRepository.find({relations: ['projectManager', 'images']}));
     }
 
     findOne(id: number): Observable<Project> {
@@ -72,4 +77,20 @@ export class ProjectService {
         return of(slugify(title));
     }
 
+    async attachImage(projectId: number, fileName: string): Promise<ProjectImage> {
+        const project = await this.projectRepository.findOne(projectId);
+        if (!project) {
+          throw new Error(`Project with ID ${projectId} not found`);
+        }
+    
+        const projectImage = new ProjectImage();
+        projectImage.fileName = fileName;
+        projectImage.project = project;
+    
+        return this.projectImageRepository.save(projectImage);
+    }
+
+    findAllImages(): Observable<ProjectImage[]> {
+        return from(this.projectImageRepository.find());
+    }
 }

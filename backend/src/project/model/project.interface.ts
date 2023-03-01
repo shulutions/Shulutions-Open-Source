@@ -1,4 +1,5 @@
 import { User } from "src/user/model/user.interface";
+import { ProjectImage } from "./projectImage.entity";
 
 export interface Project {
     id?: number;
@@ -8,6 +9,7 @@ export interface Project {
     body?: string;
     created?: Date;
     image?: string;
+    images?: ProjectImage[];
     isActive?: boolean;
     projectManager?: User;
 }

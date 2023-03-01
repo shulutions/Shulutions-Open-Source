@@ -15,7 +15,7 @@ export class ProjectTableComponent implements OnInit {
 
   dataSource?: PaginationData; // add projects to table data
   projects?: Project[];
-  itemsPerPage = 10;
+  itemsPerPage = 30;
   currentPage = 1;
   headers: string[] = [
     'Id', 
@@ -32,7 +32,7 @@ export class ProjectTableComponent implements OnInit {
 
   getProjects() {
     this.projectService.findAll(this.currentPage, this.itemsPerPage).pipe(
-      tap(projects => console.log(projects)),
+      //tap(projects => console.log(projects)),
       map((paginationData: PaginationData) => this.dataSource = paginationData)
     ).subscribe();
   }

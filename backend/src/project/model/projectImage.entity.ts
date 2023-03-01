@@ -8,7 +8,10 @@ export class ProjectImage {
     id: number;
 
     @Column()
-    imageUrl: string;
+    fileName: string;
+
+    @Column({type: 'datetime', default: () => 'CURRENT_TIMESTAMP'}) 
+    created: Date;
 
     @ManyToOne(() => ProjectEntity, project => project.images)
     project: ProjectEntity;
