@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { map } from 'rxjs/internal/operators/map';
+import { tap } from 'rxjs/operators';
 import { PaginationData } from 'src/app/models/pagination.interface';
 import { ProjectRequest } from 'src/app/models/project-request.interface';
 import { ProjectRequestService } from 'src/app/services/project-request-service/project-request.service';
@@ -15,20 +17,21 @@ export class ProjectRequestTableComponent implements OnInit {
   itemsPerPage = 10;
   currentPage = 1;
   headers: string[] = [
-    'Id', 
-    'Title',  
-    'Description',
-    'Stage',
+    // 'Id', 
+    // 'Title',  
+    // 'Description',
+    // 'Stage',
   ];
 
   constructor(private projectRequestService: ProjectRequestService) { }
 
   ngOnInit(): void {
-    console.log(this.projectRequestService.getAll());
+    //console.log(this.projectRequestService.getAll());
+    this.getProjects();
   }
 
   getProjects() {
-    this.projectRequestService.getAll(this.currentPage, this.itemsPerPage).pipe(
+    this.projectRequestService.findAll(this.currentPage, this.itemsPerPage).pipe(
       tap(projects => console.log(projects)),
       map((paginationData: PaginationData) => this.dataSource = paginationData)
     ).subscribe();

@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Request } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Request, Query } from '@nestjs/common';
 import { ProjectRequestService } from '../service/project-request.service';
 import { CreateProjectRequestDto } from '../dto/create-project-request.dto';
 import { UpdateProjectRequestDto } from '../dto/update-project-request.dto';
@@ -7,6 +7,7 @@ import { Roles } from 'src/auth/decorator/roles.decorator';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-guard';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
 import { ProjectRequest } from '../entities/project-request.entity';
+import { Pagination } from 'nestjs-typeorm-paginate';
 
 @Controller('project-request')
 export class ProjectRequestController {
@@ -26,6 +27,12 @@ export class ProjectRequestController {
   findAll() {
     return this.projectRequestService.findAll();
   }
+
+  @Get()
+    index(@Query('page') page: number = 1, @Query('limit') limit: number = 10): Observable<Pagination<ProjectRequest>> {
+        limit = limit > 100 ? 100 : limit;
+        return this.projectRequestService.paginate({page: Number(page), limit: Number(limit), route: 'http://localhost:3000/backend/projects'});
+    }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
