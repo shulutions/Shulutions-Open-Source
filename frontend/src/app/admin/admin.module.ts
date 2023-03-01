@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TableComponent } from './components/table/table.component';
 import { ProjectTableComponent } from './components/project-table/project-table.component';
 import { EditProjectComponent } from './pages/edit-project/edit-project.component';
+import { ProjectRequestTableComponent } from './components/project-request-table/project-request-table.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { EditProjectComponent } from './pages/edit-project/edit-project.componen
     UsersComponent,
     TableComponent,
     ProjectTableComponent,
-    EditProjectComponent
+    EditProjectComponent,
+    ProjectRequestTableComponent
   ],
   imports: [
     CommonModule,
