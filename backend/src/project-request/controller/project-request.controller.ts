@@ -30,16 +30,22 @@ export class ProjectRequestController {
   }
 
   @Get(':id')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('admin')
   findOne(@Param('id') id: string) {
     return this.projectRequestService.findOne(+id);
   }
 
   @Patch(':id')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('admin')
   update(@Param('id') id: string, @Body() updateProjectRequestDto: UpdateProjectRequestDto) {
     return this.projectRequestService.update(+id, updateProjectRequestDto);
   }
 
   @Delete(':id')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('admin')
   remove(@Param('id') id: string) {
     return this.projectRequestService.remove(+id);
   }

@@ -46,7 +46,7 @@ export class ProjectRequestService {
   }
 
   remove(id: number) {
-    return `This action removes a #${id} projectRequest`;
+    return from(this.projectRequestRepository.delete(id));
   }
 
   generateSlug(title: string): Observable<string> {
