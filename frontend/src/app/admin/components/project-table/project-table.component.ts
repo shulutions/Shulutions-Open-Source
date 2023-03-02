@@ -13,6 +13,7 @@ import { TableData } from '../../models/table.interface';
 
 export class ProjectTableComponent implements OnInit {
 
+  navigationPath?: string = 'edit-project';
   dataSource?: PaginationData; // add projects to table data
   projects?: Project[];
   itemsPerPage = 10;

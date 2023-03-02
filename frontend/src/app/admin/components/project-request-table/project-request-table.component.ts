@@ -13,6 +13,7 @@ import { ProjectService } from 'src/app/services/project-service/project.service
 })
 export class ProjectRequestTableComponent implements OnInit {
 
+  navigationPath?: string = 'project-request';
   dataSource?: PaginationData;
   projects?: ProjectRequest[];
   itemsPerPage = 10;
