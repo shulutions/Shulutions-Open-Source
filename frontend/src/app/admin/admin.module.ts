@@ -10,6 +10,7 @@ import { TableComponent } from './components/table/table.component';
 import { ProjectTableComponent } from './components/project-table/project-table.component';
 import { EditProjectComponent } from './pages/edit-project/edit-project.component';
 import { ProjectRequestTableComponent } from './components/project-request-table/project-request-table.component';
+import { ProjectRequestComponent } from './components/project-request/project-request.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { ProjectRequestTableComponent } from './components/project-request-table
     TableComponent,
     ProjectTableComponent,
     EditProjectComponent,
-    ProjectRequestTableComponent
+    ProjectRequestTableComponent,
+    ProjectRequestComponent
   ],
   imports: [
     CommonModule,

@@ -24,15 +24,10 @@ export class ProjectRequestController {
   @Get()
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('admin')
-  findAll() {
-    return this.projectRequestService.findAll();
+  index(@Query('page') page: number = 1, @Query('limit') limit: number = 10): Observable<Pagination<ProjectRequest>> {
+      limit = limit > 100 ? 100 : limit;
+      return this.projectRequestService.paginate({page: Number(page), limit: Number(limit), route: 'http://localhost:3000/backend/project-request'});
   }
-
-  @Get()
-    index(@Query('page') page: number = 1, @Query('limit') limit: number = 10): Observable<Pagination<ProjectRequest>> {
-        limit = limit > 100 ? 100 : limit;
-        return this.projectRequestService.paginate({page: Number(page), limit: Number(limit), route: 'http://localhost:3000/backend/projects'});
-    }
 
   @Get(':id')
   findOne(@Param('id') id: string) {

@@ -4,6 +4,7 @@ import { tap } from 'rxjs/operators';
 import { PaginationData } from 'src/app/models/pagination.interface';
 import { ProjectRequest } from 'src/app/models/project-request.interface';
 import { ProjectRequestService } from 'src/app/services/project-request-service/project-request.service';
+import { ProjectService } from 'src/app/services/project-service/project.service';
 
 @Component({
   selector: 'app-project-request-table',
@@ -17,22 +18,23 @@ export class ProjectRequestTableComponent implements OnInit {
   itemsPerPage = 10;
   currentPage = 1;
   headers: string[] = [
-    // 'Id', 
-    // 'Title',  
-    // 'Description',
-    // 'Stage',
+    'Id', 
+    'Title',  
+    'Description',
   ];
 
-  constructor(private projectRequestService: ProjectRequestService) { }
+  constructor(
+    private projectRequestService: ProjectRequestService,
+    private projectService: ProjectService
+  ) { }
 
   ngOnInit(): void {
-    //console.log(this.projectRequestService.getAll());
     this.getProjects();
   }
 
   getProjects() {
     this.projectRequestService.findAll(this.currentPage, this.itemsPerPage).pipe(
-      tap(projects => console.log(projects)),
+      //tap(projectRequests => console.log(projectRequests)),
       map((paginationData: PaginationData) => this.dataSource = paginationData)
     ).subscribe();
   }
