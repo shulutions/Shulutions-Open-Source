@@ -1,1 +1,35 @@
-<p>manage-project-request works!</p>
+<div class="container">
+    <div class="card mt-3">
+      <div class="card-header">
+        Project Request Details
+      </div>
+      <div class="card-body">
+        <div class="form-group">
+          <label for="id">ID:</label>
+          <input type="text" id="id" class="form-control" [(ngModel)]="projectRequest.id" disabled>
+        </div>
+        <div class="form-group">
+          <label for="title">Title:</label>
+          <input type="text" id="title" class="form-control" [(ngModel)]="projectRequest.title" disabled>
+        </div>
+        <div class="form-group">
+          <label for="slug">Slug:</label>
+          <input type="text" id="slug" class="form-control" [(ngModel)]="projectRequest.slug" disabled>
+        </div>
+        <div class="form-group">
+          <label for="description">Description:</label>
+          <textarea id="description" class="form-control" rows="5" [(ngModel)]="projectRequest.description" disabled></textarea>
+        </div>
+        <div class="form-group">
+          <label for="created">Created:</label>
+          <input type="text" id="created" class="form-control" [(ngModel)]="projectRequest.created" disabled>
+        </div>
+        <div class="form-group form-check">
+          <input type="checkbox" id="reviewed" class="form-check-input" [(ngModel)]="projectRequest.reviewed" (change)="updateProjectRequest()">
+          <label for="reviewed" class="form-check-label">Reviewed</label>
+        </div>
+        <button type="button" class="btn btn-primary" (click)="goBack()">Back</button>
+      </div>
+    </div>
+  </div>
+  

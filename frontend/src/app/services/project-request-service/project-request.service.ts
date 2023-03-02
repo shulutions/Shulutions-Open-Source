@@ -28,8 +28,16 @@ export class ProjectRequestService {
     )
   }
 
+  findOne(id: number): Observable<ProjectRequest> {
+    return this.http.get<ProjectRequest>(`/backend/project-request/${id}`);
+  }
+
   submitProjectRequest(projectRequest: ProjectRequest) {
     return this.http.post<ProjectRequest>('/backend/project-request', projectRequest);
+  }
+
+  updateProjectRequest(projectRequest: ProjectRequest) {
+    return this.http.patch<ProjectRequest>(`/backend/project-request/${projectRequest.id}`, projectRequest);
   }
 
 }

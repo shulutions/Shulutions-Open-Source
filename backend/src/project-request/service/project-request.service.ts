@@ -38,11 +38,11 @@ export class ProjectRequestService {
   } 
 
   findOne(id: number) {
-    return `This action returns a #${id} projectRequest`;
+    return from(this.projectRequestRepository.findOne(id, {relations: ['submittedBy']}));
   }
 
   update(id: number, updateProjectRequestDto: UpdateProjectRequestDto) {
-    return `This action updates a #${id} projectRequest`;
+    return from(this.projectRequestRepository.update(id, updateProjectRequestDto));
   }
 
   remove(id: number) {
