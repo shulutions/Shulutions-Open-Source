@@ -40,4 +40,8 @@ export class ProjectRequestService {
     return this.http.patch<ProjectRequest>(`/backend/project-request/${projectRequest.id}`, projectRequest);
   }
 
+  deleteProjectRequest(id: number) {
+    return this.http.delete(`/backend/project-request/${id}`);
+  }
+
 }

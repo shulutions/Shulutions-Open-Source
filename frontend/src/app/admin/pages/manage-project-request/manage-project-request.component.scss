@@ -1,0 +1,27 @@
+/* Styles for the delete project request modal */
+.modal {
+    position: fixed;
+    z-index: 1050;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    outline: 0;
+  }
+  
+  .fade {
+    opacity: 0;
+    display: none;
+    transition: opacity 0.15s linear;
+  }
+  
+  .fade.show {
+    opacity: 1;
+    display: block;
+  }
+  
+.actions-container {
+    display: flex;
+    justify-content: space-between;
+}

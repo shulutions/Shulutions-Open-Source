@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { ProjectRequest } from 'src/app/models/project-request.interface';
@@ -12,6 +12,9 @@ import { ProjectRequestService } from 'src/app/services/project-request-service/
 })
 export class ManageProjectRequestComponent implements OnInit {
 
+  @ViewChild('deleteProjectRequestModal', { static: false }) deleteProjectRequestModal: any;
+
+  showDeleteModal: boolean = false;
   projectRequestId?: number;
   projectRequest!: ProjectRequest;
 
@@ -19,6 +22,7 @@ export class ManageProjectRequestComponent implements OnInit {
     private router: Router, 
     private activatedRoute: ActivatedRoute, 
     private projectRequestService: ProjectRequestService,
+    private renderer: Renderer2,
   ) { }
 
   ngOnInit(): void {
@@ -39,6 +43,16 @@ export class ManageProjectRequestComponent implements OnInit {
   updateProjectRequest(): void {
     this.projectRequestService.updateProjectRequest(this.projectRequest)
     .subscribe(() => console.log('Project request updated'));
+  }
+
+  deleteProjectRequest(): void {
+    this.projectRequestService.deleteProjectRequest(this.projectRequestId!)
+      .subscribe(() => {
+        console.log('Project request deleted');
+        this.router.navigate(['/admin']);
+        this.renderer.removeClass(this.deleteProjectRequestModal.nativeElement, 'show');
+        this.renderer.setStyle(this.deleteProjectRequestModal.nativeElement, 'display', 'none');
+      });
   }
     
   goBack(): void {
