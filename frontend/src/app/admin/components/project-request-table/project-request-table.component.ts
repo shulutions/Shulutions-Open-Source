@@ -22,6 +22,7 @@ export class ProjectRequestTableComponent implements OnInit {
     'Id', 
     'Title',  
     'Description',
+    'Reviewed'
   ];
 
   constructor(
