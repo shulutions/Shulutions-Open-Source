@@ -36,22 +36,20 @@ export class ManageProjectRequestComponent implements OnInit {
       alert('No project request id provided');
     }
     this.projectRequestService.findOne(this.projectRequestId!).pipe(
-      map((projectRequest: ProjectRequest) => this.projectRequest = projectRequest)
+      map((projectRequest: ProjectRequest) => {
+        this.projectRequest = projectRequest
+      })
     ).subscribe();
   }
 
   updateProjectRequest(): void {
-    this.projectRequestService.updateProjectRequest(this.projectRequest)
-    .subscribe(() => console.log('Project request updated'));
+    this.projectRequestService.updateProjectRequest(this.projectRequest).subscribe();
   }
 
   deleteProjectRequest(): void {
     this.projectRequestService.deleteProjectRequest(this.projectRequestId!)
       .subscribe(() => {
-        console.log('Project request deleted');
         this.router.navigate(['/admin']);
-        this.renderer.removeClass(this.deleteProjectRequestModal.nativeElement, 'show');
-        this.renderer.setStyle(this.deleteProjectRequestModal.nativeElement, 'display', 'none');
       });
   }
     
@@ -59,4 +57,7 @@ export class ManageProjectRequestComponent implements OnInit {
     this.router.navigate(['/admin']);
   }
 
+  viewProfile(): void {
+    this.router.navigate(['users', this.projectRequest.submittedBy?.id]);
+  }
 }

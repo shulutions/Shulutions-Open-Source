@@ -27,6 +27,13 @@ a:active {
 
 [class*='secondary']{
   background-color: $secondary !important;
+  color: black ;
+
+  &:hover {
+    background-color: black !important;
+    color: white;
+    border: white;
+  }
 }
 
 .button {

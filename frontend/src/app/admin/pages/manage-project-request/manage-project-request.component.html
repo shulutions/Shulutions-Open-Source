@@ -4,33 +4,20 @@
         Project Request Details
       </div>
       <div class="card-body">
-        <div class="form-group">
-          <label for="id">ID:</label>
-          <input type="text" id="id" class="form-control" [(ngModel)]="projectRequest.id" disabled>
+        <h2>{{ projectRequest.title }}</h2>
+        <p>{{ projectRequest.description }}</p>
+        <p>Created: {{ projectRequest.created | date:'medium' }}</p>
+        <div class="d-flex my-3 justify-content-between">
+            <p>Submitted by: {{ projectRequest.submittedBy?.name }}</p>
+            <button type="button" class="btn btn-secondary" (click)="viewProfile()">View {{ projectRequest.submittedBy?.name }}'s Profile</button>
         </div>
-        <div class="form-group">
-          <label for="title">Title:</label>
-          <input type="text" id="title" class="form-control" [(ngModel)]="projectRequest.title" disabled>
-        </div>
-        <div class="form-group">
-          <label for="slug">Slug:</label>
-          <input type="text" id="slug" class="form-control" [(ngModel)]="projectRequest.slug" disabled>
-        </div>
-        <div class="form-group">
-          <label for="description">Description:</label>
-          <textarea id="description" class="form-control" rows="5" [(ngModel)]="projectRequest.description" disabled></textarea>
-        </div>
-        <div class="form-group">
-          <label for="created">Created:</label>
-          <input type="text" id="created" class="form-control" [(ngModel)]="projectRequest.created" disabled>
-        </div>
-        <div class="form-group form-check">
-          <input type="checkbox" id="reviewed" class="form-check-input" [(ngModel)]="projectRequest.reviewed" (change)="updateProjectRequest()">
-          <label for="reviewed" class="form-check-label">Reviewed</label>
-        </div>
-
+        
         <div class="actions-container">
             <button type="button" class="btn btn-primary" (click)="goBack()">Back</button>
+            <div class="form-group form-check">
+                <input type="checkbox" id="reviewed" class="form-check-input" [(ngModel)]="projectRequest.reviewed" (change)="updateProjectRequest()">
+                <label for="reviewed" class="form-check-label">Reviewed</label>
+            </div>
             <!-- Button to trigger the delete project request request modal -->
             <button type="button" class="btn btn-danger" (click)="showDeleteModal=true">Delete Project Request</button>
         </div>
