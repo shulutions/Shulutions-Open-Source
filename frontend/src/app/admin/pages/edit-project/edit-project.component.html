@@ -1,8 +1,8 @@
-<h1 class="center">Edit Project</h1>
+<!-- <h1 class="center">Edit Project</h1>
 <form [formGroup]="editProjectForm" (ngSubmit)="onSubmit()">
     <div class="container">
 
-        <!-- Add images, created, isActive -->
+        Add images, created, isActive
         <div class="field-container">
             <label for="title">Title</label>
             <input class="form-control" type="text" [(ngModel)]="project.title" placeholder="Title" formControlName="title" >
@@ -47,7 +47,6 @@
             </select>
         </div>
 
-                <!-- field-container -->
         <div class="form-check form-switch">
             <label class="form-check-label" for="isActive">
                 Show on projects page
@@ -59,4 +58,86 @@
             <button class="button primary" [disabled]="!editProjectForm.valid" type="submit">Save</button>
         </div>
     </div>
-</form>
+</form> -->
+
+<div class="container">
+    <div class="card my-3">
+        <div class="card-header">
+            Edit Project
+        </div>
+        <div class="card-body">
+            <form [formGroup]="editProjectForm" (ngSubmit)="onSubmit()">
+                <div class="mb-3">
+                    <label for="id" class="form-label">ID</label>
+                    <input type="text" [(ngModel)]="project.id" class="form-control" id="id" formControlName="id">
+                    <div class="invalid-feedback" *ngIf="editProjectForm.get('id')?.invalid && (editProjectForm.get('id')?.dirty || editProjectForm.get('id')?.touched)">
+                    ID is required.
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" [(ngModel)]="project.title" class="form-control" id="title" formControlName="title">
+                    <div class="invalid-feedback" *ngIf="editProjectForm.get('title')?.invalid && (editProjectForm.get('title')?.dirty || editProjectForm.get('title')?.touched)">
+                    Title is required.
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea class="form-control" [(ngModel)]="project.description" id="description" rows="1" formControlName="description"></textarea>
+                    <div class="invalid-feedback" *ngIf="editProjectForm.get('description')?.invalid && (editProjectForm.get('description')?.dirty || editProjectForm.get('description')?.touched)">
+                    Description is required.
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="body" class="form-label">Body</label>
+                    <textarea [(ngModel)]="project.body" class="form-control" id="body" rows="5" formControlName="body"></textarea>
+                    <div class="invalid-feedback" *ngIf="editProjectForm.get('body')?.invalid && (editProjectForm.get('body')?.dirty || editProjectForm.get('body')?.touched)">
+                    Body is required.
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="discordLink" class="form-label">Discord Link</label>
+                    <input [(ngModel)]="project.discordLink" type="text" class="form-control" id="discordLink" formControlName="discordLink">
+                </div>
+                <div class="mb-3">
+                    <label for="githubLink" class="form-label">GitHub Link</label>
+                    <input [(ngModel)]="project.githubLink" type="text" class="form-control" id="githubLink" formControlName="githubLink">
+                </div>
+                <div class="mb-3">
+                    <label for="figmaLink" class="form-label">Figma Link</label>
+                    <input [(ngModel)]="project.figmaLink"type="text" class="form-control" id="figmaLink" formControlName="figmaLink">
+                </div>
+                <div class="mb-3">
+                    <label for="stage" class="form-label">Stage</label>
+                    <select [(ngModel)]="project.stage" class="form-select" id="stage" formControlName="stage">
+                        <option *ngFor="let stage of stages" [value]="stage">{{stage}}</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="projectManager" class="form-label">Project Manager</label>
+                    <select [(ngModel)]="project.projectManager" class="form-select" id="projectManager" formControlName="projectManager">
+                        <option *ngFor="let user of users" [value]="user.id">{{user.name}}</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label">Image</label>
+                    <input (change)="fileChange()" type="file" #fileUpload id="fileUpload" name="fileUpload" accept="image/*" style="display: none;">
+                    <div class="new-image-container">
+                        <img class="image" *ngIf="editProjectForm.get('image')?.value" src="http://localhost:3000/backend/projects/image/{{editProjectForm.get('image')?.value}}">    
+                    </div>
+                    <button class="btn mt-3 btn-secondary" type="button" (click)="onClick()">Update Image</button>
+                    <div class="invalid-feedback" *ngIf="editProjectForm.get('image')?.invalid && (editProjectForm.get('newImage')?.dirty || editProjectForm.get('newImage')?.touched)">
+                        Image is required.
+                    </div>
+                </div>
+                <div class="mb-3 form-check">
+                    <input [(ngModel)]="project.isActive" type="checkbox" class="form-check-input" id="isActive" formControlName="isActive">
+                    <label class="form-check-label" for="isActive">Is Active</label>
+                </div>
+                <div class="actions-container center">
+    <button type="submit" class="button color-primary">Update Project</button>
+</div>
+            </form>
+        </div>
+    </div>
+</div>
