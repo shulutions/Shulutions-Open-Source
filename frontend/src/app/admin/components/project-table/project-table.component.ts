@@ -16,7 +16,7 @@ export class ProjectTableComponent implements OnInit {
   navigationPath?: string = 'edit-project';
   dataSource?: PaginationData; // add projects to table data
   projects?: Project[];
-  itemsPerPage = 10;
+  itemsPerPage = 40;
   currentPage = 1;
   headers: string[] = [
     'Id', 

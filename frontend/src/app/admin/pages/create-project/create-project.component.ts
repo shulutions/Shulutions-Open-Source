@@ -1,6 +1,7 @@
 import { HttpErrorResponse, HttpEventType } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { ProjectService } from 'src/app/services/project-service/project.service';
@@ -35,13 +36,17 @@ export class CreateProjectComponent implements OnInit {
     image: new FormControl(null, [Validators.required]),
   })
 
-  constructor(private projectService: ProjectService) { }
+  constructor(private projectService: ProjectService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  createProject() {
+  onSubmit() {
+    if (this.createProjectForm.invalid) {
+      return;
+    }
     this.projectService.createProject(this.createProjectForm.getRawValue()).subscribe();
+    this.router.navigate(['/admin']);
   }
 
   onClick(){

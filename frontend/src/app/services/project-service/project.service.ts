@@ -79,4 +79,7 @@ export class ProjectService {
     })
   }
 
+  deleteOne(id: number): Observable<any> {
+    return this.http.delete('/backend/projects/' + id);
+  }
 }
