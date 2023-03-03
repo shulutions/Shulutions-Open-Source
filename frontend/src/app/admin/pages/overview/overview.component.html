@@ -1,15 +1,18 @@
 <div class="sections">
     <div class="section">
-        <h1>Projects</h1>
+        <div class="section-header d-flex mb-3 justify-content-between">
+            <h1>Projects</h1>
+            <button routerLink="create-project" class="button color-primary">Create Project</button>
+        </div>
         <app-project-table></app-project-table>
     </div>
     <div class="section">
-        <h1>Project Requests</h1>
+        <h1 class="mb-3">Project Requests</h1>
         <app-project-request-table></app-project-request-table>
         <!-- <app-project-request-list></app-project-request-list> -->
     </div>
     <div class="section">
-        <h1>Users</h1>
+        <h1 class="mb-3">Users</h1>
         <app-users></app-users>
     </div>
 </div>
