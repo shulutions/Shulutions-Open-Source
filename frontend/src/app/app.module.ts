@@ -14,7 +14,7 @@ import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { ProjectsComponent } from './pages/projects/projects.component';
 import { AllProjectsComponent } from './components/all-projects/all-projects.component';
-import { CreateProjectComponent } from './pages/create-project/create-project.component';
+import { CreateProjectComponent } from './admin/pages/create-project/create-project.component';
 import { ViewProjectComponent } from './pages/view-project/view-project.component';
 import { ProjectRequestComponent } from './pages/project-request/project-request.component';
 import { ProjectRequestFormComponent } from './components/project-request-form/project-request-form.component';

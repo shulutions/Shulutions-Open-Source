@@ -4,7 +4,7 @@ import { AuthGuard } from '../guards/auth.guard';
 import { ManageProjectRequestComponent } from './pages/manage-project-request/manage-project-request.component';
 import { EditProjectComponent } from './pages/edit-project/edit-project.component';
 import { OverviewComponent } from './pages/overview/overview.component';
-import { CreateProjectComponent } from '../pages/create-project/create-project.component';
+import { CreateProjectComponent } from './pages/create-project/create-project.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: OverviewComponent },
