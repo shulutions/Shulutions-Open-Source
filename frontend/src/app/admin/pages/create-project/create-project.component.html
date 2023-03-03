@@ -1,4 +1,4 @@
-<form [formGroup]="createProjectForm" (ngSubmit)="createProject()">
+<!-- <form [formGroup]="createProjectForm" (ngSubmit)="createProject()">
 
     <div class="center">
         <div class="container">
@@ -29,4 +29,53 @@
             <button [disabled]="createProjectForm.invalid" type="submit">Create Project</button>
         </div>
     </div>
-</form>
+</form> -->
+<div class="container">
+    <div class="card my-3">
+        <div class="card-header">
+            Project Details
+        </div>
+        <div class="card-body">
+            <form [formGroup]="createProjectForm" (ngSubmit)="onSubmit()">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" class="form-control" id="title" formControlName="title">
+                    <div class="invalid-feedback" *ngIf="createProjectForm.get('title')?.invalid && (createProjectForm.get('title')?.dirty || createProjectForm.get('title')?.touched)">
+                        Title is required.
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea class="form-control" id="description" rows="1" formControlName="description"></textarea>
+                    <div class="invalid-feedback" *ngIf="createProjectForm.get('description')?.invalid && (createProjectForm.get('description')?.dirty || createProjectForm.get('description')?.touched)">
+                        Description is required.
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="body" class="form-label">Body</label>
+                    <textarea class="form-control" id="body" rows="5" formControlName="body"></textarea>
+                    <div class="invalid-feedback" *ngIf="createProjectForm.get('body')?.invalid && (createProjectForm.get('body')?.dirty || createProjectForm.get('body')?.touched)">
+                        Body is required.
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label">Image</label>
+                    <div class="image-container">
+                        <img class="image" *ngIf="createProjectForm.get('image')?.value" src="http://localhost:3000/backend/projects/image/{{createProjectForm.get('image')?.value}}">    
+                    </div>
+                    <button class="btn btn-secondary" type="button" (click)="onClick()">Upload Image</button>
+                    <input (change)="fileChange()" type="file" #fileUpload id="fileUpload" name="fileUpload" accept="image/*" style="display: none;">
+                    
+                    
+                    <div class="invalid-feedback" *ngIf="createProjectForm.get('image')?.invalid && (createProjectForm.get('image')?.dirty || createProjectForm.get('image')?.touched)">
+                        Image is required.
+                    </div>
+                </div>
+                <div class="actions-container center">
+                    <button type="submit" class="button color-primary">Create Project</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+            
