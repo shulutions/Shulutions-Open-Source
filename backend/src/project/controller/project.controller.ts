@@ -69,7 +69,8 @@ export class ProjectController {
         return this.projectService.updateOne(Number(id), project)
     }
 
-    @UseGuards(JwtAuthGuard, UserIsProjectManagerGuard)
+    @UseGuards(JwtAuthGuard, RolesGuard)
+    @Roles('admin')
     @Delete(':id')
     deleteOne(@Param('id') id: number): Observable<any> {
         return this.projectService.deleteOne(id)

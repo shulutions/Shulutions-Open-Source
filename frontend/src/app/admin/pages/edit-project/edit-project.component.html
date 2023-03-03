@@ -135,9 +135,40 @@
                     <label class="form-check-label" for="isActive">Is Active</label>
                 </div>
                 <div class="actions-container center">
-    <button type="submit" class="button color-primary">Update Project</button>
-</div>
+                    
+                </div>
+
+                <div class="actions-container">
+                    <button type="button" class="btn btn-secondary" (click)="goBack()">Back</button>
+                    <button type="submit" class="btn btn-primary">Update Project</button>
+                    <!-- Button to trigger the delete project request request modal -->
+                    <button type="button" class="btn btn-danger" (click)="showDeleteModal=true">Delete Project Request</button>
+                </div>
             </form>
         </div>
     </div>
 </div>
+
+
+<!-- Delete project request modal -->
+<div class="modal" id="deleteProjectModal" tabindex="-1" role="dialog" aria-labelledby="deleteProjectModalLabel" [ngClass]="{'fade': showDeleteModal, 'show': showDeleteModal}">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteProjectModalLabel">Confirm Deletion</h5>
+          <button type="button" class="close" (click)="showDeleteModal=false" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to delete this project?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="showDeleteModal=false">Cancel</button>
+          <button type="button" class="btn btn-danger" (click)="deleteProject()">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  

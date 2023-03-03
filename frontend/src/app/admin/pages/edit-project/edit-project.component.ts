@@ -25,7 +25,9 @@ export interface File {
 export class EditProjectComponent implements OnInit {
 
   @ViewChild("fileUpload", {static: false}) fileUpload!: ElementRef;
+  @ViewChild('deleteProjectModal', { static: false }) deleteProjectRequestModal: any;
 
+  
   file: File = {
     data: null,
     inProgress: false,
@@ -37,6 +39,7 @@ export class EditProjectComponent implements OnInit {
   project!: Project;
   users?: User[];
   stages: string[] = Object.values(ProjectStage);
+  showDeleteModal: boolean = false;
 
   editProjectForm: FormGroup = new FormGroup({
     id: new FormControl({value: null, disabled: true}, [Validators.required]),
@@ -70,6 +73,18 @@ export class EditProjectComponent implements OnInit {
       ).subscribe();
     })
     this.getUsers();
+  }
+
+
+  deleteProject(): void {
+    this.projectService.deleteOne(this.projectId!)
+      .subscribe(() => {
+        this.router.navigate(['/admin']);
+      });
+  }
+    
+  goBack(): void {
+    this.router.navigate(['/admin']);
   }
 
   onClick(){
