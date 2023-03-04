@@ -21,6 +21,7 @@ import { ProjectRequestFormComponent } from './components/project-request-form/p
 import { GithubStatsComponent } from './components/github-stats/github-stats.component';
 import { ContributorsComponent } from './components/contributors/contributors.component';
 import { GithubLanguagesComponent } from './components/github-languages/github-languages.component';
+import { IdeasComponent } from './pages/ideas/ideas.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { GithubLanguagesComponent } from './components/github-languages/github-l
     GithubStatsComponent,
     ContributorsComponent,
     GithubLanguagesComponent,
+    IdeasComponent,
   ],
   imports: [
     BrowserModule,
