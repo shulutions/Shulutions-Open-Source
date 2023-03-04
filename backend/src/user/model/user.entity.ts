@@ -1,3 +1,5 @@
+import { ProjectRequestComment } from "src/project-request/entities/project-request-comment.entity";
+import { ProjectRequestReaction } from "src/project-request/entities/project-request-reaction.entity";
 import { ProjectRequest } from "src/project-request/entities/project-request.entity";
 import { ProjectEntity } from "src/project/model/project.entity";
 import { BeforeInsert, Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
@@ -36,4 +38,10 @@ export class UserEntity {
     emailToLowerCase() {
         this.email = this.email.toLowerCase();
     }
+
+    @OneToMany(() => ProjectRequestComment, projectRequestComment => projectRequestComment.postedBy)
+    projectRequestComments: ProjectRequestComment[];
+
+    @OneToMany(() => ProjectRequestReaction, projectRequestReaction => projectRequestReaction.postedBy)
+    projectRequestReactions: ProjectRequestReaction[];
 }
