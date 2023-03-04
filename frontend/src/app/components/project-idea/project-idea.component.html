@@ -1,17 +1,17 @@
 <div class="card">
     <div class="card-header">
-      <h5 class="card-title">{{ projectRequest.title }}</h5>
+      <h5 class="no-margin card-title">{{ projectRequest.title }}</h5>
     </div>
     <div class="card-body">
       <p class="card-text">{{ projectRequest.description }}</p>
     </div>
-    <div class="card-footer">
-      <button class="btn btn-sm btn-outline-success" (click)="upvote()">
-        <i class="bi bi-caret-up-fill"></i>
-      </button>
-      <span class="vote-count">{{ voteCount }}</span>
+    <div class="card-footer center">
       <button class="btn btn-sm btn-outline-danger" (click)="downvote()">
         <i class="bi bi-caret-down-fill"></i>
+      </button>
+      <span class="mx-3 vote-count">{{ voteCount }}</span>
+      <button class="btn btn-sm btn-outline-success" (click)="upvote()">
+        <i class="bi bi-caret-up-fill"></i>
       </button>
     </div>
   </div>
