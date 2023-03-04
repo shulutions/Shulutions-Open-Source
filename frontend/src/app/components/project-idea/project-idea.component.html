@@ -1,8 +1,9 @@
 <div class="card mt-3">
   <div class="row no-margin">
     <div class="col-11 no-margin">
-      <div class="card-header">
+      <div class="card-header d-flex justify-content-between">
         <h5 class="no-margin card-title">{{ projectRequest.title }}</h5>
+        <p class="no-margin">Submitted by: {{projectRequest.submittedBy?.username}}</p>
       </div>
       <div class="card-body">
         <p class="card-text">{{ projectRequest.description }}</p>
@@ -17,7 +18,7 @@
       <button class="btn btn-sm btn-outline-success" (click)="upvote()">
         <i class="bi bi-caret-up-fill"></i>
       </button>
-      <span class="mx-3 vote-count">{{ voteCount }}</span>
+      <span class="m-3 vote-count">{{ voteCount }}</span>
       <button class="btn btn-sm btn-outline-danger" (click)="downvote()">
         <i class="bi bi-caret-down-fill"></i>
       </button>
