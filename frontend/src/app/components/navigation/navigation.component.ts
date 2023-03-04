@@ -34,6 +34,7 @@ export class NavigationComponent implements OnInit {
     this.mainLinks = [
       { text: 'Home', icon: 'home', link: '/', exact: true },
       { text: 'Projects', icon: 'info', link: '/projects', exact: true },
+      { text: 'Ideas', icon: 'lightbulb', link: '/ideas', exact: true },
       { text: 'Login', icon: 'login', link: '/login', exact: true },
       { text: 'Register', icon: 'person_add', link: '/register', exact: true },
     ]

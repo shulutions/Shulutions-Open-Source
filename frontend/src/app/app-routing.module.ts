@@ -11,6 +11,7 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
 import { UsersComponent } from './admin/components/users/users.component';
 import { ViewProjectComponent } from './pages/view-project/view-project.component';
 import { ProjectRequestComponent } from './pages/project-request/project-request.component';
+import { IdeasComponent } from './pages/ideas/ideas.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
   },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'ideas', component: IdeasComponent },
   { path: 'users/:id', component: UserProfileComponent, canActivate: [AuthGuard] },
   { path: 'update-profile', component: UpdateUserProfileComponent, canActivate: [AuthGuard] },
   { path: 'projects', component: ProjectsComponent },
