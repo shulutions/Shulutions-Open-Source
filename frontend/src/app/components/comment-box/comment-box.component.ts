@@ -19,18 +19,13 @@ export class CommentBoxComponent implements OnInit {
   constructor(private projectRequestService: ProjectRequestService) { }
 
   ngOnInit(): void {
-    console.log(this.projectRequestId)
   }
 
   onSubmit() {
     if (this.commentForm.invalid) return;
     if (!this.projectRequestId) return;
-
-    this.projectRequestService.comment(this.projectRequestId, this.commentForm.value).subscribe(Response => {
-      console.log(Response);
+    this.projectRequestService.comment(this.projectRequestId, this.commentForm.value).subscribe(response => {
+      this.commentForm.get('comment')?.setValue('');
     });
   }
-
-  //comment
-
 }
