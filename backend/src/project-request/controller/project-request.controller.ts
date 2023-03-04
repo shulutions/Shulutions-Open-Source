@@ -49,4 +49,20 @@ export class ProjectRequestController {
   remove(@Param('id') id: string) {
     return this.projectRequestService.remove(+id);
   }
+
+  @Post(':id/comment')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('user')
+  createComment(@Param('id') id: string, @Body() comment: string, @Request() req) {
+    console.log(comment)  
+    const user = req.user;
+    return this.projectRequestService.comment(user, id, comment);
+  }
+
+  @Get(':id/comment')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('user')
+  getComments(@Param('id') id: string, @Request() req) {
+    return this.projectRequestService.comment(user, id, comment);
+  }
 }

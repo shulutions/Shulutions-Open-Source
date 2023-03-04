@@ -5,10 +5,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from 'src/auth/auth.module';
 import { UserModule } from 'src/user/user.module';
 import { ProjectRequest } from './entities/project-request.entity';
+import { ProjectRequestReaction } from './entities/project-request-reaction.entity';
+import { ProjectRequestComment } from './entities/project-request-comment.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([ProjectRequest]),
+    TypeOrmModule.forFeature([ProjectRequest, ProjectRequestReaction, ProjectRequestComment]),
     AuthModule,
     UserModule
   ],

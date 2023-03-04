@@ -44,4 +44,7 @@ export class ProjectRequestService {
     return this.http.delete(`/backend/project-request/${id}`);
   }
 
+  comment(id: number, comment: string) {
+    return this.http.post(`/backend/project-request/${id}/comment`, comment);
+  }
 }
