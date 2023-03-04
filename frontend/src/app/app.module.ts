@@ -23,6 +23,7 @@ import { ContributorsComponent } from './components/contributors/contributors.co
 import { GithubLanguagesComponent } from './components/github-languages/github-languages.component';
 import { IdeasComponent } from './pages/ideas/ideas.component';
 import { ProjectIdeaComponent } from './components/project-idea/project-idea.component';
+import { LoginModalComponent } from './components/login-modal/login-modal.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { ProjectIdeaComponent } from './components/project-idea/project-idea.com
     GithubLanguagesComponent,
     IdeasComponent,
     ProjectIdeaComponent,
+    LoginModalComponent,
   ],
   imports: [
     BrowserModule,

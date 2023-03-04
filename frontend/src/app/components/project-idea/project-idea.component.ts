@@ -24,4 +24,7 @@ export class ProjectIdeaComponent implements OnInit {
     this.voteCount--;
   }
 
+  viewComments() {
+    // TODO: Implement logic for viewing comments
+  }
 }
