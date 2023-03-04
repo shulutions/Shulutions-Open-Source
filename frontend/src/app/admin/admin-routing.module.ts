@@ -5,6 +5,8 @@ import { ManageProjectRequestComponent } from './pages/manage-project-request/ma
 import { EditProjectComponent } from './pages/edit-project/edit-project.component';
 import { OverviewComponent } from './pages/overview/overview.component';
 import { CreateProjectComponent } from './pages/create-project/create-project.component';
+import { UserProfileComponent } from '../pages/user-profile/user-profile.component';
+import { UsersComponent } from './components/users/users.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: OverviewComponent },
@@ -14,7 +16,19 @@ const routes: Routes = [
     path: 'create-project', component: CreateProjectComponent, 
     canActivate: [AuthGuard],
     data: { roles: ['admin'] } 
-  }
+  },
+  {
+    path: 'users', children: [
+      {
+        path: '', component: UsersComponent
+      },
+      {
+        path: ':id', component: UserProfileComponent
+      }
+    ],
+    canActivate: [AuthGuard],
+    data: { roles: ['admin'] }
+  },
   
 ];
 
