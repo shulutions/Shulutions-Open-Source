@@ -24,6 +24,7 @@ import { GithubLanguagesComponent } from './components/github-languages/github-l
 import { IdeasComponent } from './pages/ideas/ideas.component';
 import { ProjectIdeaComponent } from './components/project-idea/project-idea.component';
 import { LoginModalComponent } from './components/login-modal/login-modal.component';
+import { CommentComponent } from './components/comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { LoginModalComponent } from './components/login-modal/login-modal.compon
     IdeasComponent,
     ProjectIdeaComponent,
     LoginModalComponent,
+    CommentComponent,
   ],
   imports: [
     BrowserModule,

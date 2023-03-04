@@ -63,6 +63,6 @@ export class ProjectRequestController {
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('user')
   getComments(@Param('id') id: string, @Request() req) {
-    return this.projectRequestService.comment(user, id, comment);
+    return this.projectRequestService.getComments(id);
   }
 }

@@ -24,6 +24,11 @@
       </button>
     </div>
   </div>
+  <div *ngIf="showComments" class="comments-section-container">
+    <div class="comments-container">
+      <app-comment *ngFor="let comment of comments" [comment]="comment"></app-comment>
+    </div>
+  </div>
 </div>
     
 

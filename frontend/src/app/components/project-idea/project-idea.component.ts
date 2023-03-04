@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ProjectRequest } from 'src/app/models/project-request.interface';
+import { ProjectRequest, ProjectRequestComment } from 'src/app/models/project-request.interface';
 
 @Component({
   selector: 'app-project-idea',
@@ -9,11 +9,16 @@ import { ProjectRequest } from 'src/app/models/project-request.interface';
 export class ProjectIdeaComponent implements OnInit {
 
   @Input() projectRequest!: ProjectRequest
+  comments: ProjectRequestComment[] = [];
   voteCount: number = 0;
+  showComments: boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
+    if (this.projectRequest?.comments) {
+      this.comments = this.projectRequest.comments;
+    }
   }
 
   upvote() {
@@ -25,6 +30,6 @@ export class ProjectIdeaComponent implements OnInit {
   }
 
   viewComments() {
-    // TODO: Implement logic for viewing comments
+    this.showComments = !this.showComments;
   }
 }
