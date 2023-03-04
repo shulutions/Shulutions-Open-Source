@@ -1,5 +1,6 @@
 import { UserEntity } from "src/user/model/user.entity";
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { ProjectRequest } from "./project-request.entity";
 
 @Entity()
 export class ProjectRequestReaction {
@@ -14,4 +15,7 @@ export class ProjectRequestReaction {
 
     @ManyToOne(() => UserEntity, user => user.projectRequestReactions)
     postedBy: UserEntity;
+
+    @ManyToOne(() => ProjectRequest, projectRequest => projectRequest.reactions)
+    projectRequest: ProjectRequest;
 }

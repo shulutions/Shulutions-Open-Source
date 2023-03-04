@@ -1,6 +1,8 @@
 import { UserEntity } from "src/user/model/user.entity";
 import { User } from "src/user/model/user.interface";
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { ProjectRequestComment } from "./project-request-comment.entity";
+import { ProjectRequestReaction } from "./project-request-reaction.entity";
 
 @Entity()
 export class ProjectRequest {
@@ -26,4 +28,9 @@ export class ProjectRequest {
     @ManyToOne(() => UserEntity, user => user.projectRequests)
     submittedBy: User;
 
+    @OneToMany(() => ProjectRequestComment, projectRequestComment => projectRequestComment.projectRequest)
+    comments: ProjectRequestComment[];
+
+    @OneToMany(() => ProjectRequestReaction, projectRequestReaction => projectRequestReaction.projectRequest)
+    reactions: ProjectRequestReaction[];
 }
