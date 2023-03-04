@@ -8,6 +8,7 @@ import { JwtAuthGuard } from 'src/auth/guards/jwt-guard';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
 import { ProjectRequest } from '../entities/project-request.entity';
 import { Pagination } from 'nestjs-typeorm-paginate';
+import { CreateProjectRequestRequestDto } from '../dto/create-project-request-comment.dto';
 
 @Controller('project-request')
 export class ProjectRequestController {
@@ -53,10 +54,10 @@ export class ProjectRequestController {
   @Post(':id/comment')
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('user')
-  createComment(@Param('id') id: string, @Body() comment: string, @Request() req) {
+  createComment(@Param('id') id: string, @Body() comment: CreateProjectRequestRequestDto, @Request() req) {
     console.log(comment)  
     const user = req.user;
-    return this.projectRequestService.comment(user, id, comment);
+    return this.projectRequestService.comment(user, id, comment.comment);
   }
 
   @Get(':id/comment')

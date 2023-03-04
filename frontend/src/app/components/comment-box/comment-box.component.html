@@ -1,1 +1,9 @@
-<p>comment-box works!</p>
+<div class="container">
+    <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="comment">Comment</label>
+            <textarea formControlName="comment" [(ngModel)]="comment" class="form-control" id="comment" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
