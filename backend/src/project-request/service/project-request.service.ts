@@ -76,4 +76,22 @@ export class ProjectRequestService {
       relations: ['postedBy']
     }));
   }
+
+  deleteComment(user: User, commentId: number): Observable<ProjectRequestComment> {
+    return from(this.projectRequestCommentRepository.findOne(commentId, {relations: ['postedBy']})).pipe(
+      switchMap((comment: ProjectRequestComment) => {
+        if (comment.postedBy.id !== user.id) {
+          throw new Error("You cannot delete this comment");
+        } else {
+          return from(this.projectRequestCommentRepository.remove(comment));
+        }
+      })
+    )
+  }
+
+  // deleteComment(user: User, projectRequestId: number, commentId: number): Observable<ProjectRequestComment> {
+  //   return from(this.projectRequestCommentRepository)
+  // }
+
+
 }

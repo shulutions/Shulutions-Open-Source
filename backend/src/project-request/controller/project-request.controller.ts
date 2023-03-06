@@ -58,6 +58,14 @@ export class ProjectRequestController {
     return this.projectRequestService.comment(user, id, comment.comment);
   }
 
+  @Delete('comment/:commentId')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('user')
+  deleteComment(@Param('commentId') commentId: number, @Request() req) {
+    const user = req.user;
+    return this.projectRequestService.deleteComment(user, commentId);
+  }
+
   @Get(':id/comment')
   getComments(@Param('id') id: string, @Request() req) {
     return this.projectRequestService.getComments(id);

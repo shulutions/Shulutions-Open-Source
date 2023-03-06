@@ -1,3 +1,13 @@
 <div class="container">
-    {{comment?.comment}}
+    <div class="d-flex justify-content-between">
+        <div class="comment">
+            {{comment?.comment}}
+        </div>
+        <div class="deleteComment">
+            <button (click)="deleteComment()">
+                <i class="bi bi-trash"></i>
+            </button>
+        </div>
+    </div>
+    
 </div>

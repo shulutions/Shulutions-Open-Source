@@ -51,4 +51,8 @@ export class ProjectRequestService {
   findComments(projectRequestId: number) {
     return this.http.get<ProjectRequestComment[]>(`/backend/project-request/${projectRequestId}/comment`);
   }
+
+  deleteComment(commentId: number) {
+    return this.http.delete(`/backend/project-request/comment/${commentId}`);
+  }
 }
