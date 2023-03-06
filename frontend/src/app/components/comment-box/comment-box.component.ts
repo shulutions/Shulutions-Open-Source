@@ -21,11 +21,10 @@ export class CommentBoxComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit() {
+  async onSubmit() {
     if (this.commentForm.invalid) return;
     if (!this.projectRequestId) return;
-    this.projectRequestService.comment(this.projectRequestId, this.commentForm.value).subscribe(response => {
-      this.commentForm.get('comment')?.setValue('');
-    });
+    await this.projectRequestService.comment(this.projectRequestId, this.commentForm.value).subscribe();
+    this.commentForm.get('comment')?.setValue('');
   }
 }
