@@ -3,8 +3,11 @@
         <div class="comment">
             {{comment?.comment}}
         </div>
-        <div *ngIf="userId == comment?.postedBy?.id" class="deleteComment">
-            <button class="btn btn-outline-danger" (click)="deleteComment()">
+        <div class="center flex-row">
+            <div class="date-time mx-2">
+                {{comment?.created | date: 'short'}}
+            </div>
+            <button *ngIf="userId == comment?.postedBy?.id" class="btn btn-outline-danger" (click)="deleteComment()">
                 <i class="bi bi-trash"></i>
             </button>
         </div>
