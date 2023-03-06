@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ProjectRequest, ProjectRequestComment } from 'src/app/models/project-request.interface';
+import { ProjectRequestService } from 'src/app/services/project-request-service/project-request.service';
 
 @Component({
   selector: 'app-project-idea',
@@ -13,12 +14,17 @@ export class ProjectIdeaComponent implements OnInit {
   voteCount: number = 0;
   showComments: boolean = false;
 
-  constructor() { }
+  constructor(private projectRequestService: ProjectRequestService) { }
 
   ngOnInit(): void {
-    if (this.projectRequest?.comments) {
-      this.comments = this.projectRequest.comments;
-    }
+  }
+
+  viewComments() {
+    if (!this.projectRequest.id) return;
+    this.showComments = !this.showComments;
+    this.projectRequestService.findComments(this.projectRequest.id).subscribe((comments: ProjectRequestComment[]) => {
+      this.comments = comments;
+    });
   }
 
   upvote() {
@@ -29,7 +35,5 @@ export class ProjectIdeaComponent implements OnInit {
     this.voteCount--;
   }
 
-  viewComments() {
-    this.showComments = !this.showComments;
-  }
+  
 }

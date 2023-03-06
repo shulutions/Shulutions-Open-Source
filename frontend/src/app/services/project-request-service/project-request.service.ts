@@ -47,4 +47,8 @@ export class ProjectRequestService {
   comment(id: number, comment: ProjectRequestComment) {
     return this.http.post(`/backend/project-request/${id}/comment`, comment);
   }
+
+  findComments(projectRequestId: number) {
+    return this.http.get<ProjectRequestComment[]>(`/backend/project-request/${projectRequestId}/comment`);
+  }
 }

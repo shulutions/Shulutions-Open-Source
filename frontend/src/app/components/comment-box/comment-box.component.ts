@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ProjectRequestService } from 'src/app/services/project-request-service/project-request.service';
 
@@ -10,6 +10,7 @@ import { ProjectRequestService } from 'src/app/services/project-request-service/
 export class CommentBoxComponent implements OnInit {
 
   @Input() projectRequestId?: number
+  @Output() onComment: EventEmitter<any> = new EventEmitter();
   comment: string = '';
 
   commentForm: FormGroup = new FormGroup({
@@ -26,5 +27,7 @@ export class CommentBoxComponent implements OnInit {
     if (!this.projectRequestId) return;
     await this.projectRequestService.comment(this.projectRequestId, this.commentForm.value).subscribe();
     this.commentForm.get('comment')?.setValue('');
+    this.onComment.emit();
+
   }
 }

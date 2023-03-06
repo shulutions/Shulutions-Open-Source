@@ -31,11 +31,11 @@ export class ProjectRequestService {
   }
 
   findAll(): Observable<ProjectRequest[]> {
-    return from(this.projectRequestRepository.find({relations: ['submittedBy', 'comments']}));
+    return from(this.projectRequestRepository.find({relations: ['submittedBy']}));
   }
 
   paginate(options: IPaginationOptions): Observable<Pagination<ProjectRequest>> {
-    return from(paginate<ProjectRequest>(this.projectRequestRepository, options, {relations: ['submittedBy', 'comments']}))
+    return from(paginate<ProjectRequest>(this.projectRequestRepository, options, {relations: ['submittedBy']}))
   } 
 
   findOne(id: number) {
@@ -71,10 +71,9 @@ export class ProjectRequestService {
   }
 
   getComments(id: string): Observable<ProjectRequestComment[]> {
-    return from(this.projectRequestRepository.findOne(id, {relations: ['comments']})).pipe(
-      switchMap((projectRequest: ProjectRequest) => {
-        return of(projectRequest.comments);
-      })
-    )
+    return from(this.projectRequestCommentRepository.find({
+      where: {projectRequest: id}, 
+      relations: ['postedBy']
+    }));
   }
 }
