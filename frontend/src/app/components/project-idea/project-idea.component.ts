@@ -19,7 +19,7 @@ export class ProjectIdeaComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  comment(event: any) {
+  refresh(event: any) {
     this.viewComments();
     this.showComments = true;
   }
