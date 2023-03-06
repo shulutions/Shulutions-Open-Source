@@ -26,7 +26,7 @@
   </div>
   <div *ngIf="showComments" class="comments-section-container">
     <div class="comments-container">
-      <app-comment-box [projectRequestId]="projectRequest!.id"></app-comment-box>
+      <app-comment-box (onComment)="comment($event)" [projectRequestId]="projectRequest!.id"></app-comment-box>
       <app-comment *ngFor="let comment of comments" [comment]="comment"></app-comment>
     </div>
   </div>

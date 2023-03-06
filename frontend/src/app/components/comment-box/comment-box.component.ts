@@ -11,6 +11,7 @@ export class CommentBoxComponent implements OnInit {
 
   @Input() projectRequestId?: number
   @Output() onComment: EventEmitter<any> = new EventEmitter();
+  
   comment: string = '';
 
   commentForm: FormGroup = new FormGroup({
@@ -25,9 +26,11 @@ export class CommentBoxComponent implements OnInit {
   async onSubmit() {
     if (this.commentForm.invalid) return;
     if (!this.projectRequestId) return;
-    await this.projectRequestService.comment(this.projectRequestId, this.commentForm.value).subscribe();
+    await this.projectRequestService.comment(this.projectRequestId, this.commentForm.value).subscribe(
+      (comment: any) => {
+        this.onComment.emit(comment);
+      }
+    );
     this.commentForm.get('comment')?.setValue('');
-    this.onComment.emit();
-
   }
 }
