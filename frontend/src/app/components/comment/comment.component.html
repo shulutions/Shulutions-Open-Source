@@ -3,8 +3,8 @@
         <div class="comment">
             {{comment?.comment}}
         </div>
-        <div class="deleteComment">
-            <button (click)="deleteComment()">
+        <div *ngIf="userId == comment?.postedBy?.id" class="deleteComment">
+            <button class="btn btn-outline-danger" (click)="deleteComment()">
                 <i class="bi bi-trash"></i>
             </button>
         </div>
