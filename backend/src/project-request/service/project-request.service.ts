@@ -92,7 +92,7 @@ export class ProjectRequestService {
 
   async react(user: UserEntity, projectRequestId: number, vote: CreateProjectRequestReactionDto) {
     const existingReaction: ProjectRequestReaction = await this.projectRequestReactionRepository.findOne({
-      where: {postedBy: user.id}
+      where: {postedBy: user.id, projectRequest: projectRequestId}
     })
 
     return from(this.projectRequestRepository.findOne(projectRequestId)).pipe(
