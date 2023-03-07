@@ -110,6 +110,7 @@ export class ProjectRequestService {
     const existingReaction: ProjectRequestReaction = await this.projectRequestReactionRepository.findOne({
       where: {postedBy: user.id, projectRequest: projectRequestId}
     })
+    const removeReaction: boolean = existingReaction && existingReaction.reaction === vote.reaction;
 
     return from(this.projectRequestRepository.findOne(projectRequestId)).pipe(
       switchMap((projectRequest: ProjectRequest) => {
@@ -120,7 +121,11 @@ export class ProjectRequestService {
           newReaction.reaction = vote.reaction
 
           return from(this.projectRequestReactionRepository.save(newReaction));
-        } else {
+        } 
+        else if (removeReaction) {
+          return from(this.projectRequestReactionRepository.remove(existingReaction));
+        }
+        else {
           existingReaction.reaction = vote.reaction;
           return from(this.projectRequestReactionRepository.update(existingReaction.id, existingReaction))
         }
