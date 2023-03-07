@@ -27,7 +27,10 @@ export class IdeasComponent implements OnInit {
       //tap(projectRequests => console.log(projectRequests)),
       map((paginationData: PaginationData) => {
         this.dataSource = paginationData
-        this.projectRequests = paginationData.items
+        // Sort the project requests by the number of reactions
+        this.projectRequests = paginationData.items.sort((a: ProjectRequest, b: ProjectRequest) => {
+          return (b.reactionTotal || 0) - (a.reactionTotal || 0)
+        })
       })
     ).subscribe();
   }
