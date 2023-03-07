@@ -81,4 +81,10 @@ export class ProjectRequestController {
     const user: UserEntity = req.user;
     return this.projectRequestService.react(user, projectRequestId, reaction)
   }
+
+  // Get reaction count for a project request
+  @Get(':id/vote')
+  getReactionTotal(@Param('id') projectRequestId: number) {
+    return this.projectRequestService.getReactionTotal(projectRequestId);
+  }
 }

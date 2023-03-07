@@ -18,6 +18,13 @@ export class ProjectIdeaComponent implements OnInit {
   constructor(private projectRequestService: ProjectRequestService) { }
 
   ngOnInit(): void {
+    this.getReactionTotal();
+  }
+
+  getReactionTotal() {
+    this.projectRequestService.getReactionTotal(this.projectRequest.id!).subscribe((voteCount: any) => {
+      this.voteCount = voteCount;
+    })
   }
 
   refresh(event: any) {

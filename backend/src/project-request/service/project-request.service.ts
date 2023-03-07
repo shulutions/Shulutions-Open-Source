@@ -108,7 +108,20 @@ export class ProjectRequestService {
           existingReaction.reaction = vote.reaction;
           return from(this.projectRequestReactionRepository.update(existingReaction.id, existingReaction))
         }
-      })) 
+      })
+    ) 
   }
 
+  // Get a total count of reactions for a project request
+  async getReactionTotal(projectRequestId: number): Promise<number> {
+    const upVotes = await this.projectRequestReactionRepository.count({
+      where: {projectRequest: projectRequestId, reaction: 'up'}
+    });
+
+    const downVotes = await this.projectRequestReactionRepository.count({
+      where: {projectRequest: projectRequestId, reaction: 'down'}
+    });
+
+    return upVotes - downVotes;
+  }
 }
