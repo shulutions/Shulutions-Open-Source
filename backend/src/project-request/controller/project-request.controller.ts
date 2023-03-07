@@ -82,4 +82,13 @@ export class ProjectRequestController {
     return this.projectRequestService.react(user, projectRequestId, reaction)
   }
 
+  // Get a users reaction to a project request
+  @Get(':id/vote')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('user')
+  getReaction(@Param('id') projectRequestId: number, @Request() req) {
+    const user: UserEntity = req.user;
+    return this.projectRequestService.getReaction(user, projectRequestId);
+  }
+  
 }

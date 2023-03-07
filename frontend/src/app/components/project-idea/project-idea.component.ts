@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ProjectRequestReaction } from 'src/app/models/project-request-reaction.interface';
 import { ProjectRequest, ProjectRequestComment } from 'src/app/models/project-request.interface';
 import { ProjectRequestService } from 'src/app/services/project-request-service/project-request.service';
@@ -11,16 +11,29 @@ import { ProjectRequestService } from 'src/app/services/project-request-service/
 export class ProjectIdeaComponent implements OnInit {
 
   @Input() projectRequest!: ProjectRequest
+  @Output() getProjectRequests: EventEmitter<any> = new EventEmitter();
   comments: ProjectRequestComment[] = [];
   voteCount: number = 0;
   showComments: boolean = false;
+  upvoted: boolean = false;
+  downvoted: boolean = false;
 
   constructor(private projectRequestService: ProjectRequestService) { }
 
   ngOnInit(): void {
+    this.getReaction();
   }
 
-  refresh(event: any) {
+  getReaction() {
+    this.downvoted = false;
+    this.upvoted = false;
+    this.projectRequestService.getReaction(this.projectRequest.id!).subscribe((reaction: ProjectRequestReaction) => {
+      if (reaction.reaction === 'up') this.upvoted = true;
+      if (reaction.reaction === 'down') this.downvoted = true;
+    })
+  }
+
+  refreshComments(event: any) {
     this.viewComments();
     this.showComments = true;
   }
@@ -45,7 +58,7 @@ export class ProjectIdeaComponent implements OnInit {
 
   vote(reaction: ProjectRequestReaction) {
     this.projectRequestService.submitReaction(this.projectRequest.id!, reaction).subscribe((response) => {
-      console.log(response)
+      this.getProjectRequests.emit(response);
     })
   }
   

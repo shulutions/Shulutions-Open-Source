@@ -132,4 +132,10 @@ export class ProjectRequestService {
       })
     ) 
   }
+
+  getReaction(user: UserEntity, projectRequestId: number) {
+    return from(this.projectRequestReactionRepository.findOne({
+      where: {postedBy: user.id, projectRequest: projectRequestId}
+    }))
+  }
 }

@@ -2,7 +2,7 @@
     <div class="section">
         <h1>Ideas for projects</h1>
         <div class="idea-container">
-            <app-project-idea *ngFor="let projectRequest of projectRequests" [projectRequest]="projectRequest"></app-project-idea>
+            <app-project-idea (getProjectRequests)="getProjectRequests($event)" *ngFor="let projectRequest of projectRequests" [projectRequest]="projectRequest"></app-project-idea>
         </div>
     </div>
     

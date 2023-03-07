@@ -15,19 +15,19 @@
       </div>
     </div>
     <div class="col-1 no-margin voting-container">
-      <button class="btn btn-sm btn-outline-success" (click)="upvote()">
+      <button [ngClass]="{'btn-success': upvoted, 'btn-outline-success': !upvoted}" class="btn btn-sm" (click)="upvote()">
         <i class="bi bi-caret-up-fill"></i>
       </button>
       <span class="m-3 vote-count">{{ projectRequest.reactionTotal }}</span>
-      <button class="btn btn-sm btn-outline-danger" (click)="downvote()">
+      <button [ngClass]="{'btn-danger': downvoted, 'btn-outline-danger': !downvoted}" class="btn btn-sm" (click)="downvote()">
         <i class="bi bi-caret-down-fill"></i>
       </button>
     </div>
   </div>
   <div *ngIf="showComments" class="comments-section-container">
     <div class="comments-container">
-      <app-comment-box (onComment)="refresh($event)" [projectRequestId]="projectRequest!.id"></app-comment-box>
-      <app-comment (onDelete)="refresh($event)" *ngFor="let comment of comments" [comment]="comment"></app-comment>
+      <app-comment-box (onComment)="refreshComments($event)" [projectRequestId]="projectRequest!.id"></app-comment-box>
+      <app-comment (onDelete)="refreshComments($event)" *ngFor="let comment of comments" [comment]="comment"></app-comment>
     </div>
   </div>
 </div>

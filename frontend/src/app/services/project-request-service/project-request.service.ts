@@ -60,8 +60,12 @@ export class ProjectRequestService {
   submitReaction(projectId: number, reaction: ProjectRequestReaction) {
     return this.http.post<ProjectRequestReaction>(`/backend/project-request/${projectId}/vote`, reaction);
   }
-  
+
   getReactionTotal(projectId: number) {
     return this.http.get(`/backend/project-request/${projectId}/vote`);
+  }
+
+  getReaction(projectId: number) {
+    return this.http.get<ProjectRequestReaction>(`/backend/project-request/${projectId}/vote`);
   }
 }

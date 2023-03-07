@@ -19,10 +19,10 @@ export class IdeasComponent implements OnInit {
   constructor(private projectRequestService: ProjectRequestService,) { }
 
   ngOnInit(): void {
-    this.getProjectRequests();
+    this.getProjectRequests(null);
   }
 
-  getProjectRequests() {
+  getProjectRequests(event: any) {
     this.projectRequestService.findAll(this.currentPage, this.itemsPerPage).pipe(
       //tap(projectRequests => console.log(projectRequests)),
       map((paginationData: PaginationData) => {
