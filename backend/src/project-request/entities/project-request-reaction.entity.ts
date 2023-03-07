@@ -7,8 +7,8 @@ export class ProjectRequestReaction {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
-    reaction: string;
+    @Column({ nullable: false })
+    reaction: "up" | "down";
 
     @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
     created: Date;

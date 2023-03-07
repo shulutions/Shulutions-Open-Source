@@ -4,11 +4,14 @@ import { Pagination, paginate } from 'nestjs-typeorm-paginate';
 import { IPaginationOptions } from 'nestjs-typeorm-paginate/dist/interfaces';
 import { switchMap, from, Observable, of } from 'rxjs';
 import { Project } from 'src/project/model/project.interface';
+import { UserEntity } from 'src/user/model/user.entity';
 import { User } from 'src/user/model/user.interface';
 import { Repository } from 'typeorm';
+import { CreateProjectRequestVoteDto } from '../dto/create-project-request-vote.dto';
 import { CreateProjectRequestDto } from '../dto/create-project-request.dto';
 import { UpdateProjectRequestDto } from '../dto/update-project-request.dto';
 import { ProjectRequestComment } from '../entities/project-request-comment.entity';
+import { ProjectRequestReaction } from '../entities/project-request-reaction.entity';
 import { ProjectRequest } from '../entities/project-request.entity';
 const slugify = require('slugify');
 
@@ -17,7 +20,8 @@ export class ProjectRequestService {
 
   constructor (
     @InjectRepository(ProjectRequest) private readonly projectRequestRepository: Repository<ProjectRequest>,
-    @InjectRepository(ProjectRequestComment) private readonly projectRequestCommentRepository: Repository<ProjectRequestComment>
+    @InjectRepository(ProjectRequestComment) private readonly projectRequestCommentRepository: Repository<ProjectRequestComment>,
+    @InjectRepository(ProjectRequestReaction) private readonly projectRequestReactionRepository: Repository<ProjectRequestReaction>,
     ) {}
 
   create(user: User, projectRequest: CreateProjectRequestDto): Observable<ProjectRequest> {
@@ -61,11 +65,8 @@ export class ProjectRequestService {
         newComment.comment = comment;
         newComment.projectRequest = projectRequest;
         newComment.postedBy = user;
-        console.log(newComment);
 
-        //projectRequest.comments.push(newComment);
         return from(this.projectRequestCommentRepository.save(newComment));
-        //return from(this.projectRequestRepository.save(projectRequest));
       })
     )
   }
@@ -89,9 +90,23 @@ export class ProjectRequestService {
     )
   }
 
-  // deleteComment(user: User, projectRequestId: number, commentId: number): Observable<ProjectRequestComment> {
-  //   return from(this.projectRequestCommentRepository)
-  // }
+  async vote(user: UserEntity, projectRequestId: number, vote: CreateProjectRequestVoteDto) {
+    const existingReaction: ProjectRequestReaction = await this.projectRequestReactionRepository.findOne(user.id);
 
+    return from(this.projectRequestRepository.findOne(projectRequestId)).pipe(
+      switchMap((projectRequest: ProjectRequest) => {
+        if (!existingReaction) {
+          const newReaction = new ProjectRequestReaction();
+          newReaction.postedBy = user;
+          newReaction.projectRequest = projectRequest;
+          newReaction.reaction = vote.reaction
+
+          return from(this.projectRequestCommentRepository.save(newReaction));
+        } else {
+          existingReaction.reaction = vote.reaction;
+          return from(this.projectRequestReactionRepository.update(existingReaction.id, existingReaction))
+        }
+      })) 
+  }
 
 }

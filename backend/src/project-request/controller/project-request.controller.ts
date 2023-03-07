@@ -9,6 +9,8 @@ import { RolesGuard } from 'src/auth/guards/roles.guard';
 import { ProjectRequest } from '../entities/project-request.entity';
 import { Pagination } from 'nestjs-typeorm-paginate';
 import { CreateProjectRequestRequestDto } from '../dto/create-project-request-comment.dto';
+import { CreateProjectRequestVoteDto } from '../dto/create-project-request-vote.dto';
+import { UserEntity } from 'src/user/model/user.entity';
 
 @Controller('project-request')
 export class ProjectRequestController {
@@ -69,5 +71,11 @@ export class ProjectRequestController {
   @Get(':id/comment')
   getComments(@Param('id') id: string, @Request() req) {
     return this.projectRequestService.getComments(id);
+  }
+
+  @Post(':id/vote')
+  vote(@Param('id') projectRequestId: number, @Body() vote: CreateProjectRequestVoteDto, @Request() req) {
+    const user: UserEntity = req.user;
+    return this.projectRequestService.vote(user, projectRequestId, vote)
   }
 }
