@@ -8,7 +8,7 @@ export class ProjectRequestReaction {
     id: number;
 
     @Column({ nullable: false })
-    reaction: "up" | "down";
+    reaction: 'up' | 'down';
 
     @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
     created: Date;

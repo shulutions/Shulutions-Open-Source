@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ProjectRequestReaction } from 'src/app/models/project-request-reaction.interface';
 import { ProjectRequest, ProjectRequestComment } from 'src/app/models/project-request.interface';
 import { ProjectRequestService } from 'src/app/services/project-request-service/project-request.service';
 
@@ -33,12 +34,19 @@ export class ProjectIdeaComponent implements OnInit {
   }
 
   upvote() {
-    this.voteCount++;
+    const reaction: ProjectRequestReaction = {reaction: 'up'}
+    this.vote(reaction);
   }
 
   downvote() {
-    this.voteCount--;
+    const reaction: ProjectRequestReaction = {reaction: 'down'}
+    this.vote(reaction);
   }
 
+  vote(reaction: ProjectRequestReaction) {
+    this.projectRequestService.submitReaction(this.projectRequest.id!, reaction).subscribe((response) => {
+      console.log(response)
+    })
+  }
   
 }

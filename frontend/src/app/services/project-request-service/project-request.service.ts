@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { PaginationData } from 'src/app/models/pagination.interface';
+import { ProjectRequestReaction } from 'src/app/models/project-request-reaction.interface';
 import { ProjectRequest, ProjectRequestComment } from 'src/app/models/project-request.interface';
 
 @Injectable({
@@ -54,5 +55,9 @@ export class ProjectRequestService {
 
   deleteComment(commentId: number) {
     return this.http.delete(`/backend/project-request/comment/${commentId}`);
+  }
+
+  submitReaction(projectId: number, reaction: ProjectRequestReaction) {
+    return this.http.post<ProjectRequestReaction>(`/backend/project-request/${projectId}/vote`, reaction);
   }
 }

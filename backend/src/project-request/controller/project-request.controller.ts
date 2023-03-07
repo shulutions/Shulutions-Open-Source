@@ -9,8 +9,9 @@ import { RolesGuard } from 'src/auth/guards/roles.guard';
 import { ProjectRequest } from '../entities/project-request.entity';
 import { Pagination } from 'nestjs-typeorm-paginate';
 import { CreateProjectRequestRequestDto } from '../dto/create-project-request-comment.dto';
-import { CreateProjectRequestVoteDto } from '../dto/create-project-request-vote.dto';
 import { UserEntity } from 'src/user/model/user.entity';
+import { ProjectRequestReaction } from '../entities/project-request-reaction.entity';
+import { CreateProjectRequestReactionDto } from '../dto/create-project-request-reaction.dto';
 
 @Controller('project-request')
 export class ProjectRequestController {
@@ -74,8 +75,10 @@ export class ProjectRequestController {
   }
 
   @Post(':id/vote')
-  vote(@Param('id') projectRequestId: number, @Body() vote: CreateProjectRequestVoteDto, @Request() req) {
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('user')
+  vote(@Param('id') projectRequestId: number, @Body() reaction: CreateProjectRequestReactionDto, @Request() req) {
     const user: UserEntity = req.user;
-    return this.projectRequestService.vote(user, projectRequestId, vote)
+    return this.projectRequestService.react(user, projectRequestId, reaction)
   }
 }

@@ -7,7 +7,7 @@ import { Project } from 'src/project/model/project.interface';
 import { UserEntity } from 'src/user/model/user.entity';
 import { User } from 'src/user/model/user.interface';
 import { Repository } from 'typeorm';
-import { CreateProjectRequestVoteDto } from '../dto/create-project-request-vote.dto';
+import { CreateProjectRequestReactionDto } from '../dto/create-project-request-reaction.dto';
 import { CreateProjectRequestDto } from '../dto/create-project-request.dto';
 import { UpdateProjectRequestDto } from '../dto/update-project-request.dto';
 import { ProjectRequestComment } from '../entities/project-request-comment.entity';
@@ -35,11 +35,11 @@ export class ProjectRequestService {
   }
 
   findAll(): Observable<ProjectRequest[]> {
-    return from(this.projectRequestRepository.find({relations: ['submittedBy']}));
+    return from(this.projectRequestRepository.find({relations: ['submittedBy', 'reactions']}));
   }
 
   paginate(options: IPaginationOptions): Observable<Pagination<ProjectRequest>> {
-    return from(paginate<ProjectRequest>(this.projectRequestRepository, options, {relations: ['submittedBy']}))
+    return from(paginate<ProjectRequest>(this.projectRequestRepository, options, {relations: ['submittedBy', 'reactions']}))
   } 
 
   findOne(id: number) {
@@ -90,8 +90,10 @@ export class ProjectRequestService {
     )
   }
 
-  async vote(user: UserEntity, projectRequestId: number, vote: CreateProjectRequestVoteDto) {
-    const existingReaction: ProjectRequestReaction = await this.projectRequestReactionRepository.findOne(user.id);
+  async react(user: UserEntity, projectRequestId: number, vote: CreateProjectRequestReactionDto) {
+    const existingReaction: ProjectRequestReaction = await this.projectRequestReactionRepository.findOne({
+      where: {postedBy: user.id}
+    })
 
     return from(this.projectRequestRepository.findOne(projectRequestId)).pipe(
       switchMap((projectRequest: ProjectRequest) => {
@@ -101,7 +103,7 @@ export class ProjectRequestService {
           newReaction.projectRequest = projectRequest;
           newReaction.reaction = vote.reaction
 
-          return from(this.projectRequestCommentRepository.save(newReaction));
+          return from(this.projectRequestReactionRepository.save(newReaction));
         } else {
           existingReaction.reaction = vote.reaction;
           return from(this.projectRequestReactionRepository.update(existingReaction.id, existingReaction))
