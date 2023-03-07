@@ -17,4 +17,5 @@ export interface ProjectRequest {
     reviewed?: boolean;
     submittedBy?: User;
     comments?: ProjectRequestComment[];
+    reactionTotal?: number;
 }

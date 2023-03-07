@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Pagination, paginate } from 'nestjs-typeorm-paginate';
 import { IPaginationOptions } from 'nestjs-typeorm-paginate/dist/interfaces';
-import { switchMap, from, Observable, of } from 'rxjs';
+import { switchMap, from, Observable, of, map } from 'rxjs';
 import { Project } from 'src/project/model/project.interface';
 import { UserEntity } from 'src/user/model/user.entity';
 import { User } from 'src/user/model/user.interface';
@@ -38,9 +38,25 @@ export class ProjectRequestService {
     return from(this.projectRequestRepository.find({relations: ['submittedBy', 'reactions']}));
   }
 
-  paginate(options: IPaginationOptions): Observable<Pagination<ProjectRequest>> {
-    return from(paginate<ProjectRequest>(this.projectRequestRepository, options, {relations: ['submittedBy', 'reactions']}))
-  } 
+  paginate(options: IPaginationOptions): Observable<Pagination<ProjectRequest & { reactionTotal: number }>> {
+    return from(paginate<ProjectRequest>(this.projectRequestRepository, options, { relations: ['submittedBy', 'reactions'] }))
+      .pipe(
+        map(pagination => {
+          const itemsWithReactionTotal = pagination.items.map(item => {
+            const reactionTotal = item.reactions.reduce((total, reaction) => {
+              if (reaction.reaction === 'up') {
+                return total + 1;
+              } else {
+                return total - 1;
+              }
+            }, 0);
+            return { ...item, reactionTotal };
+          });
+          return { ...pagination, items: itemsWithReactionTotal };
+        })
+      );
+  }
+  
 
   findOne(id: number) {
     return from(this.projectRequestRepository.findOne(id, {relations: ['submittedBy']}));
@@ -110,18 +126,5 @@ export class ProjectRequestService {
         }
       })
     ) 
-  }
-
-  // Get a total count of reactions for a project request
-  async getReactionTotal(projectRequestId: number): Promise<number> {
-    const upVotes = await this.projectRequestReactionRepository.count({
-      where: {projectRequest: projectRequestId, reaction: 'up'}
-    });
-
-    const downVotes = await this.projectRequestReactionRepository.count({
-      where: {projectRequest: projectRequestId, reaction: 'down'}
-    });
-
-    return upVotes - downVotes;
   }
 }
