@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-
+@import "~bootstrap-icons/font/bootstrap-icons.css";
 @import '_vars';
 
 a:link,
@@ -63,10 +63,6 @@ input, textarea {
   margin: 0 0 20px 0;
   border: 3px dashed orange;
   padding: 5px;
-}
-
-.button-container {
-  margin: 10px;
 }
 
 table {

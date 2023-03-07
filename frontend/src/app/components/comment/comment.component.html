@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="d-flex justify-content-between">
+        <div class="d-flex flex-row">
+            <strong>{{comment?.postedBy?.username}}</strong>
+            <div class="date-time mx-2">
+                {{comment?.created | date: 'short'}}
+            </div>
+        </div>
+        <div class="delete">
+            <button *ngIf="userId == comment?.postedBy?.id" class="btn btn-outline-danger" (click)="deleteComment()">
+                <i class="bi bi-trash"></i>
+            </button>
+        </div>
+    </div>
+    <div class="comment">
+        {{comment?.comment}}
+    </div>
+</div>

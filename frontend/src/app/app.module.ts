@@ -21,6 +21,11 @@ import { ProjectRequestFormComponent } from './components/project-request-form/p
 import { GithubStatsComponent } from './components/github-stats/github-stats.component';
 import { ContributorsComponent } from './components/contributors/contributors.component';
 import { GithubLanguagesComponent } from './components/github-languages/github-languages.component';
+import { IdeasComponent } from './pages/ideas/ideas.component';
+import { ProjectIdeaComponent } from './components/project-idea/project-idea.component';
+import { LoginModalComponent } from './components/login-modal/login-modal.component';
+import { CommentComponent } from './components/comment/comment.component';
+import { CommentBoxComponent } from './components/comment-box/comment-box.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +45,11 @@ import { GithubLanguagesComponent } from './components/github-languages/github-l
     GithubStatsComponent,
     ContributorsComponent,
     GithubLanguagesComponent,
+    IdeasComponent,
+    ProjectIdeaComponent,
+    LoginModalComponent,
+    CommentComponent,
+    CommentBoxComponent,
   ],
   imports: [
     BrowserModule,

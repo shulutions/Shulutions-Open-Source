@@ -1,0 +1,21 @@
+<div class="sections">
+    <div class="section">
+        <h1>Ideas for projects</h1>
+        <div class="idea-container">
+            <app-project-idea (getProjectRequests)="getProjectRequests($event)" *ngFor="let projectRequest of projectRequests" [projectRequest]="projectRequest"></app-project-idea>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>Got an idea for a project?</h2>
+        <br>
+        <div class="row center">
+            <div routerLink="/project-request" class="button">
+                Submit Project Request
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+

@@ -11,6 +11,7 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
 import { UsersComponent } from './admin/components/users/users.component';
 import { ViewProjectComponent } from './pages/view-project/view-project.component';
 import { ProjectRequestComponent } from './pages/project-request/project-request.component';
+import { IdeasComponent } from './pages/ideas/ideas.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -21,25 +22,10 @@ const routes: Routes = [
   },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  {
-    path: 'users', children: [
-      {
-        path: '', component: UsersComponent
-      },
-      {
-        path: ':id', component: UserProfileComponent
-      }
-    ],
-    canActivate: [AuthGuard],
-    data: { roles: ['admin'] }
-  },
+  { path: 'ideas', component: IdeasComponent },
+  { path: 'users/:id', component: UserProfileComponent, canActivate: [AuthGuard] },
   { path: 'update-profile', component: UpdateUserProfileComponent, canActivate: [AuthGuard] },
   { path: 'projects', component: ProjectsComponent },
-  { 
-    path: 'create-project', component: CreateProjectComponent, 
-    canActivate: [AuthGuard],
-    data: { roles: ['admin'] } 
-  },
   { path: 'projects/:id', component: ViewProjectComponent },
   { path: 'project-request', component: ProjectRequestComponent, canActivate: [AuthGuard] },
 ];

@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { PaginationData } from 'src/app/models/pagination.interface';
-import { ProjectRequest } from 'src/app/models/project-request.interface';
+import { ProjectRequestReaction } from 'src/app/models/project-request-reaction.interface';
+import { ProjectRequest, ProjectRequestComment } from 'src/app/models/project-request.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -44,4 +45,27 @@ export class ProjectRequestService {
     return this.http.delete(`/backend/project-request/${id}`);
   }
 
+  comment(id: number, comment: ProjectRequestComment) {
+    return this.http.post(`/backend/project-request/${id}/comment`, comment);
+  }
+
+  findComments(projectRequestId: number) {
+    return this.http.get<ProjectRequestComment[]>(`/backend/project-request/${projectRequestId}/comment`);
+  }
+
+  deleteComment(commentId: number) {
+    return this.http.delete(`/backend/project-request/comment/${commentId}`);
+  }
+
+  submitReaction(projectId: number, reaction: ProjectRequestReaction) {
+    return this.http.post<ProjectRequestReaction>(`/backend/project-request/${projectId}/vote`, reaction);
+  }
+
+  getReactionTotal(projectId: number) {
+    return this.http.get(`/backend/project-request/${projectId}/vote`);
+  }
+
+  getReaction(projectId: number) {
+    return this.http.get<ProjectRequestReaction>(`/backend/project-request/${projectId}/vote`);
+  }
 }

@@ -1,0 +1,36 @@
+<div class="card mt-3">
+  <div class="row no-margin">
+    <div class="col-11 no-margin">
+      <div class="card-header d-flex justify-content-between">
+        <h5 class="no-margin card-title">{{ projectRequest.title }}</h5>
+        <p class="no-margin">Submitted by: {{projectRequest.submittedBy?.username}}</p>
+      </div>
+      <div class="card-body">
+        <p class="card-text">{{ projectRequest.description }}</p>
+      </div>
+      <div class="card-footer center">
+        <button class="btn btn-sm btn-outline-secondary" (click)="viewComments()">
+          <i class="bi bi-chat-dots"></i> View Comments
+        </button>
+      </div>
+    </div>
+    <div class="col-1 no-margin voting-container">
+      <button [ngClass]="{'btn-success': upvoted, 'btn-outline-success': !upvoted}" class="btn btn-sm" (click)="upvote()">
+        <i class="bi bi-caret-up-fill"></i>
+      </button>
+      <span class="m-3 vote-count">{{ projectRequest.reactionTotal }}</span>
+      <button [ngClass]="{'btn-danger': downvoted, 'btn-outline-danger': !downvoted}" class="btn btn-sm" (click)="downvote()">
+        <i class="bi bi-caret-down-fill"></i>
+      </button>
+    </div>
+  </div>
+  <div *ngIf="showComments" class="comments-section-container">
+    <div class="comments-container">
+      <app-comment-box (onComment)="refreshComments($event)" [projectRequestId]="projectRequest!.id"></app-comment-box>
+      <app-comment (onDelete)="refreshComments($event)" *ngFor="let comment of comments" [comment]="comment"></app-comment>
+    </div>
+  </div>
+</div>
+    
+
+ 

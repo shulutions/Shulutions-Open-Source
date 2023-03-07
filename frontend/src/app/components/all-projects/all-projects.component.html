@@ -1,4 +1,4 @@
-<div class="center projects-container">    
+<!-- <div class="center projects-container">    
     <div *ngFor="let project of projects" class="project shadow" routerLink="../projects/{{project.id}}">
         <div >
             <img *ngIf="project.image !== null; else placeholderImage" 
@@ -13,4 +13,18 @@
             <small *ngIf="project.projectManager">Project Manager: {{project.projectManager.name}}</small>
         </div>  
     </div>
-</div>
+</div> -->
+
+<div class="projects-grid">
+    <a *ngFor="let project of projects" class="project-card" routerLink="../projects/{{project.id}}">
+      <div class="project-image-container">
+        <img class="project-image" [src]="project.image ? 'http://localhost:3000/backend/projects/image/' + project.image : '../../../../assets/placeholders/placeholder-project.png'" alt="Project Image">
+        <div class="project-details-overlay">
+          <h2 class="project-title">{{project.title}}</h2>
+          <p class="project-description">{{project.description}}</p>
+          <small *ngIf="project.projectManager" class="project-manager">Project Manager: {{project.projectManager.name}}</small>
+        </div>
+      </div>
+    </a>
+  </div>
+  
