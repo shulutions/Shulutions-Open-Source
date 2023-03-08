@@ -22,7 +22,7 @@ export class AuthentificationService {
 
   login(loginForm: LoginForm) {
     console.log(environment.baseApiUrl)
-    return this.http.post<any>(`${environment.baseApiUrl}/backend/users/login`, { email: loginForm.email, password: loginForm.password }).pipe(
+    return this.http.post<any>(`${environment.baseApiUrl}/users/login`, { email: loginForm.email, password: loginForm.password }).pipe(
       map((token) => {
         console.log("token")
         localStorage.setItem(JWT_NAME, token.access_token);
@@ -36,7 +36,7 @@ export class AuthentificationService {
   }
   
   register(user: User) {
-    return this.http.post<any>('backend/users/', user).pipe(
+    return this.http.post<any>(`${environment.baseApiUrl}/users/`, user).pipe(
       map(user => user)
     )
   }
