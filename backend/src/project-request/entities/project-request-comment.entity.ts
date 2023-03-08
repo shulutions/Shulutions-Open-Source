@@ -15,9 +15,9 @@ export class ProjectRequestComment {
     @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
     created: Date;
 
-    @ManyToOne(() => ProjectRequest, projectRequest => projectRequest.comments)
+    @ManyToOne(() => ProjectRequest, projectRequest => projectRequest.comments, { onDelete: 'CASCADE' })
     projectRequest: ProjectRequest;
 
-    @ManyToOne(() => UserEntity, user => user.projectRequestComments)
+    @ManyToOne(() => UserEntity, user => user.projectRequestComments, { onDelete: 'CASCADE' })
     postedBy: User;
 }
