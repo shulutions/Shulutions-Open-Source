@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { ProjectService } from 'src/app/services/project-service/project.service';
+import { environment } from 'src/environments/environment';
+
 
 export interface File {
   data: any;
@@ -19,6 +21,7 @@ export interface File {
 })
 export class CreateProjectComponent implements OnInit {
 
+  baseApiUrl: string = environment.baseApiUrl;
   @ViewChild("fileUpload", {static: false}) fileUpload!: ElementRef;
 
   file: File = {

@@ -61,7 +61,7 @@
                 <div class="mb-3">
                     <label for="image" class="form-label">Image</label>
                     <div class="image-container">
-                        <img class="image" *ngIf="createProjectForm.get('image')?.value" src="http://localhost:3000/backend/projects/image/{{createProjectForm.get('image')?.value}}">    
+                        <img class="image" *ngIf="createProjectForm.get('image')?.value" src="{{baseApiUrl}}/projects/image/{{createProjectForm.get('image')?.value}}">    
                     </div>
                     <button class="btn btn-secondary" type="button" (click)="onClick()">Upload Image</button>
                     <input (change)="fileChange()" type="file" #fileUpload id="fileUpload" name="fileUpload" accept="image/*" style="display: none;">

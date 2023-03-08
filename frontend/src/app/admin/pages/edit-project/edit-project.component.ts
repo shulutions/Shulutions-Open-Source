@@ -10,6 +10,7 @@ import { Project, ProjectStage } from 'src/app/models/project.interface';
 import { User } from 'src/app/models/user.interface';
 import { ProjectService } from 'src/app/services/project-service/project.service';
 import { UserService } from 'src/app/services/user-service/user.service';
+import { environment } from 'src/environments/environment';
 
 export interface File {
   data: any;
@@ -24,6 +25,7 @@ export interface File {
 })
 export class EditProjectComponent implements OnInit {
 
+  baseApiUrl: string = environment.baseApiUrl;
   @ViewChild("fileUpload", {static: false}) fileUpload!: ElementRef;
   @ViewChild('deleteProjectModal', { static: false }) deleteProjectRequestModal: any;
 

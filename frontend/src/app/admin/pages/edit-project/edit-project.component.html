@@ -123,7 +123,7 @@
                     <label for="image" class="form-label">Image</label>
                     <input (change)="fileChange()" type="file" #fileUpload id="fileUpload" name="fileUpload" accept="image/*" style="display: none;">
                     <div class="new-image-container">
-                        <img class="image" *ngIf="editProjectForm.get('image')?.value" src="http://localhost:3000/backend/projects/image/{{editProjectForm.get('image')?.value}}">    
+                        <img class="image" *ngIf="editProjectForm.get('image')?.value" src="{{baseApiUrl}}/projects/image/{{editProjectForm.get('image')?.value}}">    
                     </div>
                     <button class="btn mt-3 btn-secondary" type="button" (click)="onClick()">Update Image</button>
                     <div class="invalid-feedback" *ngIf="editProjectForm.get('image')?.invalid && (editProjectForm.get('newImage')?.dirty || editProjectForm.get('newImage')?.touched)">
