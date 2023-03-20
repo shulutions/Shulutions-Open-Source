@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  shulutions-api:
+    build: ./backend
+    volumes:
+      - ./db:./db
+  # attendance-web:
+  #   build: ./frontend
