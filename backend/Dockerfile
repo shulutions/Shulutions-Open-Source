@@ -7,13 +7,17 @@ WORKDIR /usr/src/app
 # Copy package.json and package-lock.json
 COPY package*.json ./
 
-# Install dependencies
-RUN npm install --production
+RUN npm install
 
-# Copy the rest of the application code
+# Remove the node_modules directory to ensure a clean build
+RUN rm -rf node_modules
+
+RUN npm install
+
 COPY . .
 
-# Expose port 3000
+RUN npm run build
+
 EXPOSE 3000
 
 # Start the application
