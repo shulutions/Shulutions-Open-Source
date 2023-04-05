@@ -1,47 +1,36 @@
-version: "3"
+version: '3'
 
 services:
-  web:
-    build: ./frontend
-    ports:
-      - "80:80"
-    depends_on:
-      - api
-    networks:
-      - my-network
-
   api:
     build: ./backend
     ports:
-      - "3000:3000"
+      - 3000:3000
     environment:
-      - PGHOST=postgres
-      - PGUSER=postgres
-      - PGPASSWORD=mysecretpassword
-      - PGDATABASE=mydatabase
-      - PGPORT=5432
+      POSTGRES_HOST: db
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: your_username
+      POSTGRES_PASSWORD: your_password
+      POSTGRES_DB: your_database
     depends_on:
-      - postgres
-    networks:
-      - my-network
+      - db
 
-  postgres:
-    image: postgres:13
+  db:
+    image: postgres:13-alpine
     environment:
-      - POSTGRES_PASSWORD=mysecretpassword
-      - POSTGRES_USER=postgres
-      - POSTGRES_DB=mydatabase
-    ports:
-      - "5432:5432"
+      POSTGRES_USER: your_username
+      POSTGRES_PASSWORD: your_password
+      POSTGRES_DB: your_database
     volumes:
-      - db-data:/var/lib/postgresql/data
-    networks:
-      - my-network
+      - postgres_data:/var/lib/postgresql/data
 
-networks:
-  my-network:
-    driver: bridge
+  frontend:
+    build: ./frontend
+    ports:
+      - 80:80
+    environment:
+      API_ENDPOINT: http://localhost:3000
 
 volumes:
-  db-data:
+  postgres_data:
+
 

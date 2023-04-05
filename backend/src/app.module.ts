@@ -12,10 +12,18 @@ import { ProjectRequestModule } from './project-request/project-request.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'sqlite',
-      database: 'db',
+      // type: 'sqlite',
+      // database: 'db',
+      // entities: [__dirname + '/**/*.entity{.ts,.js}'],
+      // synchronize: true
+      type: 'postgres',
+      host: process.env.POSTGRES_HOST,
+      port: parseInt(process.env.POSTGRES_PORT, 10),
+      username: process.env.POSTGRES_USER,
+      password: process.env.POSTGRES_PASSWORD,
+      database: process.env.POSTGRES_DB,
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: true
+      synchronize: true,
     }),
     ProjectModule,
     UserModule,

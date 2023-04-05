@@ -1,5 +1,5 @@
 # Use an official Node.js runtime as a parent image
-FROM node:14-alpine
+FROM node:16-alpine
 
 # Set the working directory to /app
 WORKDIR /usr/src/app
@@ -12,7 +12,7 @@ RUN npm install
 # Remove the node_modules directory to ensure a clean build
 RUN rm -rf node_modules
 
-RUN npm install
+RUN npm install --production
 
 COPY . .
 
