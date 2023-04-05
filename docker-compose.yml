@@ -1,9 +1,47 @@
-version: '3'
+version: "3"
 
 services:
-  shulutions-api:
+  web:
+    build: ./frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - api
+    networks:
+      - my-network
+
+  api:
     build: ./backend
+    ports:
+      - "3000:3000"
+    environment:
+      - PGHOST=postgres
+      - PGUSER=postgres
+      - PGPASSWORD=mysecretpassword
+      - PGDATABASE=mydatabase
+      - PGPORT=5432
+    depends_on:
+      - postgres
+    networks:
+      - my-network
+
+  postgres:
+    image: postgres:13
+    environment:
+      - POSTGRES_PASSWORD=mysecretpassword
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=mydatabase
+    ports:
+      - "5432:5432"
     volumes:
-      - ./db:./db
-  # attendance-web:
-  #   build: ./frontend
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
+
+volumes:
+  db-data:
+

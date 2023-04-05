@@ -1,20 +1,20 @@
-FROM node:18
+# Use an official Node.js runtime as a parent image
+FROM node:14-alpine
 
-WORKDIR /usr/src/app
+# Set the working directory to /app
+WORKDIR /app
 
+# Copy package.json and package-lock.json
 COPY package*.json ./
 
-RUN npm install
+# Install dependencies
+RUN npm install --production
 
-# Remove the node_modules directory to ensure a clean build
-RUN rm -rf node_modules
-
-RUN npm install
-
+# Copy the rest of the application code
 COPY . .
 
-RUN npm run build
-
+# Expose port 3000
 EXPOSE 3000
 
-CMD [ "node", "dist/main.js" ]
+# Start the application
+CMD ["npm", "start"]

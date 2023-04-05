@@ -1,11 +1,30 @@
-FROM --platform=linux/amd64 node:lts-alpine as builder
+# Use an official Node.js runtime as a parent image
+FROM node:14-alpine as builder
+
+# Set the working directory to /app
 WORKDIR /app
-COPY . .
+
+# Copy package.json and package-lock.json
+COPY package*.json ./
+
+# Install dependencies
 RUN npm install
-RUN npm run build
 
-FROM --platform=linux/amd64 nginx:alpine
-COPY ./nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=builder /app/dist/attendance-system /usr/share/nginx/html
+# Copy the rest of the application code
+COPY . .
 
-EXPOSE 80                                                                                      
+# Build the application
+RUN npm run build --prod
+
+# Use an official Nginx runtime as a parent image
+FROM nginx:1.21-alpine
+
+# Copy the built application from the previous stage
+COPY --from=builder /app/dist/angular-app /usr/share/nginx/html
+
+# Expose port 80
+EXPOSE 80
+
+# Start Nginx
+CMD ["nginx", "-g", "daemon off;"]
+
