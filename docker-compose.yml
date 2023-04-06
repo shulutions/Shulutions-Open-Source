@@ -1,36 +1,30 @@
-version: '3'
+version: '3.8'
 
 services:
-  api:
+  frontend:
+    build: ./frontend
+    ports:
+      - "4200:4200"
+    depends_on:
+      - backend
+
+  backend:
     build: ./backend
     ports:
-      - 3000:3000
+      - "3000:3000"
     environment:
-      POSTGRES_HOST: db
-      POSTGRES_PORT: 5432
-      POSTGRES_USER: your_username
-      POSTGRES_PASSWORD: your_password
-      POSTGRES_DB: your_database
+      DATABASE_URL: postgres://user:password@db:5432/db_name
     depends_on:
       - db
 
   db:
-    image: postgres:13-alpine
+    image: postgres:latest
     environment:
-      POSTGRES_USER: your_username
-      POSTGRES_PASSWORD: your_password
-      POSTGRES_DB: your_database
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: db_name
     volumes:
-      - postgres_data:/var/lib/postgresql/data
-
-  frontend:
-    build: ./frontend
-    ports:
-      - 80:80
-    environment:
-      baseApiUrl: http://178.62.85.32:3000
+      - db-data:/var/lib/postgresql/data
 
 volumes:
-  postgres_data:
-
-
+  db-data:

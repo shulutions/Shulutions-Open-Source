@@ -17,11 +17,7 @@ import { ProjectRequestModule } from './project-request/project-request.module';
       // entities: [__dirname + '/**/*.entity{.ts,.js}'],
       // synchronize: true
       type: 'postgres',
-      host: process.env.POSTGRES_HOST,
-      port: parseInt(process.env.POSTGRES_PORT, 10),
-      username: process.env.POSTGRES_USER,
-      password: process.env.POSTGRES_PASSWORD,
-      database: process.env.POSTGRES_DB,
+      url: process.env.DATABASE_URL,
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
@@ -31,12 +27,6 @@ import { ProjectRequestModule } from './project-request/project-request.module';
     ProjectRequestModule
   ],
   controllers: [AppController],
-  providers: [
-    AppService,
-    // {
-    //   provide: APP_GUARD,
-    //   useClass: RolesGuard,
-    // }
-  ],
+  providers: [AppService],
 })
 export class AppModule {} 

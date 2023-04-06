@@ -1,5 +1,5 @@
 import { UserEntity } from "src/user/model/user.entity";
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { ProjectRequest } from "./project-request.entity";
 
 @Entity()
@@ -10,7 +10,7 @@ export class ProjectRequestReaction {
     @Column({ nullable: false })
     reaction: 'up' | 'down';
 
-    @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
+    @CreateDateColumn({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
     created: Date;
 
     @ManyToOne(() => UserEntity, user => user.projectRequestReactions, { onDelete: 'CASCADE' })
