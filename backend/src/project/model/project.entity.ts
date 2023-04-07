@@ -21,7 +21,7 @@ export class ProjectEntity {
     @Column({default: ''})
     body: string;
 
-    @CreateDateColumn({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
+    @CreateDateColumn({ type: 'text', default: () => 'CURRENT_TIMESTAMP' })
     created: Date;
 
     @Column({nullable: true})
