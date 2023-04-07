@@ -19,7 +19,7 @@ export class ProjectRequest {
     @Column()
     description: string;
 
-    @CreateDateColumn({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
+    @CreateDateColumn({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
     created: Date;
 
     @Column({ default: false })

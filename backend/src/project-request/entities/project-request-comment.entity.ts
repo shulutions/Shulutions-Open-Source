@@ -12,7 +12,7 @@ export class ProjectRequestComment {
     @Column()
     comment: string;
 
-    @CreateDateColumn({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
+    @CreateDateColumn({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
     created: Date;
 
     @ManyToOne(() => ProjectRequest, projectRequest => projectRequest.comments, { onDelete: 'CASCADE' })

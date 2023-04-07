@@ -10,7 +10,7 @@ export class ProjectRequestReaction {
     @Column({ nullable: false })
     reaction: 'up' | 'down';
 
-    @CreateDateColumn({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
+    @CreateDateColumn({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
     created: Date;
 
     @ManyToOne(() => UserEntity, user => user.projectRequestReactions, { onDelete: 'CASCADE' })

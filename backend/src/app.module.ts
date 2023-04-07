@@ -12,11 +12,8 @@ import { ProjectRequestModule } from './project-request/project-request.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      // type: 'sqlite',
-      // database: 'db',
-      // entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      // synchronize: true
-      type: 'postgres',
+      type: process.env.NODE_ENV === 'development' ? 'sqlite' : 'postgres',
+      database: process.env.NODE_ENV === 'development' ? 'db' : undefined,
       url: process.env.DATABASE_URL,
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
