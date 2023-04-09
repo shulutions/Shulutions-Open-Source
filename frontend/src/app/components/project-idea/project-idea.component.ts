@@ -22,6 +22,7 @@ export class ProjectIdeaComponent implements OnInit {
 
   ngOnInit(): void {
     this.getReaction();
+    console.log(this.projectRequest)
   }
 
   getReaction() {

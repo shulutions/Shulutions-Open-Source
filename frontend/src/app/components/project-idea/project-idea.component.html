@@ -7,6 +7,18 @@
       </div>
       <div class="card-body">
         <p class="card-text">{{ projectRequest.description }}</p>
+        <ng-container *ngIf="projectRequest.skills">
+          <h6>Skills</h6>
+          <p>{{ projectRequest.skills }}</p>
+        </ng-container>
+        <ng-container *ngIf="projectRequest.goals">
+          <h6>Goals</h6>
+          <p>{{ projectRequest.goals }}</p>
+        </ng-container>
+        <ng-container *ngIf="projectRequest.additionalInfo">
+          <h6>Additional Information</h6>
+          <p>{{ projectRequest.additionalInfo }}</p>
+        </ng-container>
       </div>
       <div class="card-footer center">
         <button class="btn btn-sm btn-outline-secondary" (click)="viewComments()">
@@ -31,6 +43,3 @@
     </div>
   </div>
 </div>
-    
-
- 
