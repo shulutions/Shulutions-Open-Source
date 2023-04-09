@@ -1,5 +1,5 @@
 import { UserEntity } from 'src/user/model/user.entity';
-import { ManyToOne } from 'typeorm';
+import { CreateDateColumn, ManyToOne } from 'typeorm';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { ProjectStage } from './project.interface';
 
@@ -21,7 +21,7 @@ export class ProjectEntity {
     @Column({default: ''})
     body: string;
 
-    @Column({type: 'datetime', default: () => 'CURRENT_TIMESTAMP'}) 
+    @CreateDateColumn({ type: 'text', default: () => 'CURRENT_TIMESTAMP' })
     created: Date;
 
     @Column({nullable: true})

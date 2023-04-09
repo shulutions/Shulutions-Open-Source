@@ -4,6 +4,7 @@ import { map, tap } from 'rxjs/operators';
 import { PaginationData } from 'src/app/models/pagination.interface';
 import { Project } from 'src/app/models/project.interface';
 import { ProjectService } from 'src/app/services/project-service/project.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-all-projects',
@@ -12,6 +13,7 @@ import { ProjectService } from 'src/app/services/project-service/project.service
 })
 export class AllProjectsComponent implements OnInit {
 
+  baseApiUrl: string = environment.baseApiUrl;
   dataSource?: PaginationData;
   projects?: Project[];
   itemsPerPage: number = 200;

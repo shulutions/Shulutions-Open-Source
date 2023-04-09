@@ -4,6 +4,7 @@ import { map, switchMap, tap } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable, of } from 'rxjs';
 import { User } from 'src/app/models/user.interface';
+import { environment } from 'src/environments/environment';
 
 export interface LoginForm {
   email: string;
@@ -20,7 +21,8 @@ export class AuthentificationService {
   constructor(private http: HttpClient, private jwtHelper: JwtHelperService) { }
 
   login(loginForm: LoginForm) {
-    return this.http.post<any>('backend/users/login', { email: loginForm.email, password: loginForm.password }).pipe(
+    console.log(environment.baseApiUrl)
+    return this.http.post<any>(`${environment.baseApiUrl}/users/login`, { email: loginForm.email, password: loginForm.password }).pipe(
       map((token) => {
         console.log("token")
         localStorage.setItem(JWT_NAME, token.access_token);
@@ -34,7 +36,7 @@ export class AuthentificationService {
   }
   
   register(user: User) {
-    return this.http.post<any>('backend/users/', user).pipe(
+    return this.http.post<any>(`${environment.baseApiUrl}/users/`, user).pipe(
       map(user => user)
     )
   }

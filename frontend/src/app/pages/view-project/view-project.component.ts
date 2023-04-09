@@ -5,6 +5,7 @@ import { ProjectService } from 'src/app/services/project-service/project.service
 import { Project } from 'src/app/models/project.interface';
 import { map, switchMap } from 'rxjs/operators';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-view-project',
@@ -14,6 +15,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 export class ViewProjectComponent implements OnInit {
 
+  baseApiUrl: string = environment.baseApiUrl;
   project?: Project;
   discordLink?: SafeResourceUrl;
   gitHubRepository?: any;

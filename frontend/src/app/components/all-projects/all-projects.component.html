@@ -18,7 +18,7 @@
 <div class="projects-grid">
     <a *ngFor="let project of projects" class="project-card" routerLink="../projects/{{project.id}}">
       <div class="project-image-container">
-        <img class="project-image" [src]="project.image ? 'http://localhost:3000/backend/projects/image/' + project.image : '../../../../assets/placeholders/placeholder-project.png'" alt="Project Image">
+        <img class="project-image" [src]="project.image ? baseApiUrl + '/projects/image/' + project.image : '../../../../assets/placeholders/placeholder-project.png'" alt="Project Image">
         <div class="project-details-overlay">
           <h2 class="project-title">{{project.title}}</h2>
           <p class="project-description">{{project.description}}</p>
