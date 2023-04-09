@@ -15,7 +15,7 @@ RUN npm run build -- --prod
 # Stage 2: Serve the Angular application using Nginx
 FROM nginx:stable-alpine
 
-COPY --from=build /app/dist/your-app-name /usr/share/nginx/html
+COPY --from=build /app/dist/shulutions-frontend /usr/share/nginx/html
 
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
