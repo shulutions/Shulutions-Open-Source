@@ -1,12 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { catchError, switchMap, throwError, from, Observable, map } from 'rxjs';
+import { catchError, switchMap, throwError, from, Observable, map, of, mergeMap, concatMap } from 'rxjs';
 import { AuthService } from 'src/auth/services/auth.service';
 import { Repository } from 'typeorm';
 import { UserEntity } from '../model/user.entity';
 import { User, Role } from '../model/user.interface';
 import { paginate, Pagination, IPaginationOptions } from 'nestjs-typeorm-paginate';
 import { RoleEntity } from '../model/role.entity';
+const bcrypt = require('bcrypt');
 
 @Injectable()
 export class UserService {
@@ -19,23 +20,27 @@ export class UserService {
 
     create(user: User): Observable<User> {
         return from(this.roleRepository.findOne({ name: Role.USER })).pipe(
-            switchMap((userRole: RoleEntity) => {
-                const newUser = new UserEntity();
-                newUser.name = user.name;
-                newUser.username = user.username;
-                newUser.email = user.email;
-                newUser.password = user.password;
-                newUser.roles = [userRole];
-
-                return from(this.userRepository.save(newUser)).pipe(
-                    map((user: UserEntity) => {
-                        const { password, ...result } = user;
-                        return result;
-                    }),
-                    catchError(err => throwError(err))
-                )
+            concatMap((userRole: RoleEntity) => {
+                return from(bcrypt.hash(user.password, 12)).pipe(
+                    concatMap((hashedPassword: string) => {
+                        const newUser = new UserEntity();
+                        newUser.name = user.name;
+                        newUser.username = user.username;
+                        newUser.email = user.email;
+                        newUser.password = hashedPassword;
+                        newUser.roles = [userRole];
+    
+                        return from(this.userRepository.save(newUser)).pipe(
+                            map((user: UserEntity) => {
+                                const { password, ...result } = user;
+                                return result;
+                            }),
+                            catchError(err => throwError(err))
+                        );
+                    })
+                );
             })
-        )
+        );
     }
 
     findOne(id: number): Observable<User> {
@@ -94,21 +99,19 @@ export class UserService {
         )
     }
 
-    validateUser(email: string, password: string): Observable<User> {
+    validateUser(email: string, loginPassword: string): Observable<User> {
         return this.findByEmail(email).pipe(
-            switchMap((user: User) => this.authService.comparePasswords(password, user.password).pipe(
-                map((match: boolean) => {
-                    if (match) {
-                        const { password, ...result } = user;
-                        return result;
-                    } else {
-                        throw Error;
-                    }
-                })
-            ))
-        )
+            switchMap((user: UserEntity) => {
+                if (user && user.checkPassword(loginPassword)) {
+                    const { password, ...result } = user;
+                    return of(result);
+                } else {
+                    throw new Error('Invalid email or password');
+                }
+            })
+        );
     }
-
+    
     findByEmail(email: string): Observable<User> {
         return from(this.userRepository.findOne({ email }));
     }
