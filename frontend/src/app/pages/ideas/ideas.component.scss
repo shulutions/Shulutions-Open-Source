@@ -4,12 +4,6 @@
     align-items: center;
 }
 
-.sections {
-    .section:nth-child(even) {
-        background-color: rgb(247, 247, 247);
-    }
-}
-
-.section {
-    padding: 100px 12vw;
+.button {
+    background-color: orange;
 }

@@ -1,6 +1,6 @@
 <div class="card mt-3">
   <div class="row no-margin">
-    <div class="col-11 no-margin">
+    <div class="col-10 no-margin">
       <div class="card-header d-flex justify-content-between">
         <h5 class="no-margin card-title">{{ projectRequest.title }}</h5>
         <p class="no-margin">Submitted by: {{projectRequest.submittedBy?.username}}</p>
@@ -26,7 +26,7 @@
         </button>
       </div>
     </div>
-    <div class="col-1 no-margin voting-container">
+    <div class="col-2 no-margin voting-container">
       <button [ngClass]="{'btn-success': upvoted, 'btn-outline-success': !upvoted}" class="btn btn-sm" (click)="upvote()">
         <i class="bi bi-caret-up-fill"></i>
       </button>

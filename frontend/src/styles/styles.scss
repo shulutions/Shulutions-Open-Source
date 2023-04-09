@@ -71,3 +71,18 @@ table {
   }
 }
 
+.sections {
+  .section:nth-child(even) {
+      background-color: rgb(247, 247, 247);
+  }
+}
+
+.section {
+  padding: 100px 12vw;
+}
+
+@media only screen and (max-width: 768px) {
+  .section {
+    padding: 10px 3vw;
+  }
+}
