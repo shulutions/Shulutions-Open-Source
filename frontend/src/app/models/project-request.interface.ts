@@ -19,3 +19,12 @@ export interface ProjectRequest {
     comments?: ProjectRequestComment[];
     reactionTotal?: number;
 }
+
+export interface ProjectRequestForm {
+    title: string;
+    description: string;
+    skills: string | null;
+    goals: string | null;
+    additionalInfo: string | null;
+  }
+  
