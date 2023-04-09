@@ -21,13 +21,14 @@ export class UserEntity {
     @Column()
     email: string;
 
-    @Column({select:  false})
+    @Column()
     password: string;
 
-    checkPassword(pass: string): boolean {
-        const match = bcrypt.compare(pass, this.password);
+    async checkPassword(pass: string): Promise<boolean> {
+        const match = await bcrypt.compare(pass, this.password);
         return match;
-      }
+    }
+    
 
     @ManyToMany(() => RoleEntity, (role) => role.users, {cascade: true, eager: true})
     @JoinTable()

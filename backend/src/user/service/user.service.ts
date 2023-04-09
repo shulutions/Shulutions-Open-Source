@@ -102,9 +102,17 @@ export class UserService {
     validateUser(email: string, loginPassword: string): Observable<User> {
         return this.findByEmail(email).pipe(
             switchMap((user: UserEntity) => {
-                if (user && user.checkPassword(loginPassword)) {
-                    const { password, ...result } = user;
-                    return of(result);
+                if (user) {
+                    return from(user.checkPassword(loginPassword)).pipe(
+                        mergeMap((match: boolean) => {
+                            if (match) {
+                                const { password, ...result } = user;
+                                return of(result);
+                            } else {
+                                throw new Error('Invalid email or password');
+                            }
+                        })
+                    );
                 } else {
                     throw new Error('Invalid email or password');
                 }
