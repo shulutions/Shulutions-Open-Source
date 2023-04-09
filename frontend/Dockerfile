@@ -1,4 +1,5 @@
-FROM node:14
+# Stage 1: Build the Angular application
+FROM node:14 as build
 
 WORKDIR /app
 
@@ -9,8 +10,15 @@ RUN npm install
 
 COPY . .
 
-RUN npm run build --prod
+RUN npm run build -- --prod
 
-EXPOSE 4200
+# Stage 2: Serve the Angular application using Nginx
+FROM nginx:stable-alpine
 
-CMD ["npm", "start"]
+COPY --from=build /app/dist/your-app-name /usr/share/nginx/html
+
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
