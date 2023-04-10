@@ -25,15 +25,15 @@ export class AuthGuard implements CanActivate {
       const routeRoles = route.data.roles;
 
       if (routeRoles && !routeRoles.some((role: string) => userRoles.includes(role))) {
-        // this.router.navigate(['/forbidden']); // TODO: create forbidden page
-        this.router.navigate(['/']);
+        this.router.navigate(['/']); // Navigate to the home page or a forbidden page
         console.log("forbidden")
         return false;
       }
       return true;
-    } 
-
-    this.router.navigate(['login']);
-    return false;
-  } 
+    } else {
+      this.auth.redirectUrl = url; // Store the attempted URL
+      this.router.navigate(['login']);
+      return false;
+    }
+  }
 }

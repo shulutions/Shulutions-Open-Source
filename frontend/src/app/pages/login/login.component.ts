@@ -33,12 +33,11 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.authService.login(this.loginForm.value).pipe(
-      map(token => this.router.navigate(['/']))
+      map(token => {
+        this.router.navigate(['/']),
+        this.router.navigate([this.authService.redirectUrl || '/default-page']),
+        this.authService.redirectUrl = null; // Clear the stored URL
+      })
     ).subscribe();
   }
-
-  login() {
-    //this.authService.login('rossi@gmail.com', 'a').subscribe(data => console.log("success"));
-  }
-
 }

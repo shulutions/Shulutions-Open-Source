@@ -17,6 +17,7 @@ export const JWT_NAME = 'token';
   providedIn: 'root'
 })
 export class AuthentificationService {
+  redirectUrl?: string | null;
 
   constructor(private http: HttpClient, private jwtHelper: JwtHelperService) { }
 

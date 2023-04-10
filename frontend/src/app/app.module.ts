@@ -23,7 +23,6 @@ import { ContributorsComponent } from './components/contributors/contributors.co
 import { GithubLanguagesComponent } from './components/github-languages/github-languages.component';
 import { IdeasComponent } from './pages/ideas/ideas.component';
 import { ProjectIdeaComponent } from './components/project-idea/project-idea.component';
-import { LoginModalComponent } from './components/login-modal/login-modal.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { CommentBoxComponent } from './components/comment-box/comment-box.component';
 
@@ -47,7 +46,6 @@ import { CommentBoxComponent } from './components/comment-box/comment-box.compon
     GithubLanguagesComponent,
     IdeasComponent,
     ProjectIdeaComponent,
-    LoginModalComponent,
     CommentComponent,
     CommentBoxComponent,
   ],
