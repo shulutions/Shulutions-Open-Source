@@ -12,6 +12,7 @@ import { UsersComponent } from './admin/components/users/users.component';
 import { ViewProjectComponent } from './pages/view-project/view-project.component';
 import { ProjectRequestComponent } from './pages/project-request/project-request.component';
 import { IdeasComponent } from './pages/ideas/ideas.component';
+import { UserFeedbackComponent } from './components/user-feedback/user-feedback.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'projects', component: ProjectsComponent },
   { path: 'projects/:id', component: ViewProjectComponent },
   { path: 'project-request', component: ProjectRequestComponent, canActivate: [AuthGuard] },
+  { path: 'feedback', component: UserFeedbackComponent },
 ];
 
 @NgModule({

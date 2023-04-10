@@ -36,6 +36,7 @@ export class NavigationComponent implements OnInit {
       { text: 'Home', icon: { outline: 'bi-house', fill: 'bi-house-fill' }, link: '/', exact: true },
       { text: 'Projects', icon: { outline: 'bi-folder', fill: 'bi-folder-fill' }, link: '/projects', exact: true },
       { text: 'Ideas', icon: { outline: 'bi-lightbulb', fill: 'bi-lightbulb-fill' }, link: '/ideas', exact: true },
+      { text: 'Feedback', icon: { outline: 'bi-chat', fill: 'bi-chat-fill' }, link: '/feedback', exact: true },
     ];
   
     if (this.userRoles.includes('admin')) {

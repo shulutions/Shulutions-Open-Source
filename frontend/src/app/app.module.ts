@@ -27,6 +27,7 @@ import { CommentComponent } from './components/comment/comment.component';
 import { CommentBoxComponent } from './components/comment-box/comment-box.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
+import { UserFeedbackComponent } from './components/user-feedback/user-feedback.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { RegisterFormComponent } from './components/register-form/register-form.
     CommentBoxComponent,
     LoginFormComponent,
     RegisterFormComponent,
+    UserFeedbackComponent,
   ],
   imports: [
     BrowserModule,
