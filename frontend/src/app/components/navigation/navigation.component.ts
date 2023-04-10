@@ -23,7 +23,7 @@ export class NavigationComponent implements OnInit {
 
   userRoles: string[] = []
 
-  constructor(private authService: AuthentificationService) { }
+  constructor(public authService: AuthentificationService) { }
 
   ngOnInit(): void {
     this.userRoles = this.authService.getUserRoles();
@@ -35,8 +35,6 @@ export class NavigationComponent implements OnInit {
       { text: 'Home', icon: 'home', link: '/', exact: true },
       { text: 'Projects', icon: 'info', link: '/projects', exact: true },
       { text: 'Ideas', icon: 'lightbulb', link: '/ideas', exact: true },
-      { text: 'Login', icon: 'login', link: '/login', exact: true },
-      { text: 'Register', icon: 'person_add', link: '/register', exact: true },
     ]
 
     if (this.userRoles.includes('admin')) {
