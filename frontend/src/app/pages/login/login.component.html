@@ -1,14 +1,3 @@
-<h1 class="center">Login Page</h1>
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <div class="container">
-
-        <input placeholder="Email" formControlName="email">
-        
-        <input placeholder="Password" type="password" formControlName="password">
-
-        <div class="button-container center">
-            <button class="button primary" [disabled]="!loginForm.valid" type="submit">Login</button>
-        </div>
-        
-    </div>
-</form>
+<div class="section">
+    <app-login-form></app-login-form>
+</div>

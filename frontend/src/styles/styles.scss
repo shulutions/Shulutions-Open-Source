@@ -33,7 +33,6 @@ a:active {
   &:hover {
     background-color: black !important;
     color: white;
-    border: 1px solid white;
   }
 }
 
@@ -60,9 +59,13 @@ a:active {
 }
 
 input, textarea {
-  margin: 0 0 20px 0;
-  border: 3px dashed orange;
-  padding: 5px;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
 }
 
 table {

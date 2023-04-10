@@ -1,0 +1,13 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="container">
+        <h1 class="center">Login</h1>
+        <input placeholder="Email" formControlName="email">
+        <input placeholder="Password" type="password" formControlName="password">
+        <div class="button-container">
+            <button class="button primary" [disabled]="!loginForm.valid" type="submit">Login</button>
+            <br>
+            <p>Not got an account?</p>
+            <button class="button secondary" type="button" (click)="goToRegister()">Register</button>
+        </div>
+    </div>
+  </form>

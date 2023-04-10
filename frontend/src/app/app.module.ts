@@ -25,6 +25,7 @@ import { IdeasComponent } from './pages/ideas/ideas.component';
 import { ProjectIdeaComponent } from './components/project-idea/project-idea.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { CommentBoxComponent } from './components/comment-box/comment-box.component';
+import { LoginFormComponent } from './components/login-form/login-form.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { CommentBoxComponent } from './components/comment-box/comment-box.compon
     ProjectIdeaComponent,
     CommentComponent,
     CommentBoxComponent,
+    LoginFormComponent,
   ],
   imports: [
     BrowserModule,
