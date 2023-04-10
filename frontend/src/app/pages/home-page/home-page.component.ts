@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GithubService } from 'src/app/services/github-service/github.service';
-import { ProjectService } from 'src/app/services/project-service/project.service';
+import { UserService } from 'src/app/services/user-service/user.service';
 
 @Component({
   selector: 'app-home-page',
@@ -10,13 +10,22 @@ import { ProjectService } from 'src/app/services/project-service/project.service
 export class HomePageComponent implements OnInit {
 
   repositoryCount: number = 0;
+  userCount?: number;
 
-  constructor(private githubService: GithubService) { }
+  constructor(
+    private githubService: GithubService,
+    private userService: UserService
+    ) { }
 
   ngOnInit(): void {
     this.githubService.getGithubOrganization("shulutions").subscribe((data: any) => {
       this.repositoryCount = data.public_repos;
     })
+
+    this.userService.getUserCount().subscribe((count: number) => {
+      console.log(count)
+      this.userCount = count;
+    });
   }
 
 }

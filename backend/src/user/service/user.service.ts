@@ -18,6 +18,11 @@ export class UserService {
         private authService: AuthService
     ) { }
 
+
+    getUserCount(): Observable<number> {
+        return from(this.userRepository.count());
+    }      
+
     create(user: User): Observable<User> {
         return from(this.roleRepository.findOne({ name: Role.USER })).pipe(
             concatMap((userRole: RoleEntity) => {
