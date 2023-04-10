@@ -8,19 +8,20 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li *ngFor="let item of mainLinks" class="nav-item">
                     <a class="nav-link" [routerLink]="item.link" [routerLinkActiveOptions]="{ exact: item.exact ?? false }" routerLinkActive="active">
-                        <span>{{ item.text }}</span>
+                        <i [ngClass]="item.icon"></i>{{ item.text }}
                     </a>
                 </li>
 
                 <li *ngFor="let item of protectedLinks" class="nav-item">
                     <a class="nav-link" [routerLink]="item.link" [routerLinkActiveOptions]="{ exact: item.exact ?? false }" routerLinkActive="active">
-                        <span>{{ item.text }}</span>
+                        <i [ngClass]="item.icon"></i>{{ item.text }}
                     </a>
                 </li>
             </ul>
             <ul class="navbar-nav">
                 <div class="account-container">
-                    <li class="nav-item dropdown" *ngIf="!authService.isAuthenticated()">
+                    <!-- Desktop account options -->
+                    <li class="nav-item dropdown desktop-account-options" *ngIf="!authService.isAuthenticated()">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                           <i class="bi bi-person-circle"></i>
                         </a>
@@ -36,12 +37,11 @@
                                 </a>
                             </li>
                         </ul>
-                      </li>
+                    </li>
                       
-                    <li class="nav-item dropdown" *ngIf="authService.isAuthenticated()">
+                    <li class="nav-item dropdown desktop-account-options" *ngIf="authService.isAuthenticated()">
                         <a class="nav-link dropdown-toggle" id="navbarDropdownLoggedIn" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-person-circle"></i>
-                            <i class="fas fa-user"></i>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownLoggedIn">
                             <li>
@@ -51,12 +51,25 @@
                             </li>
                         </ul>
                     </li>
+
+                    <!-- Mobile account options -->
+                    <li class="nav-item mobile-account-options" *ngIf="!authService.isAuthenticated()">
+                        <a class="nav-link" routerLink="/login">
+                            <i class="bi bi-box-arrow-in-right"></i>Login
+                        </a>
+                    </li>
+                    <li class="nav-item mobile-account-options" *ngIf="!authService.isAuthenticated()">
+                        <a class="nav-link" routerLink="/register">
+                            <i class="bi bi-person-fill-add"></i>Register
+                        </a>
+                    </li>
+                    <li class="nav-item mobile-account-options" *ngIf="authService.isAuthenticated()">
+                        <a class="nav-link" routerLink="/" (click)="logout()">
+                            <i class="bi bi-box-arrow-right"></i>Logout
+                        </a>
+                    </li>
                 </div>
             </ul>
-            <!-- <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-light" type="submit">Search</button>
-            </form> -->
         </div>
     </div>
 </nav>

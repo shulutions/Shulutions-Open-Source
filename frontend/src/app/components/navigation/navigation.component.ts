@@ -32,18 +32,18 @@ export class NavigationComponent implements OnInit {
 
   generateLinks() {
     this.mainLinks = [
-      { text: 'Home', icon: 'home', link: '/', exact: true },
-      { text: 'Projects', icon: 'info', link: '/projects', exact: true },
-      { text: 'Ideas', icon: 'lightbulb', link: '/ideas', exact: true },
-    ]
-
+      { text: 'Home', icon: 'bi-house-fill', link: '/', exact: true },
+      { text: 'Projects', icon: 'bi-info-square-fill', link: '/projects', exact: true },
+      { text: 'Ideas', icon: 'bi-lightbulb-fill', link: '/ideas', exact: true },
+    ];
+  
     if (this.userRoles.includes('admin')) {
       this.protectedLinks = [
-        { text: 'Admin', icon: 'admin_panel_settings', link: '/admin', exact: true },
-      ]
+        { text: 'Admin', icon: 'bi-shield-fill', link: '/admin', exact: true },
+      ];
     }
   }
-
+  
   logout() {
     this.authService.logout()
   }
