@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthentificationService } from 'src/app/services/authentification-service/authentification.service';
 
 interface NavigationItem {
   text: string
-  icon: string
+  icon: { outline: string; fill: string };
   link: string
   exact?: boolean
   notifications?: { show: boolean, count?: number }
@@ -23,7 +24,7 @@ export class NavigationComponent implements OnInit {
 
   userRoles: string[] = []
 
-  constructor(public authService: AuthentificationService) { }
+  constructor(public authService: AuthentificationService,  public router: Router) { }
 
   ngOnInit(): void {
     this.userRoles = this.authService.getUserRoles();
@@ -32,14 +33,14 @@ export class NavigationComponent implements OnInit {
 
   generateLinks() {
     this.mainLinks = [
-      { text: 'Home', icon: 'bi-house-fill', link: '/', exact: true },
-      { text: 'Projects', icon: 'bi-info-square-fill', link: '/projects', exact: true },
-      { text: 'Ideas', icon: 'bi-lightbulb-fill', link: '/ideas', exact: true },
+      { text: 'Home', icon: { outline: 'bi-house', fill: 'bi-house-fill' }, link: '/', exact: true },
+      { text: 'Projects', icon: { outline: 'bi-folder', fill: 'bi-folder-fill' }, link: '/projects', exact: true },
+      { text: 'Ideas', icon: { outline: 'bi-lightbulb', fill: 'bi-lightbulb-fill' }, link: '/ideas', exact: true },
     ];
   
     if (this.userRoles.includes('admin')) {
       this.protectedLinks = [
-        { text: 'Admin', icon: 'bi-shield-fill', link: '/admin', exact: true },
+        { text: 'Admin', icon: { outline: 'bi-shield', fill: 'bi-shield-fill' }, link: '/admin', exact: true },
       ];
     }
   }

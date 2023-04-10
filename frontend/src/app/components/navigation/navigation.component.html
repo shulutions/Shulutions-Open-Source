@@ -8,14 +8,17 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li *ngFor="let item of mainLinks" class="nav-item">
                     <a class="nav-link" [routerLink]="item.link" [routerLinkActiveOptions]="{ exact: item.exact ?? false }" routerLinkActive="active">
-                        <i [ngClass]="item.icon"></i>{{ item.text }}
-                    </a>
+                        <i class="bi" [ngClass]="router.isActive(item.link, item.exact ?? false) ? item.icon.fill : item.icon.outline"></i>
+                        {{ item.text }}
+                      </a>
                 </li>
 
                 <li *ngFor="let item of protectedLinks" class="nav-item">
                     <a class="nav-link" [routerLink]="item.link" [routerLinkActiveOptions]="{ exact: item.exact ?? false }" routerLinkActive="active">
-                        <i [ngClass]="item.icon"></i>{{ item.text }}
-                    </a>
+                        <i class="bi" [ngClass]="router.isActive(item.link, item.exact ?? false) ? item.icon.fill : item.icon.outline"></i>
+                        {{ item.text }}
+                      </a>
+                      
                 </li>
             </ul>
             <ul class="navbar-nav">
