@@ -1,0 +1,18 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <div class="container">
+    <h1 class="center">Register</h1>
+    <input placeholder="Name" formControlName="name">
+    <input placeholder="Username" formControlName="username">
+    <input placeholder="Email" formControlName="email">
+    <input placeholder="Password" type="password" formControlName="password">
+    <input placeholder="Confirm your password" type="password" formControlName="passwordConfirm">
+    <div class="button-container">
+      <button class="button primary" [disabled]="registerForm.invalid" type="submit">Register</button>
+    </div>
+    <div class="error-messages" *ngIf="registerForm.invalid">
+      <h3>Form contains the following errors:</h3>
+      <small *ngIf="registerForm.get('password')?.hasError('passwordInvalid')">Password must contain a number.</small>
+      <small *ngIf="registerForm.hasError('passwordsNotMatching')">Passwords do not match.</small>
+    </div>
+  </div>
+</form>
