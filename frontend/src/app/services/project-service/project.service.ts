@@ -13,36 +13,7 @@ import { environment } from 'src/environments/environment';
 })
 export class ProjectService {
 
-  private noHeaderHttp: HttpClient;
-
-  constructor(private http: HttpClient, handler: HttpBackend) {
-    this.noHeaderHttp = new HttpClient(handler)
-  }
-
-  getGithubRepository(repoName: string | undefined): Observable<any> {
-    if (!repoName) {
-      return throwError("No repository name provided");
-    }
-    return this.noHeaderHttp.get<any>(`https://api.github.com/repos/shulutions/${repoName}`);
-  }
-
-  getGithubRepositoryLanguages(repoName: string | undefined): Observable<any> {
-    if (!repoName) {
-      return throwError("No repository name provided");
-    }
-    return this.noHeaderHttp.get<any>(`https://api.github.com/repos/shulutions/${repoName}/languages`);
-  }
-
-  getGithubRepositoryContributors(repoName: string | undefined): Observable<any> {
-    if (!repoName) {
-      return throwError("No repository name provided");
-    }
-    return this.noHeaderHttp.get<Contributor[]>(`https://api.github.com/repos/shulutions/${repoName}/contributors`);
-  }
-
-  getGithubOrganization(organisationName: string): Observable<Organization> {
-    return this.noHeaderHttp.get<Organization>(`https://api.github.com/orgs/${organisationName}`);
-  }
+  constructor(private http: HttpClient) {}
 
   findOne(id: number): Observable<Project> {
     return this.http.get<Project>(`${environment.baseApiUrl}/projects/` + id)
