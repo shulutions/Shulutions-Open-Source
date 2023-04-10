@@ -2,7 +2,7 @@ import { HttpBackend, HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { Contributor } from 'src/app/models/github-stats.interface';
+import { Contributor, Organization } from 'src/app/models/github-stats.interface';
 import { PaginationData } from 'src/app/models/pagination.interface';
 import { ProjectRequest } from 'src/app/models/project-request.interface';
 import { Project } from 'src/app/models/project.interface';
@@ -38,6 +38,10 @@ export class ProjectService {
       return throwError("No repository name provided");
     }
     return this.noHeaderHttp.get<Contributor[]>(`https://api.github.com/repos/shulutions/${repoName}/contributors`);
+  }
+
+  getGithubOrganization(organisationName: string): Observable<Organization> {
+    return this.noHeaderHttp.get<Organization>(`https://api.github.com/orgs/${organisationName}`);
   }
 
   findOne(id: number): Observable<Project> {

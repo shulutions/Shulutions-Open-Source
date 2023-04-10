@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProjectService } from 'src/app/services/project-service/project.service';
 
 @Component({
   selector: 'app-home-page',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor() { }
+  repositoryCount: number = 0;
+
+  constructor(private projectService: ProjectService) { }
 
   ngOnInit(): void {
+    this.projectService.getGithubOrganization("shulutions").subscribe((data: any) => {
+      this.repositoryCount = data.public_repos;
+    })
   }
 
 }

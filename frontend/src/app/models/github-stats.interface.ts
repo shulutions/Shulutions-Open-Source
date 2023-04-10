@@ -9,3 +9,7 @@ export interface Contributor {
     html_url?: string;
     contributions?: number;
 }
+
+export interface Organization {
+    public_repos: number;
+}
