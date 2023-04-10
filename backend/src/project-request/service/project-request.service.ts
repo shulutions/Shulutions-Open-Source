@@ -145,4 +145,8 @@ export class ProjectRequestService {
       where: {postedBy: user.id, projectRequest: projectRequestId}
     }))
   }
+
+  getProjectRequestCount(): Observable<number> {
+    return from(this.projectRequestRepository.count());
+  }
 }

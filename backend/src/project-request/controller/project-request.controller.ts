@@ -17,6 +17,11 @@ import { CreateProjectRequestReactionDto } from '../dto/create-project-request-r
 export class ProjectRequestController {
   constructor(private readonly projectRequestService: ProjectRequestService) {}
 
+  @Get('count')
+  count(): Observable<number> {
+    return this.projectRequestService.getProjectRequestCount();
+  }
+
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('user')
@@ -90,5 +95,6 @@ export class ProjectRequestController {
     const user: UserEntity = req.user;
     return this.projectRequestService.getReaction(user, projectRequestId);
   }
-  
+
+
 }

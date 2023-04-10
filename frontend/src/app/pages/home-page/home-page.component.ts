@@ -11,6 +11,7 @@ export class HomePageComponent implements OnInit {
 
   repositoryCount: number = 0;
   userCount?: number;
+  projectRequestCount?: number;
 
   constructor(
     private githubService: GithubService,
@@ -23,8 +24,11 @@ export class HomePageComponent implements OnInit {
     })
 
     this.userService.getUserCount().subscribe((count: number) => {
-      console.log(count)
       this.userCount = count;
+    });
+
+    this.userService.getProjectRequestCount().subscribe((count: number) => {
+      this.projectRequestCount = count;
     });
   }
 

@@ -36,6 +36,14 @@ export class UserService {
       })
     );
   }
+
+  getProjectRequestCount(): Observable<number> {
+    return this.http.get(`${environment.baseApiUrl}/project-request/count`).pipe(
+      map((projectRequestCount: any) => {
+        return projectRequestCount;
+      })
+    );
+  }
   
   findOne(id: number): Observable<User> {
     return this.http.get(`${environment.baseApiUrl}/users/` + id).pipe(
