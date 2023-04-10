@@ -10,7 +10,7 @@ import { ProjectService } from 'src/app/services/project-service/project.service
 export class ContributorsComponent implements OnInit {
 
   @Input() projectTitle?: string;
-  contributors: Contributor[] = [];
+  contributors?: Contributor[];
 
   constructor(private projectService: ProjectService) { }
 
