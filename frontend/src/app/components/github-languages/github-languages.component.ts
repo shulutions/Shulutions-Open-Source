@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ProjectService } from 'src/app/services/project-service/project.service';
+import { GithubService } from 'src/app/services/github-service/github.service';
 
 export interface Language {
   name: string,
@@ -16,14 +16,14 @@ export class GithubLanguagesComponent implements OnInit {
   @Input() projectTitle?: string;
   languages?: string;
 
-  constructor(private projectService: ProjectService) { }
+  constructor(private githubService: GithubService) { }
 
   ngOnInit(): void {
     this.getGithubRepositoryLanguages();
   }
 
   getGithubRepositoryLanguages() {
-    this.projectService.getGithubRepositoryLanguages(this.projectTitle).subscribe((languages: object) => {
+    this.githubService.getGithubRepositoryLanguages(this.projectTitle).subscribe((languages: object) => {
       this.languages = Object.keys(languages).join(', ');
     })
   }

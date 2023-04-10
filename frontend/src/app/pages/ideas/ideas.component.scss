@@ -4,12 +4,20 @@
     align-items: center;
 }
 
-.sections {
-    .section:nth-child(even) {
-        background-color: rgb(247, 247, 247);
-    }
+.button {
+    background-color: orange;
 }
 
-.section {
-    padding: 100px 12vw;
+.header {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.desc {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }

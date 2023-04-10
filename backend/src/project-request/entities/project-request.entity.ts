@@ -7,30 +7,39 @@ import { ProjectRequestReaction } from "./project-request-reaction.entity";
 @Entity()
 export class ProjectRequest {
     
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    title: string;
+  @Column()
+  title: string;
 
-    @Column()
-    slug: string;
+  @Column()
+  slug: string;
 
-    @Column()
-    description: string;
+  @Column()
+  description: string;
 
-    @CreateDateColumn({ type: 'text', default: () => 'CURRENT_TIMESTAMP' })
-    created: Date;
+  @Column({ nullable: true })
+  skills: string;
 
-    @Column({ default: false })
-    reviewed: boolean;
+  @Column({ nullable: true })
+  goals: string;
 
-    @ManyToOne(() => UserEntity, user => user.projectRequests)
-    submittedBy: User;
+  @Column({ nullable: true })
+  additionalInfo: string;
 
-    @OneToMany(() => ProjectRequestComment, projectRequestComment => projectRequestComment.projectRequest)
-    comments: ProjectRequestComment[];
+  @CreateDateColumn({ type: 'text', default: () => 'CURRENT_TIMESTAMP' })
+  created: Date;
 
-    @OneToMany(() => ProjectRequestReaction, projectRequestReaction => projectRequestReaction.projectRequest)
-    reactions: ProjectRequestReaction[];
+  @Column({ default: false })
+  reviewed: boolean;
+
+  @ManyToOne(() => UserEntity, user => user.projectRequests)
+  submittedBy: User;
+
+  @OneToMany(() => ProjectRequestComment, projectRequestComment => projectRequestComment.projectRequest)
+  comments: ProjectRequestComment[];
+
+  @OneToMany(() => ProjectRequestReaction, projectRequestReaction => projectRequestReaction.projectRequest)
+  reactions: ProjectRequestReaction[];
 }

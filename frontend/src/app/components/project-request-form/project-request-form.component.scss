@@ -1,10 +1,15 @@
 .container {
     margin: 0;
+    padding: 0;
 }
 
 .field-container {
     display: flex;
     flex-direction: column;
+    margin: 0;
+}
+
+textarea, input {
     margin: 0;
 }
 

@@ -13,6 +13,11 @@ export class UserController {
 
     constructor(private userService: UserService) { }
 
+    @Get('count')
+    count(): Observable<number> {
+        return this.userService.getUserCount();
+    }
+
     @Post()
     create(@Body() user: User): Observable<User | Object> {
         return this.userService.create(user).pipe(
@@ -30,6 +35,8 @@ export class UserController {
         )
     }
 
+    @Roles(Role.ADMIN)
+    @UseGuards(JwtAuthGuard, RolesGuard)
     @Get(':id')
     findOne(@Param() params): Observable<User> {
         return this.userService.findOne(params.id);

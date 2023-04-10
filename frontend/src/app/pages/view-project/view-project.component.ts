@@ -6,6 +6,7 @@ import { Project } from 'src/app/models/project.interface';
 import { map, switchMap } from 'rxjs/operators';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
+import { GithubService } from 'src/app/services/github-service/github.service';
 
 @Component({
   selector: 'app-view-project',
@@ -23,6 +24,7 @@ export class ViewProjectComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute, 
     private projectService: ProjectService,
+    private githubService: GithubService,
     private sanitizer: DomSanitizer
     ) { }
 
@@ -42,7 +44,7 @@ export class ViewProjectComponent implements OnInit {
   }
 
   getGithubRepository(projectTitle?: string) {
-    this.projectService.getGithubRepository(projectTitle).subscribe((data: any) => {
+    this.githubService.getGithubRepository(projectTitle).subscribe((data: any) => {
       this.gitHubRepository = data;
     })
   }

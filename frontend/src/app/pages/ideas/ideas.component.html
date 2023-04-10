@@ -1,6 +1,16 @@
 <div class="sections">
     <div class="section">
-        <h1>Ideas for projects</h1>
+        <div class="header">
+            <h1>Ideas for projects</h1>
+            <button routerLink="/project-request" class="button">
+                Submit Idea
+            </button>
+        </div>
+        <div class="desc">
+			<p>Welcome to our Project Idea Forum! Here, you can share your innovative project ideas and collaborate with other users. To submit your idea, simply click the "Submit Idea" button. You can also vote for your favorite ideas and discuss and refine ideas with others in the comment section.</p>
+			<p>If your idea gets a lot of votes from the community, we'll reach out to you via email to discuss potentially bringing your project to life. If your idea is selected, you'll be assigned as the project manager and be responsible for leading the development of your idea. You'll work with other users to make your idea a reality.</p>
+			<p>Please create an account and vote for your favourite ideas!</p>
+		</div>
         <div class="idea-container">
             <app-project-idea (getProjectRequests)="getProjectRequests($event)" *ngFor="let projectRequest of projectRequests" [projectRequest]="projectRequest"></app-project-idea>
         </div>
@@ -10,11 +20,10 @@
         <h2>Got an idea for a project?</h2>
         <br>
         <div class="row center">
-            <div routerLink="/project-request" class="button">
-                Submit Project Request
-            </div>
+            <button routerLink="/project-request" class="button">
+                Submit Project Idea
+            </button>
         </div>
-        
     </div>
 </div>
 

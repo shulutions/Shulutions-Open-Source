@@ -23,9 +23,10 @@ import { ContributorsComponent } from './components/contributors/contributors.co
 import { GithubLanguagesComponent } from './components/github-languages/github-languages.component';
 import { IdeasComponent } from './pages/ideas/ideas.component';
 import { ProjectIdeaComponent } from './components/project-idea/project-idea.component';
-import { LoginModalComponent } from './components/login-modal/login-modal.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { CommentBoxComponent } from './components/comment-box/comment-box.component';
+import { LoginFormComponent } from './components/login-form/login-form.component';
+import { RegisterFormComponent } from './components/register-form/register-form.component';
 
 @NgModule({
   declarations: [
@@ -47,9 +48,10 @@ import { CommentBoxComponent } from './components/comment-box/comment-box.compon
     GithubLanguagesComponent,
     IdeasComponent,
     ProjectIdeaComponent,
-    LoginModalComponent,
     CommentComponent,
     CommentBoxComponent,
+    LoginFormComponent,
+    RegisterFormComponent,
   ],
   imports: [
     BrowserModule,

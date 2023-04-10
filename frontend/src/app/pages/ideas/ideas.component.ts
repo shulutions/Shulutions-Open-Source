@@ -13,7 +13,7 @@ export class IdeasComponent implements OnInit {
 
   dataSource?: PaginationData;
   projectRequests?: ProjectRequest[];
-  itemsPerPage = 10;
+  itemsPerPage = 200;
   currentPage = 1;
   
   constructor(private projectRequestService: ProjectRequestService,) { }

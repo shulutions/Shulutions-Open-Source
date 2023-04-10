@@ -16,6 +16,9 @@ export class ProjectRequestFormComponent implements OnInit {
   projectRequestForm: FormGroup = new FormGroup({
     title: new FormControl(null, [Validators.required]),
     description: new FormControl(null, [Validators.required]),
+    skills: new FormControl(null),
+    goals: new FormControl(null),
+    additionalInfo: new FormControl(null),
   });
 
   constructor(

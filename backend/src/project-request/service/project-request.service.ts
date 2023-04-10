@@ -24,15 +24,22 @@ export class ProjectRequestService {
     @InjectRepository(ProjectRequestReaction) private readonly projectRequestReactionRepository: Repository<ProjectRequestReaction>,
     ) {}
 
-  create(user: User, projectRequest: CreateProjectRequestDto): Observable<ProjectRequest> {
-    return this.generateSlug(projectRequest.title).pipe(
-      switchMap((slug: string) => {
-          projectRequest.submittedBy = user;
-          projectRequest.slug = slug;
-          return from(this.projectRequestRepository.save(projectRequest));
-      })
-    )
-  }
+    create(user: User, projectRequest: CreateProjectRequestDto): Observable<ProjectRequest> {
+      return this.generateSlug(projectRequest.title).pipe(
+        switchMap((slug: string) => {
+          const newProjectRequest = new ProjectRequest();
+          newProjectRequest.title = projectRequest.title;
+          newProjectRequest.description = projectRequest.description;
+          newProjectRequest.skills = projectRequest.skills;
+          newProjectRequest.goals = projectRequest.goals;
+          newProjectRequest.additionalInfo = projectRequest.additionalInfo;
+          newProjectRequest.submittedBy = user;
+          newProjectRequest.slug = slug;
+    
+          return from(this.projectRequestRepository.save(newProjectRequest));
+        })
+      );
+    }
 
   findAll(): Observable<ProjectRequest[]> {
     return from(this.projectRequestRepository.find({relations: ['submittedBy', 'reactions']}));
@@ -137,5 +144,9 @@ export class ProjectRequestService {
     return from(this.projectRequestReactionRepository.findOne({
       where: {postedBy: user.id, projectRequest: projectRequestId}
     }))
+  }
+
+  getProjectRequestCount(): Observable<number> {
+    return from(this.projectRequestRepository.count());
   }
 }

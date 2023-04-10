@@ -4,7 +4,7 @@ import { ProjectRequest } from "src/project-request/entities/project-request.ent
 import { ProjectEntity } from "src/project/model/project.entity";
 import { BeforeInsert, Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { RoleEntity } from "./role.entity";
-import { Role } from "./user.interface";
+const bcrypt = require('bcrypt');
 
 @Entity()
 export class UserEntity {
@@ -21,8 +21,14 @@ export class UserEntity {
     @Column()
     email: string;
 
-    @Column({select:  false})
+    @Column()
     password: string;
+
+    async checkPassword(pass: string): Promise<boolean> {
+        const match = await bcrypt.compare(pass, this.password);
+        return match;
+    }
+    
 
     @ManyToMany(() => RoleEntity, (role) => role.users, {cascade: true, eager: true})
     @JoinTable()

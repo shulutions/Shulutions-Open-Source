@@ -8,49 +8,71 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li *ngFor="let item of mainLinks" class="nav-item">
                     <a class="nav-link" [routerLink]="item.link" [routerLinkActiveOptions]="{ exact: item.exact ?? false }" routerLinkActive="active">
-                        <span>{{ item.text }}</span>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/" (click)="logout()">Logout</a>
+                        <i class="bi" [ngClass]="router.isActive(item.link, item.exact ?? false) ? item.icon.fill : item.icon.outline"></i>
+                        {{ item.text }}
+                      </a>
                 </li>
 
                 <li *ngFor="let item of protectedLinks" class="nav-item">
                     <a class="nav-link" [routerLink]="item.link" [routerLinkActiveOptions]="{ exact: item.exact ?? false }" routerLinkActive="active">
-                        <span>{{ item.text }}</span>
-                    </a>
+                        <i class="bi" [ngClass]="router.isActive(item.link, item.exact ?? false) ? item.icon.fill : item.icon.outline"></i>
+                        {{ item.text }}
+                      </a>
+                      
                 </li>
-
-                <!-- <li class="nav-item">
-                    <a class="nav-link" routerLink="projects" routerLinkActive="active">Projects</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="create-project" routerLinkActive="active">Create Project</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="login" routerLinkActive="active">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="login" routerLinkActive="active" (click)="logout()">Logout</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="register" routerLinkActive="active">Register</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="users" routerLinkActive="active">Users</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="admin" routerLinkActive="active">Admin</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="update-profile" routerLinkActive="active">Update Profile</a>
-                </li> -->
             </ul>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-light" type="submit">Search</button>
-            </form>
+            <ul class="navbar-nav">
+                <div class="account-container">
+                    <!-- Desktop account options -->
+                    <li class="nav-item dropdown desktop-account-options" *ngIf="!authService.isAuthenticated()">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          <i class="bi bi-person-circle"></i>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li>
+                                <a class="dropdown-item" routerLink="/login">
+                                    <i class="bi bi-box-arrow-in-right"></i>Login
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" routerLink="/register">
+                                    <i class="bi bi-person-fill-add"></i>Register
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                      
+                    <li class="nav-item dropdown desktop-account-options" *ngIf="authService.isAuthenticated()">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownLoggedIn" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-circle"></i>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownLoggedIn">
+                            <li>
+                                <a class="dropdown-item" routerLink="/" (click)="logout()">
+                                    <i class="bi bi-box-arrow-right"></i>Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- Mobile account options -->
+                    <li class="nav-item mobile-account-options" *ngIf="!authService.isAuthenticated()">
+                        <a class="nav-link" routerLink="/login">
+                            <i class="bi bi-box-arrow-in-right"></i>Login
+                        </a>
+                    </li>
+                    <li class="nav-item mobile-account-options" *ngIf="!authService.isAuthenticated()">
+                        <a class="nav-link" routerLink="/register">
+                            <i class="bi bi-person-fill-add"></i>Register
+                        </a>
+                    </li>
+                    <li class="nav-item mobile-account-options" *ngIf="authService.isAuthenticated()">
+                        <a class="nav-link" routerLink="/" (click)="logout()">
+                            <i class="bi bi-box-arrow-right"></i>Logout
+                        </a>
+                    </li>
+                </div>
+            </ul>
         </div>
     </div>
 </nav>

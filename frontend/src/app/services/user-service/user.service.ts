@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, map, pluck } from 'rxjs/operators';
 import { User } from 'src/app/models/user.interface';
 import { environment } from 'src/environments/environment';
 
@@ -29,6 +29,22 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
+  getUserCount(): Observable<number> {
+    return this.http.get(`${environment.baseApiUrl}/users/count`).pipe(
+      map((userCount: any) => {
+        return userCount;
+      })
+    );
+  }
+
+  getProjectRequestCount(): Observable<number> {
+    return this.http.get(`${environment.baseApiUrl}/project-request/count`).pipe(
+      map((projectRequestCount: any) => {
+        return projectRequestCount;
+      })
+    );
+  }
+  
   findOne(id: number): Observable<User> {
     return this.http.get(`${environment.baseApiUrl}/users/` + id).pipe(
       map((user: User) => user)

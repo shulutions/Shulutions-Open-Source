@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
-import { GitHubStats, Contributor } from 'src/app/models/github-stats.interface';
-import { ProjectService } from 'src/app/services/project-service/project.service';
+import { Contributor } from 'src/app/models/github-stats.interface';
+import { GithubService } from 'src/app/services/github-service/github.service';
 
 @Component({
   selector: 'app-contributors',
@@ -10,16 +10,16 @@ import { ProjectService } from 'src/app/services/project-service/project.service
 export class ContributorsComponent implements OnInit {
 
   @Input() projectTitle?: string;
-  contributors: Contributor[] = [];
+  contributors?: Contributor[];
 
-  constructor(private projectService: ProjectService) { }
+  constructor(private githubService: GithubService) { }
 
   ngOnInit(): void {
     this.getGithubRepositoryContributors()
   }
 
   getGithubRepositoryContributors() {
-    this.projectService.getGithubRepositoryContributors(this.projectTitle).subscribe((contributors: Contributor[]) => {
+    this.githubService.getGithubRepositoryContributors(this.projectTitle).subscribe((contributors: Contributor[]) => {
       if (contributors.length > 0) {
         this.contributors = contributors;
       }

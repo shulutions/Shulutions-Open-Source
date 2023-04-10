@@ -4,7 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { PaginationData } from 'src/app/models/pagination.interface';
 import { ProjectRequestReaction } from 'src/app/models/project-request-reaction.interface';
-import { ProjectRequest, ProjectRequestComment } from 'src/app/models/project-request.interface';
+import { ProjectRequest, ProjectRequestComment, ProjectRequestForm } from 'src/app/models/project-request.interface';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -34,7 +34,7 @@ export class ProjectRequestService {
     return this.http.get<ProjectRequest>(`${environment.baseApiUrl}/project-request/${id}`);
   }
 
-  submitProjectRequest(projectRequest: ProjectRequest) {
+  submitProjectRequest(projectRequest: ProjectRequestForm) {
     return this.http.post<ProjectRequest>(`${environment.baseApiUrl}/project-request`, projectRequest);
   }
 
