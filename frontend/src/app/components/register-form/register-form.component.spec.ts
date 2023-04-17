@@ -5,13 +5,11 @@ import { AbstractControl, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { JwtModule } from '@auth0/angular-jwt';
 import { RouterTestingModule } from '@angular/router/testing';
-import { CustomValidators } from 'src/app/validators/custom-validators';
 
 fdescribe('RegisterFormComponent', () => {
   let component: RegisterFormComponent;
   let fixture: ComponentFixture<RegisterFormComponent>;
   let authService: AuthentificationService
-  let control: AbstractControl;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
