@@ -14,7 +14,7 @@ import { TableData } from '../../models/table.interface';
 export class ProjectTableComponent implements OnInit {
 
   navigationPath?: string = 'edit-project';
-  dataSource?: PaginationData; // add projects to table data
+  dataSource?: PaginationData<Project>; // add projects to table data
   projects?: Project[];
   itemsPerPage = 40;
   currentPage = 1;
@@ -34,7 +34,7 @@ export class ProjectTableComponent implements OnInit {
   getProjects() {
     this.projectService.findAll(this.currentPage, this.itemsPerPage).pipe(
       tap(projects => console.log(projects)),
-      map((paginationData: PaginationData) => this.dataSource = paginationData)
+      map((paginationData: PaginationData<Project>) => this.dataSource = paginationData)
     ).subscribe();
   }
 }

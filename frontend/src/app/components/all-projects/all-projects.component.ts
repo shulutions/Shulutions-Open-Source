@@ -14,7 +14,7 @@ import { environment } from 'src/environments/environment';
 export class AllProjectsComponent implements OnInit {
 
   baseApiUrl: string = environment.baseApiUrl;
-  dataSource?: PaginationData;
+  dataSource?: PaginationData<Project>;
   projects?: Project[];
   itemsPerPage: number = 200;
   currentPage: number = 1;
@@ -26,7 +26,7 @@ export class AllProjectsComponent implements OnInit {
   }
 
   getProjects() {
-    this.projectService.findAll(this.currentPage, this.itemsPerPage).subscribe((paginationData: PaginationData) => {
+    this.projectService.findAll(this.currentPage, this.itemsPerPage).subscribe((paginationData: PaginationData<Project>) => {
       const filteredProjects = paginationData.items.filter(project => project.isActive);
       this.projects = filteredProjects;
     });

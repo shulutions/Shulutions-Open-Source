@@ -11,7 +11,7 @@ import { ProjectRequestService } from 'src/app/services/project-request-service/
 })
 export class IdeasComponent implements OnInit {
 
-  dataSource?: PaginationData;
+  dataSource?: PaginationData<ProjectRequest>;
   projectRequests?: ProjectRequest[];
   itemsPerPage = 200;
   currentPage = 1;
@@ -25,7 +25,7 @@ export class IdeasComponent implements OnInit {
   getProjectRequests(event: any) {
     this.projectRequestService.findAll(this.currentPage, this.itemsPerPage).pipe(
       //tap(projectRequests => console.log(projectRequests)),
-      map((paginationData: PaginationData) => {
+      map((paginationData: PaginationData<ProjectRequest>) => {
         this.dataSource = paginationData
         // Sort the project requests by the number of reactions
         this.projectRequests = paginationData.items.sort((a: ProjectRequest, b: ProjectRequest) => {

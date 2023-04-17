@@ -14,7 +14,7 @@ import { ProjectService } from 'src/app/services/project-service/project.service
 export class ProjectRequestTableComponent implements OnInit {
 
   navigationPath?: string = 'project-request';
-  dataSource?: PaginationData;
+  dataSource?: PaginationData<ProjectRequest>;
   projects?: ProjectRequest[];
   itemsPerPage = 10;
   currentPage = 1;
@@ -37,7 +37,7 @@ export class ProjectRequestTableComponent implements OnInit {
   getProjects() {
     this.projectRequestService.findAll(this.currentPage, this.itemsPerPage).pipe(
       //tap(projectRequests => console.log(projectRequests)),
-      map((paginationData: PaginationData) => this.dataSource = paginationData)
+      map((paginationData: PaginationData<ProjectRequest>) => this.dataSource = paginationData)
     ).subscribe();
   }
 }

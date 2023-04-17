@@ -1,8 +1,8 @@
 import { User } from 'src/app/models/user.interface';
 import { Project } from './project.interface';
 
-export interface PaginationData {
-  items: any[],
+export interface PaginationData<T> {
+  items: T[],
   meta: {
     totalItems: number;
     itemCount: number;
