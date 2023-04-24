@@ -37,10 +37,10 @@ Shulutions supports 4 types of users, each with specific features and capabiliti
 
 Before you begin, ensure you have the following installed on your local machine:
 
-- Node.js v14.x.x or higher
-- npm v6.x.x or higher
-- Angular CLI v12.x.x or higher
-- NestJS CLI v8.x.x or higher
+- Node.js
+- npm 
+- Angular CLI
+- NestJS CLI
 
 ## Getting Started
 
