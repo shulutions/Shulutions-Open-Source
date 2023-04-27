@@ -3,28 +3,7 @@ import { AbstractControl, ValidationErrors, FormGroup, FormControl, Validators, 
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { AuthentificationService } from 'src/app/services/authentification-service/authentification.service';
-
-class CustomValidators {
-  static passwordContainsNumber(control: AbstractControl): ValidationErrors | null {
-    const regex = /\d/;
-    if (regex.test(control.value) && control.value !== null) {
-      return null;
-    } else {
-      return {passwordInvalid: true}
-    }
-  }
-
-  static passwordsMatch(control: AbstractControl): ValidationErrors | null {
-      const password = control.get('password')?.value;
-      const passwordConfirm = control.get('passwordConfirm')?.value;
-
-      if((password === passwordConfirm) && password !== null && passwordConfirm !== null) {
-        return null;
-      } else {
-        return {passwordsNotMatching: true};
-      }
-  }
-}
+import { CustomValidators } from 'src/app/validators/custom-validators';
 
 @Component({
   selector: 'app-register-form',

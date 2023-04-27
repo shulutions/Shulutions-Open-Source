@@ -96,7 +96,7 @@ export class EditProjectComponent implements OnInit {
 
   getUsers() {
     this.userService.findAll(1, 100).pipe(
-      map((userData: PaginationData) => {
+      map((userData: PaginationData<User>) => {
         this.users = userData.items;
         this.editProjectForm.get('projectManager')?.setValue(this.project?.projectManager?.id);
         this.editProjectForm.get('stage')?.setValue(this.project?.stage);

@@ -19,14 +19,14 @@ export class ProjectService {
     return this.http.get<Project>(`${environment.baseApiUrl}/projects/` + id)
   }
 
-  findAll(page: number, limit: number): Observable<PaginationData> {
+  findAll(page: number, limit: number): Observable<PaginationData<Project>> {
     let params = new HttpParams();
 
     params = params.append('page', String(page));
     params = params.append('limit', String(limit));
 
     return this.http.get(`${environment.baseApiUrl}/projects`, {params}).pipe(
-      map((projectData: PaginationData | any) => projectData), //why does this return an object not of type UserData?
+      map((projectData: PaginationData<Project> | any) => projectData), //why does this return an object not of type UserData?
       catchError(err => throwError(err))
     )
   }

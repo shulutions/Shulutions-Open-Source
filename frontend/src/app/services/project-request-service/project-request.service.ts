@@ -18,14 +18,14 @@ export class ProjectRequestService {
     return this.http.get<ProjectRequest[]>(`${environment.baseApiUrl}/project-request`);
   }
 
-  findAll(page: number, limit: number): Observable<PaginationData> {
+  findAll(page: number, limit: number): Observable<PaginationData<ProjectRequest>> {
     let params = new HttpParams();
 
     params = params.append('page', String(page));
     params = params.append('limit', String(limit));
 
     return this.http.get(`${environment.baseApiUrl}/project-request`, {params}).pipe(
-      map((projectRequestData: PaginationData | any) => projectRequestData),
+      map((projectRequestData: PaginationData<ProjectRequest> | any) => projectRequestData),
       catchError(err => throwError(err))
     )
   }
