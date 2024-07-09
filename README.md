@@ -1,12 +1,12 @@
-# Shulutions
+# Shulutions Open Source
 
-Shulutions is a full-stack web application built using Angular and NestJS. The purpose of this application is to provide a platform for users to share, discuss, and manage open-source projects efficiently.
+Shulutions Open Source is a full-stack web application built using Angular and NestJS. The purpose of this application is to provide a platform for users to share, discuss, and manage open-source projects efficiently.
 
-This README.md file contains the necessary information for setting up and running the Shulutions application on your local machine.
+This README.md file contains the necessary information for setting up and running the Shulutions Open Source application on your local machine.
 
 ## User Types and Features
 
-Shulutions supports 4 types of users, each with specific features and capabilities:
+Shulutions Open Source supports 4 types of users, each with specific features and capabilities:
 
 ### Non-user
 
